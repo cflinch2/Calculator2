@@ -7,19 +7,19 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Button;
 
-import edu.ycp.cs320.calculator.shared.GameList_Test;
+import edu.ycp.cs320.calculator.shared.GameList;
 import edu.ycp.cs320.calculator.shared.RocketPadsFrame;
 
 
-public class Game_Selection extends Composite {
-	
+public class Game_Selection extends Composite 
+{
 	private RocketPadsFrame floor;
 	private Button selector;
 	private InlineLabel gameSelection;
 	private ListBox gameListBox;
 	
-	
-	public Game_Selection(){
+	public Game_Selection()
+	{
 		
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
@@ -40,15 +40,18 @@ public class Game_Selection extends Composite {
 		layoutPanel.setWidgetTopHeight(selector, 40.0, Unit.PX, 35.0, Unit.PX);
 	}
 	
-	
-	public void setFloor(RocketPadsFrame floor){
+	public void setFloor(RocketPadsFrame floor)
+	{
 		this.floor = floor;
 	}
 	
-	public void update(){
-		if (gameListBox.getItemCount() == 0) {
-			GameList_Test[] games = GameList_Test.values();
-			for (GameList_Test g : games) {
+	public void update()
+	{
+		if (gameListBox.getItemCount() == 0) 
+		{
+			GameList[] games = GameList.values();
+			for (GameList g : games) 
+			{
 				gameListBox.addItem(g.toString());
 			}
 		}
