@@ -62,22 +62,22 @@ public class RocketPadsPlayerTest extends TestCase
 		assertEquals(RocketPadsDirection.NORTH, testPlayer.getDirection());
 		
 		testPlayer.setDirection(2);
-		assertEquals(2, testPlayer.getDirection());
+		assertEquals(RocketPadsDirection.SOUTH, testPlayer.getDirection());
 		
 		testPlayer.setDirection(3);
-		assertEquals(3, testPlayer.getDirection());
+		assertEquals(RocketPadsDirection.EAST, testPlayer.getDirection());
 		
 		testPlayer.setDirection(4);
-		assertEquals(4, testPlayer.getDirection());
+		assertEquals(RocketPadsDirection.WEST, testPlayer.getDirection());
 		
 		testPlayer.setDirection(5);
-		assertEquals(5, testPlayer.getDirection());
+		assertEquals(RocketPadsDirection.WALK, testPlayer.getDirection());
 		
 		testPlayer.setDirection(6);
-		assertEquals(6, testPlayer.getDirection());
+		assertEquals(RocketPadsDirection.STOP, testPlayer.getDirection());
 		
 		testPlayer.setDirection(7);
-		assertEquals(7, testPlayer.getDirection());
+		assertEquals(RocketPadsDirection.WIN, testPlayer.getDirection());
 		
 	}
 }
