@@ -39,12 +39,17 @@ public class Game_Selection extends Composite {
 		
 		gameSelection = new InlineLabel("Game:");
 		verticalPanel.add(gameSelection);
+		gameSelection.setSize("100", "36");
+		
 		
 		gameListBox = new ListBox();
 		verticalPanel.add(gameListBox);
+		gameListBox.setSize("100", "36");
+		verticalPanel.setCellHorizontalAlignment(gameListBox, HasHorizontalAlignment.ALIGN_CENTER);
 		
 		selector = new Button();
 		verticalPanel.add(selector);
+		verticalPanel.setCellHorizontalAlignment(selector, HasHorizontalAlignment.ALIGN_RIGHT);
 		selector.setText("Play!");
 		selector.addClickHandler(new ClickHandler(){
 			@Override
@@ -60,8 +65,8 @@ public class Game_Selection extends Composite {
 		image.setStyleName("gwt-DialogBox");
 		layoutPanel.add(image);
 		image.setSize("500", "500");
-		layoutPanel.setWidgetLeftWidth(image, 147.0, Unit.PX, 100.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image, 108.0, Unit.PX, 100.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(image, 147.0, Unit.PX, 500.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image, 108.0, Unit.PX, 500.0, Unit.PX);
 	}
 	
 	
