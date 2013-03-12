@@ -11,6 +11,9 @@ import com.google.gwt.user.client.ui.Button;
 
 import edu.ycp.cs320.calculator.shared.GameList;
 import edu.ycp.cs320.calculator.shared.RocketPadsPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.Image;
 
 
 public class Game_Selection extends Composite {
@@ -25,18 +28,23 @@ public class Game_Selection extends Composite {
 		
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
+		layoutPanel.setSize("1000px", "750px");
+		
+		VerticalPanel verticalPanel = new VerticalPanel();
+		verticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		layoutPanel.add(verticalPanel);
+		verticalPanel.setSize("1000", "100");
+		layoutPanel.setWidgetLeftWidth(verticalPanel, 0.0, Unit.PX, 1000.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(verticalPanel, 0.0, Unit.PX, 100.0, Unit.PX);
 		
 		gameSelection = new InlineLabel("Game:");
-		layoutPanel.add(gameSelection);
-		layoutPanel.setWidgetLeftWidth(gameSelection, 10.0, Unit.PX, 50.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(gameSelection, 10.0, Unit.PX, 20.0, Unit.PX);
+		verticalPanel.add(gameSelection);
 		
 		gameListBox = new ListBox();
-		layoutPanel.add(gameListBox);
-		layoutPanel.setWidgetLeftWidth(gameListBox, 75.0, Unit.PX, 150.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(gameListBox, 10.0, Unit.PX, 20.0, Unit.PX);
+		verticalPanel.add(gameListBox);
 		
 		selector = new Button();
+		verticalPanel.add(selector);
 		selector.setText("Play!");
 		selector.addClickHandler(new ClickHandler(){
 			@Override
@@ -46,9 +54,14 @@ public class Game_Selection extends Composite {
 				
 			}
 		});
-		layoutPanel.add(selector);
-		layoutPanel.setWidgetLeftWidth(selector, 200.0, Unit.PX, 300.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(selector, 10.0, Unit.PX, 30.0, Unit.PX);
+		selector.setSize("120", "36");
+		
+		Image image = new Image("WEB-INF/classes/edu/ycp/cs320/calculator/client/old-classic-board-games.jpg");
+		image.setStyleName("gwt-DialogBox");
+		layoutPanel.add(image);
+		image.setSize("500", "500");
+		layoutPanel.setWidgetLeftWidth(image, 147.0, Unit.PX, 100.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image, 108.0, Unit.PX, 100.0, Unit.PX);
 	}
 	
 	
@@ -64,5 +77,4 @@ public class Game_Selection extends Composite {
 			}
 		}
 	}
-
 }

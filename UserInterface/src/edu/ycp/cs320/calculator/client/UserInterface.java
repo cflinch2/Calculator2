@@ -13,6 +13,7 @@ public class UserInterface implements EntryPoint {
 		
 		Game_Selection gameSelection = new Game_Selection();
 		panel.add(gameSelection);
+		gameSelection.setSize("1024", "1024");
 		Game_Selection.update();
 		
 		RootLayoutPanel.get().add(panel);
