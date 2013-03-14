@@ -8,12 +8,12 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Image;
 
 import edu.ycp.cs320.calculator.shared.GameList;
 import edu.ycp.cs320.calculator.shared.RocketPadsPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.Image;
+
+
 
 
 public class Game_Selection extends Composite {
@@ -21,6 +21,7 @@ public class Game_Selection extends Composite {
 	private RocketPadsPanel floor;
 	private Button selector;
 	private InlineLabel gameSelection;
+	private InlineLabel gamePanel;
 	private static ListBox gameListBox;
 	
 	
@@ -30,46 +31,48 @@ public class Game_Selection extends Composite {
 		initWidget(layoutPanel);
 		layoutPanel.setSize("1000px", "750px");
 		
-		VerticalPanel verticalPanel = new VerticalPanel();
-		verticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		layoutPanel.add(verticalPanel);
-		verticalPanel.setSize("1000", "100");
-		layoutPanel.setWidgetLeftWidth(verticalPanel, 0.0, Unit.PX, 1000.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(verticalPanel, 0.0, Unit.PX, 100.0, Unit.PX);
-		
+			
 		gameSelection = new InlineLabel("Game:");
-		verticalPanel.add(gameSelection);
-		gameSelection.setSize("100", "36");
-		
+		layoutPanel.add(gameSelection);
+		layoutPanel.setWidgetLeftWidth(gameSelection, 15.0, Unit.PX, 100.0, Unit.PX );
+		layoutPanel.setWidgetTopHeight(gameSelection, 15.0, Unit.PX, 25.0, Unit.PX);
 		
 		gameListBox = new ListBox();
-		verticalPanel.add(gameListBox);
-		gameListBox.setSize("100", "36");
-		verticalPanel.setCellHorizontalAlignment(gameListBox, HasHorizontalAlignment.ALIGN_CENTER);
+		layoutPanel.add(gameListBox);
+		layoutPanel.setWidgetLeftWidth(gameListBox, 125.0, Unit.PX, 100.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(gameListBox, 15.0, Unit.PX, 25.0, Unit.PX);
+		
+		gamePanel = new InlineLabel();
+		layoutPanel.setWidgetLeftWidth(gamePanel, 275.0, Unit.PX, 100.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(gamePanel, 15.0, Unit.PX, 25.0, Unit.PX);
 		
 		selector = new Button();
-		verticalPanel.add(selector);
-		verticalPanel.setCellHorizontalAlignment(selector, HasHorizontalAlignment.ALIGN_RIGHT);
+		layoutPanel.add(selector);
 		selector.setText("Play!");
 		selector.addClickHandler(new ClickHandler(){
 			@Override
 			public void onClick(ClickEvent event) {
 				// TODO Auto-generated method stub
+				gamePanel.setText(gameListBox.getItemText(0));
+				
 				
 				
 			}
 		});
-		selector.setSize("120", "36");
+		layoutPanel.setWidgetLeftWidth(selector, 250.0, Unit.PX, 100.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(selector, 15.0, Unit.PX, 25.0, Unit.PX);
 		
-		Image image = new Image("WEB-INF/classes/edu/ycp/cs320/calculator/client/old-classic-board-games.jpg");
-		image.setStyleName("gwt-DialogBox");
+		Image image = new Image();
+		image.setUrl("WEB-INF/classes/edu/ycp/cs320/calculator/client/old-classic-board-games.jpg");
 		layoutPanel.add(image);
-		image.setSize("500", "500");
-		layoutPanel.setWidgetLeftWidth(image, 147.0, Unit.PX, 500.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image, 108.0, Unit.PX, 500.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(image, 125.0, Unit.PX, 500.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image, 50.0, Unit.PX, 500.0, Unit.PX);
+		
+		
+		
 	}
 	
-	
+
 	public void setFloor(RocketPadsPanel floor){
 		this.floor = floor;
 	}
