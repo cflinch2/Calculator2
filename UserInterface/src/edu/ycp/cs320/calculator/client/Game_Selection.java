@@ -12,11 +12,11 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Image;
 
 import edu.ycp.cs320.calculator.shared.GameList;
-//import edu.ycp.cs320.calculator.shared.RocketPadsPanel;
 
 public class Game_Selection extends Composite {
 	
 	//private RocketPadsPanel floor;
+	//private Game_play gPage;
 	private Button selector;
 	private InlineLabel gameSelection;
 	private InlineLabel gamePanel;
@@ -32,7 +32,7 @@ public class Game_Selection extends Composite {
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
 		layoutPanel.setSize("1000px", "750px");
-		
+		//layoutPanel.setVisible(false);
 			
 		gameSelection = new InlineLabel("Game:");
 		layoutPanel.add(gameSelection);
@@ -67,7 +67,7 @@ public class Game_Selection extends Composite {
 		rocketpads.setVisible(false);
 		
 		image = new Image();
-		image.setUrl("WEB-INF/classes/edu/ycp/cs320/calculator/client/old-classic-board-games.jpg");
+		image.setUrl("userinterface/old-classic-board-games.jpg");
 		layoutPanel.add(image);
 		layoutPanel.setWidgetLeftWidth(image, 125.0, Unit.PX, 500.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(image, 50.0, Unit.PX, 500.0, Unit.PX);
@@ -84,6 +84,7 @@ public class Game_Selection extends Composite {
 				if(selGame == "RocketPads"){
 					rocketpads.setVisible(true);
 					image.setVisible(false);
+					//Game_play.Game_play();	
 					
 				}
 				
