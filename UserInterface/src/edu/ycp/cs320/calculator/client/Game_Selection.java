@@ -32,55 +32,67 @@ public class Game_Selection extends Composite {
 		initWidget(layoutPanel);
 		layoutPanel.setSize("1000px", "750px");
 		
-		//layoutPanel.setVisible(false);
-			
-		gameSelection = new InlineLabel("Game:");
-		layoutPanel.add(gameSelection);
-		layoutPanel.setWidgetLeftWidth(gameSelection, 15.0, Unit.PX, 50.0, Unit.PX );
-		layoutPanel.setWidgetTopHeight(gameSelection, 15.0, Unit.PX, 25.0, Unit.PX);
-		
-		gameListBox = new ListBox();
-		layoutPanel.add(gameListBox);
-		layoutPanel.setWidgetLeftWidth(gameListBox, 75.0, Unit.PX, 100.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(gameListBox, 15.0, Unit.PX, 25.0, Unit.PX);
-		
-		user = new InlineLabel("User:");
-		layoutPanel.add(user);
-		layoutPanel.setWidgetLeftWidth(user, 185.0, Unit.PX, 50.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(user, 15.0, Unit.PX, 25.0, Unit.PX);
-		
-		uName = new TextBox();
-		layoutPanel.add(uName);
-		layoutPanel.setWidgetLeftWidth(uName, 245.0, Unit.PX, 100.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(uName, 15.0, Unit.PX, 25.0, Unit.PX);
-		
-				selector = new Button();
-		layoutPanel.add(selector);
-		selector.setText("Play!");
-		selector.addClickHandler(new ClickHandler(){
-			@Override
-			public void onClick(ClickEvent event) {
-				
-				String selGame = getChange();
-				
-				if(selGame == "RocketPads"){
-					
-														
-				}
-				
-				gamePanel.setText(getUName() + " is Playing " + getChange());
-								
-			}
-		});
-		layoutPanel.setWidgetLeftWidth(selector, 355.0, Unit.PX, 100.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(selector, 15.0, Unit.PX, 25.0, Unit.PX);
-		
 		image = new Image();
 		image.setUrl("userinterface/lobby_screen.png");
 		layoutPanel.add(image);
 		image.setSize("1000", "750");
 		layoutPanel.setWidgetLeftWidth(image, 0.0, Unit.PX, 1000.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image, 45.0, Unit.PX, 750.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image, 0.0, Unit.PX, 795.0, Unit.PX);
+		
+		LayoutPanel UI = new LayoutPanel();
+		layoutPanel.add(UI);
+		layoutPanel.setWidgetLeftWidth(UI, 0.0, Unit.PX, 1000.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(UI, 0.0, Unit.PX, 750.0, Unit.PX);
+		
+		//layoutPanel.setVisible(false);
+			
+		gameSelection = new InlineLabel("Game:");
+		UI.add(gameSelection);
+		UI.setWidgetLeftWidth(gameSelection, 15.0, Unit.PX, 50.0, Unit.PX);
+		UI.setWidgetTopHeight(gameSelection, 20.0, Unit.PX, 25.0, Unit.PX);
+		
+		gameListBox = new ListBox();
+		UI.add(gameListBox);
+		UI.setWidgetLeftWidth(gameListBox, 75.0, Unit.PX, 100.0, Unit.PX);
+		UI.setWidgetTopHeight(gameListBox, 15.0, Unit.PX, 25.0, Unit.PX);
+		
+		user = new InlineLabel("User:");
+		UI.add(user);
+		UI.setWidgetLeftWidth(user, 185.0, Unit.PX, 50.0, Unit.PX);
+		UI.setWidgetTopHeight(user, 20.0, Unit.PX, 25.0, Unit.PX);
+		
+		uName = new TextBox();
+		UI.add(uName);
+		UI.setWidgetLeftWidth(uName, 245.0, Unit.PX, 100.0, Unit.PX);
+		UI.setWidgetTopHeight(uName, 15.0, Unit.PX, 25.0, Unit.PX);
+		
+				selector = new Button();
+				UI.add(selector);
+				selector.setText("Play!");
+				selector.addClickHandler(new ClickHandler(){
+					@Override
+					public void onClick(ClickEvent event) {
+						
+						String selGame = getChange();
+						
+						if(selGame == "RocketPads"){
+							
+																
+						}
+						
+						gamePanel.setText(getUName() + " is Playing " + getChange());
+										
+					}
+				});
+				
+				UI.setWidgetLeftWidth(selector, 355.0, Unit.PX, 50.0, Unit.PX);
+				UI.setWidgetTopHeight(selector, 15.0, Unit.PX, 25.0, Unit.PX);
+				
+				
+				gamePanel = new InlineLabel();
+				UI.add(gamePanel);
+				UI.setWidgetLeftWidth(gamePanel, 410.0, Unit.PX, 250.0, Unit.PX);
+				UI.setWidgetTopHeight(gamePanel, 20.0, Unit.PX, 25.0, Unit.PX);
 				
 	}
 	
