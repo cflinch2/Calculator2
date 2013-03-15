@@ -19,10 +19,9 @@ public class Game_Selection extends Composite {
 	//private Game_play gPage;
 	private Button selector;
 	private InlineLabel gameSelection;
-	private InlineLabel gamePanel;
 	private InlineLabel user;
 	private TextBox uName;
-	private Image rocketpads;
+	private InlineLabel gamePanel;
 	private Image image;
 	private static ListBox gameListBox;
 	
@@ -32,6 +31,7 @@ public class Game_Selection extends Composite {
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
 		layoutPanel.setSize("1000px", "750px");
+		
 		//layoutPanel.setVisible(false);
 			
 		gameSelection = new InlineLabel("Game:");
@@ -64,7 +64,7 @@ public class Game_Selection extends Composite {
 				String selGame = getChange();
 				
 				if(selGame == "RocketPads"){
-					rocketpads.setVisible(true);
+					
 														
 				}
 				
@@ -75,18 +75,12 @@ public class Game_Selection extends Composite {
 		layoutPanel.setWidgetLeftWidth(selector, 355.0, Unit.PX, 100.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(selector, 15.0, Unit.PX, 25.0, Unit.PX);
 		
-		gamePanel = new InlineLabel();
-		layoutPanel.add(gamePanel);
-		layoutPanel.setWidgetLeftWidth(gamePanel, 410.0, Unit.PX, 50.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(gamePanel, 15.0, Unit.PX, 25.0, Unit.PX);
-		
-		
-		
 		image = new Image();
 		image.setUrl("userinterface/lobby_screen.png");
 		layoutPanel.add(image);
-		layoutPanel.setWidgetLeftWidth(image, 125.0, Unit.PX, 500.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image, 50.0, Unit.PX, 500.0, Unit.PX);
+		image.setSize("1000", "750");
+		layoutPanel.setWidgetLeftWidth(image, 0.0, Unit.PX, 1000.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image, 45.0, Unit.PX, 750.0, Unit.PX);
 				
 	}
 	
