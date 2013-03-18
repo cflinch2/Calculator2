@@ -10,13 +10,16 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Image;
+//import com.google.gwt.user.client.ui.PopupPanel;
 
+import edu.ycp.cs320.calculator.shared.RocketPadsView;
 import edu.ycp.cs320.calculator.shared.GameList;
 
 public class Game_Selection extends Composite {
 	
 	//private RocketPadsPanel floor;
 	//private Game_play gPage;
+	private RocketPadsView RPCanvas;
 	private Button selector;
 	private InlineLabel gameSelection;
 	private InlineLabel user;
@@ -24,28 +27,27 @@ public class Game_Selection extends Composite {
 	private InlineLabel gamePanel;
 	private Image image;
 	private static ListBox gameListBox;
+	//private PopupPanel gameView;
 	
 	
 	public Game_Selection(){
 		
-		LayoutPanel layoutPanel = new LayoutPanel();
-		initWidget(layoutPanel);
-		layoutPanel.setSize("1000px", "750px");
-		
+		LayoutPanel basePanel = new LayoutPanel();
+		initWidget(basePanel);
+		basePanel.setSize("1000px", "750px");
+				
 		image = new Image();
 		image.setUrl("userinterface/lobby_screen.png");
-		layoutPanel.add(image);
+		basePanel.add(image);
 		image.setSize("1000", "750");
-		layoutPanel.setWidgetLeftWidth(image, 0.0, Unit.PX, 1000.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image, 0.0, Unit.PX, 795.0, Unit.PX);
+		basePanel.setWidgetLeftWidth(image, 0.0, Unit.PX, 1000.0, Unit.PX);
+		basePanel.setWidgetTopHeight(image, 0.0, Unit.PX, 795.0, Unit.PX);
 		
-		LayoutPanel UI = new LayoutPanel();
-		layoutPanel.add(UI);
-		layoutPanel.setWidgetLeftWidth(UI, 0.0, Unit.PX, 1000.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(UI, 0.0, Unit.PX, 750.0, Unit.PX);
+		final LayoutPanel UI = new LayoutPanel();
+		basePanel.add(UI);
+		basePanel.setWidgetLeftWidth(UI, 0.0, Unit.PX, 1000.0, Unit.PX);
+		basePanel.setWidgetTopHeight(UI, 0.0, Unit.PX, 750.0, Unit.PX);
 		
-		//layoutPanel.setVisible(false);
-			
 		gameSelection = new InlineLabel("Game:");
 		UI.add(gameSelection);
 		UI.setWidgetLeftWidth(gameSelection, 15.0, Unit.PX, 50.0, Unit.PX);
@@ -76,8 +78,7 @@ public class Game_Selection extends Composite {
 						String selGame = getChange();
 						
 						if(selGame == "RocketPads"){
-							
-																
+							RPCanvas.show();											
 						}
 						
 						gamePanel.setText(getUName() + " is Playing " + getChange());
