@@ -17,9 +17,9 @@ import com.google.gwt.event.dom.client.TouchMoveHandler;
 import com.google.gwt.user.client.Timer; 
 import com.google.gwt.user.client.ui.Label; 
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.PopupPanel;
+//import com.google.gwt.user.client.ui.PopupPanel;
 
-public class RocketPadsView extends PopupPanel {   
+public class RocketPadsView {   
 	static final String holderId = "canvasholder";   
 	static final String upgradeMessage = "Your browser does not support the HTML5 Canvas. Please upgrade your browser to view this demo.";   
 	Canvas canvas;   

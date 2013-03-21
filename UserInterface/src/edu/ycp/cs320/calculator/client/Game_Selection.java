@@ -4,13 +4,14 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.TextBox;
+
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Image;
-//import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 
 import edu.ycp.cs320.calculator.shared.RocketPadsView;
 import edu.ycp.cs320.calculator.shared.GameList;
@@ -27,7 +28,7 @@ public class Game_Selection extends Composite {
 	private InlineLabel gamePanel;
 	private Image image;
 	private static ListBox gameListBox;
-	//private PopupPanel gameView;
+	private PopupPanel gameView;
 	
 	
 	public Game_Selection(){
@@ -74,13 +75,13 @@ public class Game_Selection extends Composite {
 				selector.addClickHandler(new ClickHandler(){
 					@Override
 					public void onClick(ClickEvent event) {
-						
 						String selGame = getChange();
 						
-						if(selGame == "RocketPads"){
-							RPCanvas.show();											
+											
+						if(selGame == ""){
+							gameView.show();
+							
 						}
-						
 						gamePanel.setText(getUName() + " is Playing " + getChange());
 										
 					}
