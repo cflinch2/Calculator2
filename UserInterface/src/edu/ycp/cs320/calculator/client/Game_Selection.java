@@ -1,6 +1,7 @@
 package edu.ycp.cs320.calculator.client;
 
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -13,6 +14,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PopupPanel;
 
+import edu.ycp.cs320.calculator.shared.Game_Window;
 import edu.ycp.cs320.calculator.shared.RocketPadsView;
 import edu.ycp.cs320.calculator.shared.GameList;
 
@@ -79,7 +81,7 @@ public class Game_Selection extends Composite {
 						
 											
 						if(selGame == ""){
-							gameView.show();
+							new Game_Window().show();
 							
 						}
 						gamePanel.setText(getUName() + " is Playing " + getChange());

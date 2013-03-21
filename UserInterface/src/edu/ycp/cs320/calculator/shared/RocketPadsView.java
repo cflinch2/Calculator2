@@ -20,7 +20,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 //import com.google.gwt.user.client.ui.PopupPanel;
 
 public class RocketPadsView {   
-	static final String holderId = "canvasholder";   
+	static final String holderId = "Canvas";   
 	static final String upgradeMessage = "Your browser does not support the HTML5 Canvas. Please upgrade your browser to view this demo.";   
 	Canvas canvas;   
 	Canvas backBuffer;   
