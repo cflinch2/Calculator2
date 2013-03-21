@@ -5,9 +5,9 @@ import com.google.gwt.user.client.ui.PopupPanel;
 
 public class Game_Window extends PopupPanel{
 	
-	public Game_Window(){
+	public Game_Window(String game){
 		super(true);
-		setWidget(new Label("Test"));
+		setWidget(new Label(game));
 	}
 	
 	
