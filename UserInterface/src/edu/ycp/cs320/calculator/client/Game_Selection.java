@@ -2,7 +2,6 @@ package edu.ycp.cs320.calculator.client;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -16,14 +15,10 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PopupPanel;
 
 import edu.ycp.cs320.calculator.shared.Game_Window;
-import edu.ycp.cs320.calculator.shared.RocketPadsView;
 import edu.ycp.cs320.calculator.shared.GameList;
 
 public class Game_Selection extends Composite {
 	
-	//private RocketPadsPanel floor;
-	//private Game_play gPage;
-	private RocketPadsView RPCanvas;
 	private Button selector;
 	private InlineLabel gameSelection;
 	private InlineLabel user;
@@ -31,8 +26,7 @@ public class Game_Selection extends Composite {
 	private InlineLabel gamePanel;
 	private Image image;
 	private static ListBox gameListBox;
-	//private PopupPanel gameView;
-	
+		
 	
 	public Game_Selection(){
 		
@@ -44,12 +38,12 @@ public class Game_Selection extends Composite {
 		image.setUrl("userinterface/lobby_screen.png");
 		basePanel.add(image);
 		image.setSize("1000", "750");
-		basePanel.setWidgetLeftWidth(image, 0.0, Unit.PX, 1000.0, Unit.PX);
+		basePanel.setWidgetLeftWidth(image, 190.0, Unit.PX, 1000.0, Unit.PX);
 		basePanel.setWidgetTopHeight(image, 0.0, Unit.PX, 795.0, Unit.PX);
 		
 		final LayoutPanel UI = new LayoutPanel();
 		basePanel.add(UI);
-		basePanel.setWidgetLeftWidth(UI, 0.0, Unit.PX, 1000.0, Unit.PX);
+		basePanel.setWidgetLeftWidth(UI, 200.0, Unit.PX, 1000.0, Unit.PX);
 		basePanel.setWidgetTopHeight(UI, 0.0, Unit.PX, 750.0, Unit.PX);
 		
 		gameSelection = new InlineLabel("Game:");
@@ -81,12 +75,12 @@ public class Game_Selection extends Composite {
 						String selGame = getChange();
 						
 						final Game_Window popUp = new Game_Window(selGame);
-						popUp.setSize("900px", "500px");
+						popUp.setSize("1000px", "640px");
 						//popUp.setSize(width, height)
 						popUp.setPopupPositionAndShow(new PopupPanel.PositionCallback(){
 							public void setPosition(int offsetWidth, int offsetHeight){
-								int left = (Window.getClientWidth() - offsetWidth) / 3;
-								int top = (Window.getClientHeight() - offsetHeight) / 3;
+								int left = (Window.getClientWidth() - offsetWidth) / 2;
+								int top = (Window.getClientHeight() - offsetHeight) / 2;
 								popUp.setPopupPosition(left, top);
 							}
 						});
