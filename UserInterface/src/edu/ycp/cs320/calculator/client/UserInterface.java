@@ -10,9 +10,6 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 public class UserInterface implements EntryPoint {
 
-
-	
-		
 	@Override
 	public void onModuleLoad() {
 		LayoutPanel panel = new LayoutPanel();

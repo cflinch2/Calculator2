@@ -25,7 +25,6 @@ public class RocketPadsView {
 	Canvas canvas;   
 	Canvas backBuffer;   
       
-	
 	// mouse positions relative to canvas   
 	int mouseX, mouseY;    
 	//timer refresh rate, in milliseconds   
@@ -56,8 +55,6 @@ public class RocketPadsView {
 		context = canvas.getContext2d();     
 		backBufferContext = backBuffer.getContext2d();          
 		
-		 
-		
 		// init handlers     
 		initHandlers();          
 		// setup timer     
@@ -76,7 +73,8 @@ public class RocketPadsView {
 		backBufferContext.setFillStyle(redrawColor);     
 		backBufferContext.fillRect(0, 0, width, height);     
 		
-		}      
+		}
+	
 	void initHandlers() {    
 		canvas.addMouseMoveHandler(new MouseMoveHandler() {
 			public void onMouseMove(MouseMoveEvent event) {        
@@ -113,5 +111,4 @@ public class RocketPadsView {
 				}     
 			});  
 		}
-	
 }
