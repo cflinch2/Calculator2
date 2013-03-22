@@ -7,7 +7,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Button;
 
-import edu.ycp.cs320.calculator.shared.GameList_Test;
+import edu.ycp.cs320.calculator.shared.GameList;
 import edu.ycp.cs320.calculator.shared.RocketPadsFrame;
 
 
@@ -47,8 +47,8 @@ public class Game_Selection extends Composite {
 	
 	public void update(){
 		if (gameListBox.getItemCount() == 0) {
-			GameList_Test[] games = GameList_Test.values();
-			for (GameList_Test g : games) {
+			GameList[] games = GameList.values();
+			for (GameList g : games) {
 				gameListBox.addItem(g.toString());
 			}
 		}
