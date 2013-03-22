@@ -6,6 +6,7 @@ import com.google.gwt.canvas.dom.client.CssColor;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.Label;
 
 public class Test_Canvas extends Composite {
 
@@ -27,6 +28,10 @@ public class Test_Canvas extends Composite {
 		FocusPanel panel = new FocusPanel();
 		panel.setSize("700px", "500px");
 		
+		Label junk = new Label("Maybe");
+		panel.add(junk);
+		
+		
 		this.boardBack = Canvas.createIfSupported();
 		boardBack.setSize("700px", "500px");
 		boardBack.setCoordinateSpaceWidth(width);
@@ -40,7 +45,7 @@ public class Test_Canvas extends Composite {
 		this.context = gameBoard.getContext2d();
 		
 		
-		initWidget(panel);
+		
 		
 		this.timer = new Timer() {      
 			@Override       
@@ -48,6 +53,8 @@ public class Test_Canvas extends Composite {
 				paint();
 			}    
 		};
+		
+		initWidget(panel);
 		
 	}
 	

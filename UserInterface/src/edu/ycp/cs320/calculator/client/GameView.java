@@ -1,9 +1,12 @@
 package edu.ycp.cs320.calculator.client;
 
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.PopupPanel;
+
+import edu.ycp.cs320.calculator.shared.Test_Canvas;
 
 public class GameView extends PopupPanel {
 
@@ -23,6 +26,10 @@ public class GameView extends PopupPanel {
 		
 		pos.setText(mouseX + ", " + mouseY);		
 		Test.add(pos);
+		Test.setWidgetRightWidth(pos, 0.0, Unit.PX, 25.0, Unit.PX);
+		Test.setWidgetTopHeight(pos, 0.0, Unit.PX, 25.0, Unit.PX);
+		
+		Test.add(new Test_Canvas());
 		
 		setWidget(Test);
 		

@@ -88,7 +88,8 @@ public class Game_Selection extends Composite {
 						
 											
 						if(selGame == ""){
-							new GameView(selGame).show();
+							//new GameView(selGame).show();
+							
 							
 						}
 						gamePanel.setText(getUName() + " is Playing " + getChange());
