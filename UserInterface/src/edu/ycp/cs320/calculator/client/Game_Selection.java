@@ -1,51 +1,138 @@
 package edu.ycp.cs320.calculator.client;
 
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.LayoutPanel;
-import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.InlineLabel;
+import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.TextBox;
 
 import edu.ycp.cs320.calculator.shared.GameList;
-import edu.ycp.cs320.calculator.shared.RocketPadsFrame;
+import edu.ycp.cs320.calculator.shared.Game_Window;
 
+<<<<<<< HEAD
 
 public class Game_Selection extends Composite {
 	
 	private RocketPadsFrame floor;
+=======
+public class Game_Selection extends Composite {
+>>>>>>> refs/remotes/cmbennett/master
 	private Button selector;
 	private InlineLabel gameSelection;
+<<<<<<< HEAD
 	private ListBox gameListBox;
 	
 	
 	public Game_Selection(){
+=======
+	private InlineLabel user;
+	private TextBox uName;
+	private InlineLabel gamePanel;
+	private Image image;
+	private static ListBox gameListBox;
+>>>>>>> refs/remotes/cmbennett/master
 		
-		LayoutPanel layoutPanel = new LayoutPanel();
-		initWidget(layoutPanel);
+	
+	public Game_Selection(){
+		
+		LayoutPanel basePanel = new LayoutPanel();
+		initWidget(basePanel);
+		basePanel.setSize("1000px", "750px");
+				
+		image = new Image();
+		image.setUrl("userinterface/lobby_screen.png");
+		basePanel.add(image);
+		image.setSize("1000", "750");
+		basePanel.setWidgetLeftWidth(image, 190.0, Unit.PX, 1000.0, Unit.PX);
+		basePanel.setWidgetTopHeight(image, 0.0, Unit.PX, 795.0, Unit.PX);
+		
+		final LayoutPanel UI = new LayoutPanel();
+		basePanel.add(UI);
+		basePanel.setWidgetLeftWidth(UI, 200.0, Unit.PX, 1000.0, Unit.PX);
+		basePanel.setWidgetTopHeight(UI, 0.0, Unit.PX, 750.0, Unit.PX);
 		
 		gameSelection = new InlineLabel("Game:");
-		layoutPanel.add(gameSelection);
-		layoutPanel.setWidgetLeftWidth(gameSelection, 10.0, Unit.PX, 80.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(gameSelection, 50.0, Unit.PX, 20.0, Unit.PX);
+		UI.add(gameSelection);
+		UI.setWidgetLeftWidth(gameSelection, 15.0, Unit.PX, 50.0, Unit.PX);
+		UI.setWidgetTopHeight(gameSelection, 20.0, Unit.PX, 25.0, Unit.PX);
 		
 		gameListBox = new ListBox();
-		layoutPanel.add(gameListBox);
-		layoutPanel.setWidgetLeftWidth(gameListBox, 130.0, Unit.PX, 530.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(gameListBox, 50.0, Unit.PX, 20.0, Unit.PX);
+		UI.add(gameListBox);
+		UI.setWidgetLeftWidth(gameListBox, 75.0, Unit.PX, 100.0, Unit.PX);
+		UI.setWidgetTopHeight(gameListBox, 15.0, Unit.PX, 25.0, Unit.PX);
 		
-		selector = new Button();
-		layoutPanel.add(selector);
-		layoutPanel.setWidgetLeftWidth(selector, 275.0, Unit.PX, 300.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(selector, 40.0, Unit.PX, 35.0, Unit.PX);
+		user = new InlineLabel("User:");
+		UI.add(user);
+		UI.setWidgetLeftWidth(user, 185.0, Unit.PX, 50.0, Unit.PX);
+		UI.setWidgetTopHeight(user, 20.0, Unit.PX, 25.0, Unit.PX);
+		
+		uName = new TextBox();
+		UI.add(uName);
+		UI.setWidgetLeftWidth(uName, 245.0, Unit.PX, 100.0, Unit.PX);
+		UI.setWidgetTopHeight(uName, 15.0, Unit.PX, 25.0, Unit.PX);
+		
+				selector = new Button();
+				UI.add(selector);
+				selector.setText("Play!");
+				selector.addClickHandler(new ClickHandler(){
+					@Override
+					public void onClick(ClickEvent event) {
+						String selGame = getChange();
+						
+						final Game_Window popUp = new Game_Window(selGame);
+						popUp.setSize("1000px", "640px");
+						//popUp.setSize(width, height)
+						popUp.setPopupPositionAndShow(new PopupPanel.PositionCallback(){
+							public void setPosition(int offsetWidth, int offsetHeight){
+								int left = (Window.getClientWidth() - offsetWidth) / 2;
+								int top = (Window.getClientHeight() - offsetHeight) / 2;
+								popUp.setPopupPosition(left, top);
+							}
+						});
+						
+						
+											
+						if(selGame == ""){
+							new Game_Window(selGame).show();
+							
+						}
+						gamePanel.setText(getUName() + " is Playing " + getChange());
+										
+					}
+				});
+				
+				UI.setWidgetLeftWidth(selector, 355.0, Unit.PX, 50.0, Unit.PX);
+				UI.setWidgetTopHeight(selector, 15.0, Unit.PX, 25.0, Unit.PX);
+				
+				
+				gamePanel = new InlineLabel();
+				UI.add(gamePanel);
+				UI.setWidgetLeftWidth(gamePanel, 410.0, Unit.PX, 250.0, Unit.PX);
+				UI.setWidgetTopHeight(gamePanel, 20.0, Unit.PX, 25.0, Unit.PX);
+				
+	}
+
+	public String getChange(){
+		int sel = gameListBox.getSelectedIndex();
+		String GameChoice = gameListBox.getValue(sel);
+		return GameChoice;
+
 	}
 	
-	
-	public void setFloor(RocketPadsFrame floor){
-		this.floor = floor;
+	public String getUName(){
+		String name = uName.getText();
+		return name;
 	}
-	
-	public void update(){
+
+	public static void update(){
+
 		if (gameListBox.getItemCount() == 0) {
 			GameList[] games = GameList.values();
 			for (GameList g : games) {
@@ -53,5 +140,6 @@ public class Game_Selection extends Composite {
 			}
 		}
 	}
-
+	}
 }
+
