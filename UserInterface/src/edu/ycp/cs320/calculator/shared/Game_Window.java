@@ -45,6 +45,7 @@ public class Game_Window extends PopupPanel{
 		Test.add(pos);
 		
 		setWidget(Test);
+		
 	}
 	
 	public void onModuleLoad(){
@@ -55,8 +56,7 @@ public class Game_Window extends PopupPanel{
 			return;     
 		} 
 		
-		
-		
+			
 		gameBoard.setWidth(width + "px");     
 		gameBoard.setHeight(height + "px");    
 		gameBoard.setCoordinateSpaceWidth(width);    
@@ -73,15 +73,17 @@ public class Game_Window extends PopupPanel{
 			@Override       
 			public void run() {         
 				doUpdate();
+				paint();
 			}    
 		};     
 		
 		timer.scheduleRepeating(refreshRate);   
-		}
+	}
 		
 	void doUpdate() {     
-		
-	}    
+
+	}
+	
 
 	void initHandlers() {    
 		gameBoard.addMouseMoveHandler(new MouseMoveHandler() {
@@ -90,6 +92,11 @@ public class Game_Window extends PopupPanel{
 			mouseY = event.getRelativeY(gameBoard.getElement());
 		}     
 		});      
+	}
+	
+	void paint(){
+		backContext.setFillStyle("black");
+		backContext.fillRect(0, 0, width, height);
 	}
 }
 
