@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Label;
 
-public class Test_Canvas extends Composite {
+public class RPCanvas extends Composite {
 
 	String choice = "";
 	String notSup = "Canvas is not supported by browser!";
@@ -24,14 +24,13 @@ public class Test_Canvas extends Composite {
 	Context2d context;
 	Context2d backContext;
 	
-	public Test_Canvas(){
+	public RPCanvas(){
 		FocusPanel panel = new FocusPanel();
 		panel.setSize("700px", "500px");
 		
 		Label junk = new Label("Maybe");
 		panel.add(junk);
-		
-		
+				
 		this.boardBack = Canvas.createIfSupported();
 		boardBack.setSize("700px", "500px");
 		boardBack.setCoordinateSpaceWidth(width);
@@ -44,13 +43,11 @@ public class Test_Canvas extends Composite {
 		gameBoard.setCoordinateSpaceHeight(height);
 		this.context = gameBoard.getContext2d();
 		
-		
-		
-		
 		this.timer = new Timer() {      
 			@Override       
 			public void run() {         
 				paint();
+				activate();
 			}    
 		};
 		
@@ -63,8 +60,9 @@ public class Test_Canvas extends Composite {
 	}
 	
 	void paint(){
-		backContext.setFillStyle("black");
-		backContext.fillRect(0, 0, width, height);
+		context.setFillStyle("black");
+		context.fillRect(0, 0, width, height);
+		
 	}
 	
 }

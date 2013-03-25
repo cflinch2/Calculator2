@@ -6,7 +6,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.PopupPanel;
 
-import edu.ycp.cs320.calculator.shared.Test_Canvas;
+import edu.ycp.cs320.calculator.shared.RPCanvas;
 
 public class GameView extends PopupPanel {
 
@@ -29,7 +29,7 @@ public class GameView extends PopupPanel {
 		Test.setWidgetRightWidth(pos, 0.0, Unit.PX, 25.0, Unit.PX);
 		Test.setWidgetTopHeight(pos, 0.0, Unit.PX, 25.0, Unit.PX);
 		
-		Test.add(new Test_Canvas());
+		Test.add(new RPCanvas());
 		
 		setWidget(Test);
 		
