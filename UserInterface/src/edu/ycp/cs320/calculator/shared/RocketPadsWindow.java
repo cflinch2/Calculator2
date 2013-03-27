@@ -6,9 +6,9 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 import edu.ycp.cs320.calculator.client.RocketPadsView;
 
-public class Game_Window extends PopupPanel {
+public class RocketPadsWindow extends PopupPanel {
 	
-	public Game_Window() {
+	public RocketPadsWindow() {
 		RocketPadsGame game = new RocketPadsGame(1);
 		RocketPadsView view = new RocketPadsView();
 		view.setModel(game);

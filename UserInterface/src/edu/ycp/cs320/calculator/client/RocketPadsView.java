@@ -35,7 +35,7 @@ public class RocketPadsView extends Composite {
 		this.buff_context = buffer.getContext2d();
 		
 		this.canvas = Canvas.createIfSupported();
-		canvas.setSize("700px", "500px");
+		canvas.setSize("900px", "900px");
 		canvas.setCoordinateSpaceWidth(RocketPadsGame.WIDTH);
 		canvas.setCoordinateSpaceHeight(RocketPadsGame.HEIGHT);
 		this.context = canvas.getContext2d();
