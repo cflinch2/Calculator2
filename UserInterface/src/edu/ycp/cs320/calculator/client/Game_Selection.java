@@ -12,9 +12,8 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
-
+import edu.ycp.cs320.calculator.client.GameView;
 import edu.ycp.cs320.calculator.shared.GameList;
-import edu.ycp.cs320.calculator.shared.Game_Window;
 
 public class Game_Selection extends Composite {
 	private Button selector;
@@ -72,7 +71,7 @@ public class Game_Selection extends Composite {
 					public void onClick(ClickEvent event) {
 						String selGame = getChange();
 						
-						final Game_Window popUp = new Game_Window(selGame);
+						final GameView popUp = new GameView(selGame);
 						popUp.setSize("1000px", "640px");
 						//popUp.setSize(width, height)
 						popUp.setPopupPositionAndShow(new PopupPanel.PositionCallback(){
@@ -86,7 +85,8 @@ public class Game_Selection extends Composite {
 						
 											
 						if(selGame == ""){
-							new Game_Window(selGame).show();
+							//new GameView(selGame).show();
+							
 							
 						}
 						gamePanel.setText(getUName() + " is Playing " + getChange());
