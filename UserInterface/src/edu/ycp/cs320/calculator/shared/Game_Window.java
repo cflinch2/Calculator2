@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
-public class Game_Window extends PopupPanel{
+public class Game_Window extends PopupPanel {
 	
 	Label pos = new Label();
 	
@@ -31,7 +31,7 @@ public class Game_Window extends PopupPanel{
 	Context2d backContext;
 	
 	
-	public Game_Window(String game){
+	public Game_Window(String game) {
 		super(true);
 		LayoutPanel Test = new LayoutPanel();
 		
@@ -45,17 +45,15 @@ public class Game_Window extends PopupPanel{
 		Test.add(pos);
 		
 		setWidget(Test);
-		
 	}
 	
-	public void onModuleLoad(){
+	public void onModuleLoad() {
 		gameBoard = Canvas.createIfSupported();     
 		boardBack = Canvas.createIfSupported();     
 		if (gameBoard == null) {       
 			RootPanel.get(choice).add(new Label(notSup));      
 			return;     
 		} 
-		
 			
 		gameBoard.setWidth(width + "px");     
 		gameBoard.setHeight(height + "px");    
@@ -81,7 +79,7 @@ public class Game_Window extends PopupPanel{
 	}
 		
 	void doUpdate() {     
-
+		
 	}
 	
 

@@ -1,5 +1,7 @@
 package edu.ycp.cs320.calculator.shared;
 
+import java.awt.Graphics;
+
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.CssColor;
@@ -24,13 +26,12 @@ public class Test_Canvas extends Composite {
 	Context2d context;
 	Context2d backContext;
 	
-	public Test_Canvas(){
+	public Test_Canvas() {
 		FocusPanel panel = new FocusPanel();
 		panel.setSize("700px", "500px");
-		
+
 		Label junk = new Label("Maybe");
 		panel.add(junk);
-		
 		
 		this.boardBack = Canvas.createIfSupported();
 		boardBack.setSize("700px", "500px");
@@ -44,25 +45,21 @@ public class Test_Canvas extends Composite {
 		gameBoard.setCoordinateSpaceHeight(height);
 		this.context = gameBoard.getContext2d();
 		
-		
-		
-		
 		this.timer = new Timer() {      
 			@Override       
 			public void run() {         
-				paint();
+				
 			}    
 		};
 		
 		initWidget(panel);
-		
 	}
 	
-	public void activate(){
+	public void activate() {
 		timer.scheduleRepeating(1000/3);
 	}
 	
-	void paint(){
+	void paint(Graphics g) {
 		backContext.setFillStyle("black");
 		backContext.fillRect(0, 0, width, height);
 	}

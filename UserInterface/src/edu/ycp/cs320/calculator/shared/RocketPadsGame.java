@@ -1,23 +1,16 @@
 package edu.ycp.cs320.calculator.shared;
 
 import java.util.ArrayList;
-/*
-NORTH 1
-SOUTH 2
-EAST 3
-WEST 4
-WALK 5
-STOP 6
-WIN 7
-*/
 
 public class RocketPadsGame 
 {
 	// Fields
-	RocketPadsLocation win_zone; 
-	final int LENGTH = 900, WIDTH = 900;
-	boolean win; // When true, game ends.
-	ArrayList<RocketPadsPlayer> players;
+	public static final int WIDTH = 900;
+	public static final int HEIGHT = 900;
+	
+	private boolean win; // When true, game ends.
+	private ArrayList<RocketPadsPlayer> players;
+	
 	private int[][] board1 = {{6,3,3,3,3,2,2,6,4,4,4,6},
 							  {2,6,4,4,6,4,2,3,3,6,4,2},
 							  {2,3,2,1,3,2,2,1,2,4,1,2},
@@ -34,7 +27,6 @@ public class RocketPadsGame
 	// Constructor
 	public RocketPadsGame(int num_players)
 	{
-		win_zone = new RocketPadsLocation(LENGTH/2,WIDTH/2);
 		win = false;
 		players = new ArrayList<RocketPadsPlayer>();
 		
@@ -44,8 +36,11 @@ public class RocketPadsGame
 		}
 	}
 	
-	public int checkVictory(RocketPadsPlayer player)
-	{
-		return player.getLocation().compareLocTo(win_zone);
+	public ArrayList<RocketPadsPlayer> getPlayerList() {
+		return players;
+	}
+	
+	public RocketPadsPlayer getPlayer(int num) {
+		return players.get(num);
 	}
 }
