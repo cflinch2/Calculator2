@@ -12,7 +12,6 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
-import edu.ycp.cs320.calculator.client.GameView;
 import edu.ycp.cs320.calculator.shared.GameList;
 
 public class Game_Selection extends Composite {
@@ -71,52 +70,34 @@ public class Game_Selection extends Composite {
 					public void onClick(ClickEvent event) {
 						String selGame = getChange();
 						
-						final GameView popUp = new GameView(selGame);
-						popUp.setSize("1000px", "640px");
-						//popUp.setSize(width, height)
-						popUp.setPopupPositionAndShow(new PopupPanel.PositionCallback(){
-							public void setPosition(int offsetWidth, int offsetHeight){
-								int left = (Window.getClientWidth() - offsetWidth) / 2;
-								int top = (Window.getClientHeight() - offsetHeight) / 2;
-								popUp.setPopupPosition(left, top);
-							}
-						});
+						final RocketPadsView popUp = new RocketPadsView();
+						popUp.setSize("900px", "900px");
 						
-						
-											
-						if(selGame == ""){
-							//new GameView(selGame).show();
-							
-							
-						}
-						gamePanel.setText(getUName() + " is Playing " + getChange());
-										
+						gamePanel.setText(getUName() + " is Playing " + getChange());				
 					}
 				});
 				
 				UI.setWidgetLeftWidth(selector, 355.0, Unit.PX, 50.0, Unit.PX);
 				UI.setWidgetTopHeight(selector, 15.0, Unit.PX, 25.0, Unit.PX);
 				
-				
 				gamePanel = new InlineLabel();
 				UI.add(gamePanel);
 				UI.setWidgetLeftWidth(gamePanel, 410.0, Unit.PX, 250.0, Unit.PX);
-				UI.setWidgetTopHeight(gamePanel, 20.0, Unit.PX, 25.0, Unit.PX);
-				
+				UI.setWidgetTopHeight(gamePanel, 20.0, Unit.PX, 25.0, Unit.PX);	
 	}
 	
-	public String getChange(){
+	public String getChange() {
 		int sel = gameListBox.getSelectedIndex();
 		String GameChoice = gameListBox.getValue(sel);
 		return GameChoice;
 	}
 	
-	public String getUName(){
+	public String getUName() {
 		String name = uName.getText();
 		return name;
 	}
 
-	public static void update(){
+	public static void update() {
 		if (gameListBox.getItemCount() == 0) {
 			GameList[] games = GameList.values();
 			for (GameList g : games) {
