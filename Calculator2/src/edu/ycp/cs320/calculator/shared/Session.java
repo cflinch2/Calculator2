@@ -7,6 +7,10 @@ public class Session
 	ArrayList<Player> players;
 	ArrayList<Integer> overall_scores;
 	
+	public Session(int num_players)
+	{
+
+	}
 	
 	public static void main(String[] args) 
 	{

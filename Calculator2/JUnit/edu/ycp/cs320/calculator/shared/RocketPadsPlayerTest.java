@@ -42,8 +42,70 @@ public class RocketPadsPlayerTest extends TestCase
 		assertTrue(testPlayer.getSlide());
 	}
 
+	public void testSetDirection() throws Exception		
+	/*
+	NORTH,	1
+	SOUTH,	2
+	EAST,	3
+	WEST,	4
+	WALK,	5
+	STOP,	6
+	WIN;	7
+	*/
+	{
+		testPlayer.setDirection(1);
+		assertEquals(RocketPadsDirection.NORTH, testPlayer.getDirection());
+		
+		testPlayer.setDirection(2);
+		assertEquals(RocketPadsDirection.SOUTH, testPlayer.getDirection());
+		
+		testPlayer.setDirection(3);
+		assertEquals(RocketPadsDirection.EAST, testPlayer.getDirection());
+		
+		testPlayer.setDirection(4);
+		assertEquals(RocketPadsDirection.WEST, testPlayer.getDirection());
+		
+		testPlayer.setDirection(5);
+		assertEquals(RocketPadsDirection.WALK, testPlayer.getDirection());
+		
+		testPlayer.setDirection(6);
+		assertEquals(RocketPadsDirection.STOP, testPlayer.getDirection());
+		
+		testPlayer.setDirection(7);
+		assertEquals(RocketPadsDirection.WIN, testPlayer.getDirection());
+		
+	}
+	
 	public void testUpdatePosition() throws Exception
 	{
-		//
+	
+		testPlayer.setSlide(true);
+		
+		//dir = NORTH, Y--
+		testPlayer.setLocation(0, 0);
+		testPlayer.setDirection(1);
+		testPlayer.updatePosition();
+		assertEquals(-1, testPlayer.getLocation().getY());
+		
+		
+		//dir = South, Y++
+		testPlayer.setLocation(0, 0);
+		testPlayer.setDirection(2);
+		testPlayer.updatePosition();
+		assertEquals(1, testPlayer.getLocation().getY());
+				
+		//dir = East, X++
+		testPlayer.setLocation(0, 0);
+		testPlayer.setDirection(3);
+		testPlayer.updatePosition();
+		assertEquals(1, testPlayer.getLocation().getX());
+		
+		//dir = West, X--
+		testPlayer.setLocation(0, 0);
+		testPlayer.setDirection(4);
+		testPlayer.updatePosition();
+		assertEquals(-1, testPlayer.getLocation().getX());
+		
+		
 	}
 }

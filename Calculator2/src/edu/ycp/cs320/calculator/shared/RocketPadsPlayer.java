@@ -44,10 +44,32 @@ public class RocketPadsPlayer
 		slide = s;
 	}
 	
-	// Updates the player's position.
-	//Isn't this the same as setLocation?
-	public void updatePosition()
+	public RocketPadsDirection getDirection()
 	{
-		
+		return dir;
+	}
+	
+	public void setDirection(int direction) {
+		if(direction == 1) {
+			this.dir = RocketPadsDirection.NORTH;
+		}
+		else if(direction == 2) {
+			this.dir = RocketPadsDirection.SOUTH;
+		}
+		if(direction == 3) {
+			this.dir = RocketPadsDirection.EAST;
+		}
+		if(direction == 4) {
+			this.dir = RocketPadsDirection.WEST;
+		}
+		if(direction == 5) {
+			this.dir = RocketPadsDirection.WALK;
+		}
+		if(direction == 6) {
+			this.dir = RocketPadsDirection.STOP;
+		}
+		if(direction == 7) {
+			this.dir = RocketPadsDirection.WIN;
+		}
 	}
 }
