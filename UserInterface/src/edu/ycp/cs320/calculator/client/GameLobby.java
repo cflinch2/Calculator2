@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.LayoutPanel;
@@ -23,6 +24,14 @@ public class GameLobby extends Composite {
 	private static ListBox gameListBox;
 	private LayoutPanel layoutPanel;
 	private Image background;
+	private Image slidepad_east, slidepad_west, slidepad_north, slidepad_south;
+	private Image startzone_red, startzone_blue, startzone_green, startzone_yellow;
+	private Image winzone_tl, winzone_tr, winzone_bl, winzone_br;
+	private Image stoppad;
+	private String slidepad_east_url, slidepad_west_url, slidepad_north_url, slidepad_south_url;
+	private String startzone_red_url, startzone_blue_url, startzone_green_url, startzone_yellow_url;
+	private String winzone_tl_url, winzone_tr_url, winzone_bl_url, winzone_br_url;
+	private String stoppad_url;
 	
 	public GameLobby() {
 		// Create base panel.
@@ -30,13 +39,17 @@ public class GameLobby extends Composite {
 		initWidget(basePanel);
 		basePanel.setSize("1100px", "900px");
 		
-		// Create image object for background picture.
+		// Load images.
 		String background_url = GWT.getModuleBaseForStaticFiles() + "lobby_screen2.png";
-						
-		GWT.log("Lobby background URL: " + background_url);
-						
-		background = new Image(background_url);
+		String startzone_red_url = GWT.getModuleBaseForStaticFiles() + "startzone_red.png";
+		// more images...
 		
+		// Create Image objects.
+		background = new Image(background_url);
+		startzone_red = new Image(startzone_red_url);
+		// more image objects...
+		
+		// Add background image to base panel.
 		basePanel.add(background);
 		background.setSize("1100px", "900px");
 		basePanel.setWidgetLeftRight(background, 0.0, Unit.PX, 0.0, Unit.PX);
@@ -72,16 +85,29 @@ public class GameLobby extends Composite {
 		selector.setText("Play!");
 		selector.addClickHandler(new ClickHandler() {
 			@Override
-			public void onClick(ClickEvent event) { 
-				// gamePanel.setText(getUName() + " is Playing " + getChange());	
-				
+			public void onClick(ClickEvent event) { 	
 				// Create RocketPadsGame instance and add it to the view model.
 				RocketPadsGame game = new RocketPadsGame(1);
 				RocketPadsView view = new RocketPadsView();
 				view.setModel(game);
+				
+				// Create image panel.
+				FlowPanel image_panel = new FlowPanel();
+				
+				image_panel.add(startzone_red);
+				
+				image_panel.setSize("0px", "0px");
+				
+				layoutPanel.add(image_panel);
+				
 				layoutPanel.add(view);
+				
 				layoutPanel.setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 				layoutPanel.setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
+				
+				// Give the view object appropriate references for painting.
+				view.set_startzone_red(startzone_red);
+				
 				view.activate();
 			}
 		});
