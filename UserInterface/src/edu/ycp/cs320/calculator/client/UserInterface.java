@@ -15,16 +15,12 @@ public class UserInterface implements EntryPoint {
 
 	public void onModuleLoad() {
 
-		LayoutPanel panel = new LayoutPanel();
-		
 		GameLobby gameSelection = new GameLobby();
 		
-		panel.add(gameSelection);
-		gameSelection.setSize("1024", "1024");
 		GameLobby.update();
-		
-		RootLayoutPanel.get().add(panel);
-		RootLayoutPanel.get().setWidgetLeftRight(panel, 0.0, Unit.PX, 0.0, Unit.PX);
-		RootLayoutPanel.get().setWidgetTopBottom(panel, 0.0, Unit.PX, 0.0, Unit.PX);
+	
+		RootLayoutPanel.get().add(gameSelection);
+		RootLayoutPanel.get().setWidgetLeftRight(gameSelection, 0.0, Unit.PX, 0.0, Unit.PX);
+		RootLayoutPanel.get().setWidgetTopBottom(gameSelection, 0.0, Unit.PX, 0.0, Unit.PX);
 	}
 }

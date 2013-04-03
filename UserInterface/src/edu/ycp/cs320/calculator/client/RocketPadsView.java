@@ -23,13 +23,15 @@ public class RocketPadsView extends Composite {
 	private Timer timer;
 	
 	public RocketPadsView() {
+		// Create an instance of RocketPadsController.
 		controller = new RocketPadsController();
 		
+		// Create Focus Panel.
 		FocusPanel panel = new FocusPanel();
 		panel.setSize(RocketPadsGame.WIDTH + "px", RocketPadsGame.HEIGHT + "px");
 		
 		this.buffer = Canvas.createIfSupported();
-		buffer.setSize("700px", "500px");
+		buffer.setSize("900px", "900px");
 		buffer.setCoordinateSpaceWidth(RocketPadsGame.WIDTH);
 		buffer.setCoordinateSpaceHeight(RocketPadsGame.HEIGHT);
 		this.buff_context = buffer.getContext2d();
@@ -109,6 +111,7 @@ public class RocketPadsView extends Composite {
 		timer.scheduleRepeating(1000/30);
 	}
 	
+	// Render the scene.
 	protected void paint() {
 		// Draw onto the buffer.
 		
