@@ -1,5 +1,6 @@
 package edu.ycp.cs320.calculator.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -15,14 +16,13 @@ import edu.ycp.cs320.calculator.shared.RocketPadsGame;
 
 public class GameLobby extends Composite {
 	private Button selector;
-	private InlineLabel gameSelection;
+	private InlineLabel lobby;
 	private InlineLabel user;
 	private TextBox uName;
 	private InlineLabel gamePanel;
-	private Image image;
 	private static ListBox gameListBox;
 	private LayoutPanel layoutPanel;
-		
+	private Image background;
 	
 	public GameLobby() {
 		// Create base panel.
@@ -31,12 +31,16 @@ public class GameLobby extends Composite {
 		basePanel.setSize("1100px", "900px");
 		
 		// Create image object for background picture.
-		image = new Image();
-		image.setUrl("lobby_screen2.png");
-		basePanel.add(image);
-		image.setSize("1100px", "900px");
-		basePanel.setWidgetLeftRight(image, 0.0, Unit.PX, 0.0, Unit.PX);
-		basePanel.setWidgetTopBottom(image, 0.0, Unit.PX, 0.0, Unit.PX);
+		String background_url = GWT.getModuleBaseForStaticFiles() + "lobby_screen2.png";
+						
+		GWT.log("Lobby background URL: " + background_url);
+						
+		background = new Image(background_url);
+		
+		basePanel.add(background);
+		background.setSize("1100px", "900px");
+		basePanel.setWidgetLeftRight(background, 0.0, Unit.PX, 0.0, Unit.PX);
+		basePanel.setWidgetTopBottom(background, 0.0, Unit.PX, 0.0, Unit.PX);
 		
 		// Create user interface panel.
 		final LayoutPanel UI = new LayoutPanel();
@@ -44,7 +48,7 @@ public class GameLobby extends Composite {
 		basePanel.setWidgetLeftRight(UI, 0.0, Unit.PX, 0.0, Unit.PX);
 		basePanel.setWidgetTopBottom(UI, 0.0, Unit.PX, 0.0, Unit.PX);
 		
-		// Gam list drop-down menu.
+		// Game list drop-down menu.
 		gameListBox = new ListBox();
 		UI.add(gameListBox);
 		UI.setWidgetLeftWidth(gameListBox, 69.0, Unit.PX, 100.0, Unit.PX);
@@ -91,10 +95,10 @@ public class GameLobby extends Composite {
 		UI.setWidgetTopHeight(gamePanel, 20.0, Unit.PX, 25.0, Unit.PX);	
 		
 		// Game label
-		gameSelection = new InlineLabel("Game:");
-		UI.add(gameSelection);
-		UI.setWidgetLeftWidth(gameSelection, 25.0, Unit.PX, 50.0, Unit.PX);
-		UI.setWidgetTopHeight(gameSelection, 55.0, Unit.PX, 25.0, Unit.PX);
+		lobby = new InlineLabel("Game:");
+		UI.add(lobby);
+		UI.setWidgetLeftWidth(lobby, 25.0, Unit.PX, 50.0, Unit.PX);
+		UI.setWidgetTopHeight(lobby, 55.0, Unit.PX, 25.0, Unit.PX);
 		
 		// Game screen panel
 		layoutPanel = new LayoutPanel();
