@@ -49,83 +49,27 @@ public class RocketPadsPlayer
 		return dir;
 	}
 	
-	public void setDirection(int direction)		
-	/*
-	NORTH,	1
-	SOUTH,	2
-	EAST,	3
-	WEST,	4
-	WALK,	5
-	STOP,	6
-	WIN;	7
-	*/
-	{
-		if (direction == 1)
-		{
+	public void setDirection(int direction) {
+		if(direction == 1) {
 			this.dir = RocketPadsDirection.NORTH;
 		}
-		
-		if (direction == 2)
-		{
+		else if(direction == 2) {
 			this.dir = RocketPadsDirection.SOUTH;
 		}
-		
-		if (direction == 3)
-		{
+		if(direction == 3) {
 			this.dir = RocketPadsDirection.EAST;
 		}
-		
-		if (direction == 4)
-		{
+		if(direction == 4) {
 			this.dir = RocketPadsDirection.WEST;
 		}
-		
-		if (direction == 5)
-		{
+		if(direction == 5) {
 			this.dir = RocketPadsDirection.WALK;
 		}
-		
-		if (direction == 6)
-		{
+		if(direction == 6) {
 			this.dir = RocketPadsDirection.STOP;
 		}
-		
-		if (direction == 7)
-		{
+		if(direction == 7) {
 			this.dir = RocketPadsDirection.WIN;
-		}
-	}
-	
-	
-	// Updates the player's position.
-	//Isn't this the same as setLocation?
-	public void updatePosition()
-	{
-		if (getSlide() == true)
-		{
-			if (dir == RocketPadsDirection.NORTH)
-			{
-				//y decreases
-				current.setY(current.getY() -1);
-			}
-			
-			if (dir == RocketPadsDirection.SOUTH)
-			{
-				//y increases
-				current.setY(current.getY() +1);
-			}
-			
-			if (dir == RocketPadsDirection.EAST)
-			{
-				//x increases
-				current.setX(current.getX() +1);
-			}
-			
-			if (dir == RocketPadsDirection.WEST)
-			{
-				//x decreases
-				current.setX(current.getX() -1);
-			}
 		}
 	}
 }
