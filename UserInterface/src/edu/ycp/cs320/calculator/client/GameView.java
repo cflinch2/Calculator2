@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.PopupPanel;
 
 import edu.ycp.cs320.calculator.shared.RPCanvas;
 
+
 public class GameView extends PopupPanel {
 
 	String choice;
@@ -30,6 +31,7 @@ public class GameView extends PopupPanel {
 		Test.setWidgetTopHeight(pos, 0.0, Unit.PX, 25.0, Unit.PX);
 		
 		Test.add(new RPCanvas());
+		RPCanvas.activate();
 		
 		setWidget(Test);
 		

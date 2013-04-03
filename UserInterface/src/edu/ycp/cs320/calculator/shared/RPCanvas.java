@@ -18,7 +18,7 @@ public class RPCanvas extends Composite {
 	int mouseX, mouseY;
 	
 	CssColor redrawColor = CssColor.make("rgba(255,255,255,0)");
-	Timer timer;
+	static Timer timer;
 	Canvas gameBoard;
 	Canvas boardBack;
 	Context2d context;
@@ -43,11 +43,10 @@ public class RPCanvas extends Composite {
 		gameBoard.setCoordinateSpaceHeight(height);
 		this.context = gameBoard.getContext2d();
 		
-		this.timer = new Timer() {      
+		RPCanvas.timer = new Timer() {      
 			@Override       
 			public void run() {         
 				paint();
-				activate();
 			}    
 		};
 		
@@ -55,7 +54,7 @@ public class RPCanvas extends Composite {
 		
 	}
 	
-	public void activate(){
+	public static void activate(){
 		timer.scheduleRepeating(1000/3);
 	}
 	
