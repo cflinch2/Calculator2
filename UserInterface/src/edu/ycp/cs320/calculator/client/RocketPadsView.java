@@ -124,7 +124,20 @@ public class RocketPadsView extends Composite {
 		
 		// Load images
 		startzone_yellow = UserInterface.getImage("startzone_yellow.jpg");
-		// TODO: other images
+		background = UserInterface.getImage("background.jpg");
+		slidepad_east = UserInterface.getImage("slidepad_east.jpg");
+		slidepad_west = UserInterface.getImage("slidepad_west.jpg");
+		slidepad_north = UserInterface.getImage("slidepad_north.jpg");
+		slidepad_south = UserInterface.getImage("slidepad_south.jpg");
+		startzone_red = UserInterface.getImage("startzone_red.jpg");
+		startzone_blue = UserInterface.getImage("startzone_blue.jpg");
+		startzone_green = UserInterface.getImage("startzone_green.jpg");
+		startzone_yellow = UserInterface.getImage("startzone_yellow.jpg");
+		winzone_tl = UserInterface.getImage("winzone_tl.jpg");
+		winzone_tr = UserInterface.getImage("winzone_tr.jpg");
+		winzone_bl = UserInterface.getImage("winzone_bl.jpg");
+		winzone_br = UserInterface.getImage("winzone_br.jpg");
+		stoppad = UserInterface.getImage("stoppad.jpg"); 
 	}
 	
 	public void set_startzone_red(Image startzone_red) {
