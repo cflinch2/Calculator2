@@ -26,6 +26,7 @@ public class UserInterface implements EntryPoint {
 		"winzone_botright.jpg",
 		"winzone_topleft.jpg",
 		"winzone_topright.jpg",
+		"lobby_screen2.png"
 	};
 	
 	private static Map<String, Image> IMAGE_MAP = new HashMap<String, Image>();
@@ -41,7 +42,7 @@ public class UserInterface implements EntryPoint {
 		RootLayoutPanel.get().setWidgetLeftRight(lobby, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetTopBottom(lobby, 0.0, Unit.PX, 0.0, Unit.PX);
 		
-		// Create a hidden panel in which sprite images can be loaded
+		// Create a hidden panel in which sprite images can be loaded.
 		FlowPanel hiddenPanel = new FlowPanel();
 		hiddenPanel.setSize("0px","0px");
 		RootLayoutPanel.get().add(hiddenPanel);
@@ -56,7 +57,7 @@ public class UserInterface implements EntryPoint {
 			hiddenPanel.add(img);
 			IMAGE_MAP.put(spriteFile, img);
 		}
-		GWT.log("done loading sprites");
+		GWT.log("Done loading sprites.");
 	}
 	
 	public static Image getImage(String spriteFile) {

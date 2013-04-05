@@ -53,7 +53,7 @@ public class RocketPadsGame
 	}
 	
 	/*
-	public RocketPad getPad(int col, int row) {
+	public RocketPad getSlideDirection(int col, int row) {
 		int num = board1[row][col];
 		
 		switch (num) {

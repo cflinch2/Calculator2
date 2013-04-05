@@ -15,7 +15,6 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-
 import edu.ycp.cs320.calculator.shared.RocketPadsController;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
 
@@ -75,8 +74,8 @@ public class RocketPadsView extends Composite {
 			@Override
 			public void run() {
 				if(model != null) {
-						controller.updateGame(model);
-						paint();
+					controller.updateGame(model);
+					paint();
 				}
 			}
 		};
@@ -123,8 +122,7 @@ public class RocketPadsView extends Composite {
 		timer.scheduleRepeating(1000/2);
 		
 		// Load images
-		startzone_yellow = UserInterface.getImage("startzone_yellow.jpg");
-		// TODO: other images
+		startzone_red = UserInterface.getImage("startzone_red.jpg");
 	}
 	
 	public void set_startzone_red(Image startzone_red) {
@@ -138,21 +136,21 @@ public class RocketPadsView extends Composite {
 		buff_context.fillRect(0, 0, 900, 900);
 		
 		/*
-		for (int j = 0; j < model.getBoardHeight(); j++) {
-			for (int i = 0; i < model.getBoardWidth(); i++) {
-				// find the pad at coordinates i,j
+		for (int j = 0; j < model.getBoardHeight(); j+=75) {
+			for (int i = 0; i < model.getBoardWidth(); i+=75) {
+				// Find the pad at coordinates i,j.
 				
-				// find the pad image
+				// Find the pad image.
 				Image padImage = ...
 				
-				// draw the pad iamge at the appropriate location
-				buff_context.drawImage((ImageElement)padImage.getElement().cast(), i*50, j*50);
+				// Draw the pad image at the appropriate location.
+				buff_context.drawImage((ImageElement)padImage.getElement().cast(), i, j);
 			}
 		}
 		*/
 		
 		// This is just a proof of concept
-		buff_context.drawImage((ImageElement)startzone_yellow.getElement().cast(),0,0);
+		buff_context.drawImage((ImageElement)startzone_red.getElement().cast(),0,0);
 		
 		// Copy buffer onto main canvas.
 		context.drawImage((CanvasElement) buffer.getElement().cast(),0,0);

@@ -24,32 +24,12 @@ public class GameLobby extends Composite {
 	private static ListBox gameListBox;
 	private LayoutPanel layoutPanel;
 	private Image background;
-	/*
-	private Image slidepad_east, slidepad_west, slidepad_north, slidepad_south;
-	private Image startzone_red, startzone_blue, startzone_green, startzone_yellow;
-	private Image winzone_tl, winzone_tr, winzone_bl, winzone_br;
-	private Image stoppad;
-	private String slidepad_east_url, slidepad_west_url, slidepad_north_url, slidepad_south_url;
-	private String startzone_red_url, startzone_blue_url, startzone_green_url, startzone_yellow_url;
-	private String winzone_tl_url, winzone_tr_url, winzone_bl_url, winzone_br_url;
-	private String stoppad_url;
-	*/
 	
 	public GameLobby() {
 		// Create base panel.
 		LayoutPanel basePanel = new LayoutPanel();
 		initWidget(basePanel);
 		basePanel.setSize("1100px", "900px");
-		
-		// Load images.
-		String background_url = GWT.getModuleBaseForStaticFiles() + "lobby_screen2.png";
-		String startzone_red_url = GWT.getModuleBaseForStaticFiles() + "startzone_red.png";
-		// more images...
-		
-		// Create Image objects.
-		background = new Image(background_url);
-		//startzone_red = new Image(startzone_red_url);
-		// more image objects...
 		
 		// Add background image to base panel.
 		basePanel.add(background);
