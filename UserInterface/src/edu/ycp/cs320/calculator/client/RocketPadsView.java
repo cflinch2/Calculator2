@@ -2,6 +2,7 @@ package edu.ycp.cs320.calculator.client;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.Context2d;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
@@ -9,7 +10,11 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
+
 import edu.ycp.cs320.calculator.shared.RocketPadsController;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
 
@@ -21,15 +26,22 @@ public class RocketPadsView extends Composite {
 	private Context2d buff_context;
 	private Context2d context;
 	private Timer timer;
-	
+	private Image background;
+	private Image slidepad_east, slidepad_west, slidepad_north, slidepad_south;
+	private Image startzone_red, startzone_blue, startzone_green, startzone_yellow;
+	private Image winzone_tl, winzone_tr, winzone_bl, winzone_br;
+	private Image stoppad;
+
 	public RocketPadsView() {
+		// Create an instance of RocketPadsController.
 		controller = new RocketPadsController();
 		
+		// Create Focus Panel.
 		FocusPanel panel = new FocusPanel();
 		panel.setSize(RocketPadsGame.WIDTH + "px", RocketPadsGame.HEIGHT + "px");
 		
 		this.buffer = Canvas.createIfSupported();
-		buffer.setSize("700px", "500px");
+		buffer.setSize("900px", "900px");
 		buffer.setCoordinateSpaceWidth(RocketPadsGame.WIDTH);
 		buffer.setCoordinateSpaceHeight(RocketPadsGame.HEIGHT);
 		this.buff_context = buffer.getContext2d();
@@ -109,14 +121,18 @@ public class RocketPadsView extends Composite {
 		timer.scheduleRepeating(1000/30);
 	}
 	
+	public void set_startzone_red(Image startzone_red) {
+		this.startzone_red = startzone_red;
+	}
+	
+	// Render the scene.
 	protected void paint() {
-		// Draw onto the buffer.
 		
 		// Draw background.
-		buff_context.setFillStyle("black");
-		buff_context.fillRect(0, 0, 900, 900);
+		//buff_context.setFillStyle("black");
+		//buff_context.fillRect(0, 0, 900, 900);
 		
-		// Draw players.
+		buff_context.drawImage((CanvasElement)startzone_red.getElement().cast(),0,0);
 		
 		// Copy buffer onto main canvas.
 		context.drawImage((CanvasElement) buffer.getElement().cast(),0,0);
