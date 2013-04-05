@@ -24,6 +24,7 @@ public class GameLobby extends Composite {
 	private static ListBox gameListBox;
 	private LayoutPanel layoutPanel;
 	private Image background;
+	/*
 	private Image slidepad_east, slidepad_west, slidepad_north, slidepad_south;
 	private Image startzone_red, startzone_blue, startzone_green, startzone_yellow;
 	private Image winzone_tl, winzone_tr, winzone_bl, winzone_br;
@@ -32,6 +33,7 @@ public class GameLobby extends Composite {
 	private String startzone_red_url, startzone_blue_url, startzone_green_url, startzone_yellow_url;
 	private String winzone_tl_url, winzone_tr_url, winzone_bl_url, winzone_br_url;
 	private String stoppad_url;
+	*/
 	
 	public GameLobby() {
 		// Create base panel.
@@ -46,7 +48,7 @@ public class GameLobby extends Composite {
 		
 		// Create Image objects.
 		background = new Image(background_url);
-		startzone_red = new Image(startzone_red_url);
+		//startzone_red = new Image(startzone_red_url);
 		// more image objects...
 		
 		// Add background image to base panel.
@@ -94,7 +96,7 @@ public class GameLobby extends Composite {
 				// Create image panel.
 				FlowPanel image_panel = new FlowPanel();
 				
-				image_panel.add(startzone_red);
+				//image_panel.add(startzone_red);
 				
 				image_panel.setSize("0px", "0px");
 				
@@ -106,7 +108,7 @@ public class GameLobby extends Composite {
 				layoutPanel.setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
 				
 				// Give the view object appropriate references for painting.
-				view.set_startzone_red(startzone_red);
+				//view.set_startzone_red(startzone_red);
 				
 				view.activate();
 			}

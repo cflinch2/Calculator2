@@ -4,6 +4,7 @@ import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.CanvasElement;
+import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -118,7 +119,12 @@ public class RocketPadsView extends Composite {
 	
 	// Start the animation timer.
 	public void activate() {
-		timer.scheduleRepeating(1000/30);
+		//timer.scheduleRepeating(1000/30);
+		timer.scheduleRepeating(1000/2);
+		
+		// Load images
+		startzone_yellow = UserInterface.getImage("startzone_yellow.jpg");
+		// TODO: other images
 	}
 	
 	public void set_startzone_red(Image startzone_red) {
@@ -127,12 +133,26 @@ public class RocketPadsView extends Composite {
 	
 	// Render the scene.
 	protected void paint() {
-		
 		// Draw background.
-		//buff_context.setFillStyle("black");
-		//buff_context.fillRect(0, 0, 900, 900);
+		buff_context.setFillStyle("black");
+		buff_context.fillRect(0, 0, 900, 900);
 		
-		buff_context.drawImage((CanvasElement)startzone_red.getElement().cast(),0,0);
+		/*
+		for (int j = 0; j < model.getBoardHeight(); j++) {
+			for (int i = 0; i < model.getBoardWidth(); i++) {
+				// find the pad at coordinates i,j
+				
+				// find the pad image
+				Image padImage = ...
+				
+				// draw the pad iamge at the appropriate location
+				buff_context.drawImage((ImageElement)padImage.getElement().cast(), i*50, j*50);
+			}
+		}
+		*/
+		
+		// This is just a proof of concept
+		buff_context.drawImage((ImageElement)startzone_yellow.getElement().cast(),0,0);
 		
 		// Copy buffer onto main canvas.
 		context.drawImage((CanvasElement) buffer.getElement().cast(),0,0);

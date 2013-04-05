@@ -43,4 +43,24 @@ public class RocketPadsGame
 	public RocketPadsPlayer getPlayer(int num) {
 		return players.get(num);
 	}
+	
+	public int getBoardWidth() {
+		return 12;
+	}
+	
+	public int getBoardHeight() {
+		return 12;
+	}
+	
+	/*
+	public RocketPad getPad(int col, int row) {
+		int num = board1[row][col];
+		
+		switch (num) {
+		case 1:
+			return new SomeKindOfRocketPad();
+			
+		}
+	}
+	*/
 }
