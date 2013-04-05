@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import edu.ycp.cs320.calculator.shared.RocketPadsController;
+import edu.ycp.cs320.calculator.shared.RocketPadsDirection;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
 
 public class RocketPadsView extends Composite {   
@@ -122,7 +123,22 @@ public class RocketPadsView extends Composite {
 		timer.scheduleRepeating(1000/2);
 		
 		// Load images
+		startzone_yellow = UserInterface.getImage("startzone_yellow.jpg");
+		background = UserInterface.getImage("background.jpg");
+		slidepad_east = UserInterface.getImage("slidepad_east.jpg");
+		slidepad_west = UserInterface.getImage("slidepad_west.jpg");
+		slidepad_north = UserInterface.getImage("slidepad_north.jpg");
+		slidepad_south = UserInterface.getImage("slidepad_south.jpg");
 		startzone_red = UserInterface.getImage("startzone_red.jpg");
+		startzone_blue = UserInterface.getImage("startzone_blue.jpg");
+		startzone_green = UserInterface.getImage("startzone_green.jpg");
+		startzone_yellow = UserInterface.getImage("startzone_yellow.jpg");
+		winzone_tl = UserInterface.getImage("winzone_tl.jpg");
+		winzone_tr = UserInterface.getImage("winzone_tr.jpg");
+		winzone_bl = UserInterface.getImage("winzone_bl.jpg");
+		winzone_br = UserInterface.getImage("winzone_br.jpg");
+		stoppad = UserInterface.getImage("stoppad.jpg"); 
+
 	}
 	
 	public void set_startzone_red(Image startzone_red) {
@@ -135,22 +151,51 @@ public class RocketPadsView extends Composite {
 		buff_context.setFillStyle("black");
 		buff_context.fillRect(0, 0, 900, 900);
 		
-		/*
-		for (int j = 0; j < model.getBoardHeight(); j+=75) {
-			for (int i = 0; i < model.getBoardWidth(); i+=75) {
+		for (int j = 0; j < model.getBoardHeight(); j++) {
+			for (int i = 0; i < model.getBoardWidth(); i++) {
 				// Find the pad at coordinates i,j.
 				
 				// Find the pad image.
-				Image padImage = ...
+				String direction = RocketPadsGame.getPad(i,j).toString();
+				Image padImage = new Image();
+				
+				if(i == 0 && j == 0) {
+					padImage = startzone_red;
+				} else if(i == 11 && j == 0) {
+					padImage = startzone_blue;
+				}
+				else if(i == 11 && j == 11) {
+					padImage = startzone_yellow;
+				}
+				else if(i == 0 && j == 11) {
+					padImage = startzone_green;
+				}
+				else if(i == 5 && j == 5) {
+					padImage = winzone_tl;
+				}
+				else if(i == 5 && j == 6) {
+					padImage = winzone_bl;
+				}
+				else if(i == 6 && j == 6) {
+					padImage = winzone_br;
+				}
+				else if(i == 6 && j == 5) {
+					padImage = winzone_tr;
+				}
+				else if(direction == "stop") {
+					padImage = stoppad;
+				}
+				else if(direction == "north" || direction == "south" || direction == "east" || direction == "west") {
+					padImage = UserInterface.getImage("slidepad_" + direction +".jpg");
+				}
 				
 				// Draw the pad image at the appropriate location.
 				buff_context.drawImage((ImageElement)padImage.getElement().cast(), i, j);
 			}
 		}
-		*/
 		
 		// This is just a proof of concept
-		buff_context.drawImage((ImageElement)startzone_red.getElement().cast(),0,0);
+		//buff_context.drawImage((ImageElement)startzone_red.getElement().cast(),0,0);
 		
 		// Copy buffer onto main canvas.
 		context.drawImage((CanvasElement) buffer.getElement().cast(),0,0);
