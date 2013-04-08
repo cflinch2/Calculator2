@@ -2,7 +2,6 @@ package edu.ycp.cs320.calculator.client;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
@@ -35,12 +34,14 @@ public class UserInterface implements EntryPoint {
 	public void onModuleLoad() {
 
 		GameLobby lobby = new GameLobby();
+		GWT.log("Lobby created.");
 		
 		GameLobby.update();
 	
 		RootLayoutPanel.get().add(lobby);
 		RootLayoutPanel.get().setWidgetLeftRight(lobby, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetTopBottom(lobby, 0.0, Unit.PX, 0.0, Unit.PX);
+		GWT.log("Lobby added to root layout panel.");
 		
 		// Create a hidden panel in which sprite images can be loaded.
 		FlowPanel hiddenPanel = new FlowPanel();
@@ -48,6 +49,7 @@ public class UserInterface implements EntryPoint {
 		RootLayoutPanel.get().add(hiddenPanel);
 		RootLayoutPanel.get().setWidgetRightWidth(hiddenPanel, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetBottomHeight(hiddenPanel, 0.0, Unit.PX, 0.0, Unit.PX);
+		GWT.log("Hidden image panel created.");
 		
 		// Load sprites
 		GWT.log("Loading sprites...");
@@ -57,10 +59,14 @@ public class UserInterface implements EntryPoint {
 			hiddenPanel.add(img);
 			IMAGE_MAP.put(spriteFile, img);
 		}
-		GWT.log("Done loading sprites.");
+		GWT.log("Finished loading sprites.");
 	}
 	
 	public static Image getImage(String spriteFile) {
-		return IMAGE_MAP.get(spriteFile);
+		Image image = IMAGE_MAP.get(spriteFile);
+		if (image == null) {
+			GWT.log("Unknown image: " + spriteFile);
+		}
+		return image;
 	}
 }

@@ -8,7 +8,19 @@ public enum RocketPadsDirection
 	WEST,	//4
 	WALK,	//5
 	STOP,	//6
-	WIN;	//7
+	
+	WIN_DO_NOT_USE_THIS, // 7
+	
+	START_RED,     // 8
+	START_BLUE,    // 9
+	START_GREEN,   // 10
+	START_YELLOW,  // 11
+	
+	WIN_RED,     // 12
+	WIN_BLUE,    // 13
+	WIN_GREEN,   // 14
+	WIN_YELLOW,  // 15
+	;
 	
 	public String toString() {
 		if(this == NORTH)
@@ -23,8 +35,6 @@ public enum RocketPadsDirection
 			return "walk";
 		else if(this == STOP)
 			return "stop";
-		else if(this == WIN)
-			return "win";
 		return null;
 	}
 }

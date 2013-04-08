@@ -11,28 +11,20 @@ public class RocketPadsGame
 	private boolean win; // When true, game ends.
 	private ArrayList<RocketPadsPlayer> players;
 	
-	private static int[][] board1 = {{6,3,3,3,3,2,2,6,4,4,4,6},
+	private int[][] board1 = {{8,3,3,3,3,2,2,6,4,4,4,9},
 							  {2,6,4,4,6,4,2,3,3,6,4,2},
 							  {2,3,2,1,3,2,2,1,2,4,1,2},
 							  {6,1,2,1,4,2,3,1,4,1,1,2},
 							  {2,1,2,3,1,4,2,6,3,1,1,2},
-							  {3,1,6,3,3,7,7,3,3,1,1,4},
-							  {3,3,3,3,2,7,7,4,4,4,4,4},
+							  {3,1,6,3,3,12,13,3,3,1,1,4},
+							  {3,3,3,3,2,14,15,4,4,4,4,4},
 							  {1,3,6,2,2,1,3,3,2,4,4,6},
 							  {1,1,2,2,2,1,1,3,2,3,1,1},
 							  {1,1,2,2,6,1,1,1,2,6,3,1},
 							  {6,1,2,6,3,2,1,1,2,1,4,4},
-							  {6,4,4,4,4,4,1,6,4,4,4,6}};
+							  {10,4,4,4,4,4,1,6,4,4,4,11}};
 	
-	private static RocketPadsDirection[][] board = new RocketPadsDirection[12][12];
-	static {
-		RocketPadsDirection[] values = RocketPadsDirection.values();
-		for (int j = 0; j < 12; j++) {
-			for (int i = 0; i < 12; i++) {
-				board[j][i] = values[board1[j][i] - 1];
-			}
-		}
-	}
+	private RocketPadsDirection[][] board = new RocketPadsDirection[12][12];
 	
 	// Constructor
 	public RocketPadsGame(int num_players)
@@ -43,6 +35,14 @@ public class RocketPadsGame
 		for(int i = 0; i < num_players; i ++)
 		{
 			players.add(new RocketPadsPlayer());
+		}
+
+		RocketPadsDirection[] values = RocketPadsDirection.values();
+		for (int j = 0; j < 12; j++) {
+			for (int i = 0; i < 12; i++) {
+				int ordinal = board1[j][i] - 1;
+				board[j][i] = values[ordinal];
+			}
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class RocketPadsGame
 		return 12;
 	}
 	
-	public static RocketPadsDirection getPad(int col, int row) {
+	public RocketPadsDirection getPad(int col, int row) {
 		int num = board1[row][col];
 		
 		switch(num) {
@@ -78,8 +78,22 @@ public class RocketPadsGame
 			return RocketPadsDirection.WALK;
  		case 6:
  			return RocketPadsDirection.STOP;
- 		case 7:
- 			return RocketPadsDirection.WIN;
+ 		case 8:
+ 			return RocketPadsDirection.START_RED;
+ 		case 9:
+ 			return RocketPadsDirection.START_BLUE;
+ 		case 10:
+ 			return RocketPadsDirection.START_GREEN;
+ 		case 11:
+ 			return RocketPadsDirection.START_YELLOW;
+ 		case 12:
+ 			return RocketPadsDirection.WIN_RED;
+ 		case 13:
+ 			return RocketPadsDirection.WIN_BLUE;
+ 		case 14:
+ 			return RocketPadsDirection.WIN_GREEN;
+ 		case 15:
+ 			return RocketPadsDirection.WIN_YELLOW;
  		default:
  			return RocketPadsDirection.WALK;
 		}
