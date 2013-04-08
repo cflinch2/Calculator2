@@ -53,38 +53,9 @@ public class RocketPadsGame
 	}
 	
 	
-	public RocketPad getPad(int col, int row) {
-		int num = board1[row][col];
+
+			
 		
-		switch (num) {
-		case 1:
-			return new RocketPad(1);
-			break;
-			
-		case 2:
-			return new RocketPad(2);
-			break;
-			
-		case 3:
-			return new RocketPad(3);
-			break;
-			
-		case 4:
-			return new RocketPad(4);
-			break;
-		
-//		case 5: 		//walk, no special direction
-//			return new
- 
- 		case 6:
- 			return new RocketPad(6);
- 			break;
- 			
- 		case 7:
- 			return new RocketPad(7);
- 			break;
-			
-		}
-	}
+	
 	
 }
