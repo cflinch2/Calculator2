@@ -2,6 +2,7 @@ package edu.ycp.cs320.calculator.client;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;

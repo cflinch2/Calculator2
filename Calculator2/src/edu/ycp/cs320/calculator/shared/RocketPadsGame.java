@@ -51,7 +51,7 @@ public class RocketPadsGame
 	}
 	
 	public RocketPadsPlayer getPlayer(int num) {
-		return players.get(num);
+		return players.get(num-1);
 	}
 	
 	public int getBoardWidth() {
