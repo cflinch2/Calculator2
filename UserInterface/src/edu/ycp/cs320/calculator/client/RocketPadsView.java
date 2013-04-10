@@ -85,6 +85,8 @@ public class RocketPadsView extends Composite {
 	protected void handleKeyDown(KeyDownEvent event) {
 		if(event.isLeftArrow()) {
 			// Handle left arrow event
+			//check slide boolean
+			
 		}
 		if(event.isRightArrow()) {
 			// Handle right arrow event
