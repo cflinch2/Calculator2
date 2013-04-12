@@ -25,8 +25,7 @@ public class RocketPadsGame
 							  {10,4,4,4,4,4,1,6,4,4,4,11}};
 	
 	private RocketPadsDirection[][] board = new RocketPadsDirection[12][12];
-	
-	// Constructor
+
 	public RocketPadsGame(int num_players)
 	{
 		win = false;

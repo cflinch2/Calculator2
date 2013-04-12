@@ -3,7 +3,6 @@ package edu.ycp.cs320.calculator.shared;
 import java.util.ArrayList;
 
 public class RocketPadsController {
-
 	public RocketPadsController() {
 		
 	}

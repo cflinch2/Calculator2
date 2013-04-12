@@ -37,5 +37,4 @@ public enum RocketPadsDirection
 			return "stop";
 		return null;
 	}
-	
 }
