@@ -35,6 +35,8 @@ public class GameLobby extends Composite {
 	private String stoppad_url;
 	*/
 	
+	private String background_url = "lobbyscreen2.png";
+
 	public GameLobby() {
 		// Create base panel.
 		LayoutPanel basePanel = new LayoutPanel();
