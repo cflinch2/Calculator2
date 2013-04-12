@@ -172,4 +172,5 @@ public class RocketPadsView extends Composite {
 		// Copy buffer onto main canvas.
 		context.drawImage((CanvasElement) buffer.getElement().cast(),0,0);
 	}
+	
 }
