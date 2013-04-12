@@ -72,9 +72,6 @@ public class RocketPadsPlayer
 		else if(direction == 6) {
 			this.dir = RocketPadsDirection.STOP;
 		}
-		else if(direction == 7) {
-			this.dir = RocketPadsDirection.WIN;
-		}
 	}
 	
 

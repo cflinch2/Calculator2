@@ -71,8 +71,5 @@ public class RocketPadsPlayerTest extends TestCase
 		testPlayer.setDirection(6);
 		assertEquals(RocketPadsDirection.STOP, testPlayer.getDirection());
 		
-		testPlayer.setDirection(7);
-		assertEquals(RocketPadsDirection.WIN, testPlayer.getDirection());
-		
 	}
 }
