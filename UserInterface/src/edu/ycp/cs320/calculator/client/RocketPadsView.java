@@ -2,7 +2,6 @@ package edu.ycp.cs320.calculator.client;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.Context2d;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
@@ -10,11 +9,8 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.RootLayoutPanel;
-
 import edu.ycp.cs320.calculator.shared.RocketPadsController;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
 
@@ -26,12 +22,7 @@ public class RocketPadsView extends Composite {
 	private Context2d buff_context;
 	private Context2d context;
 	private Timer timer;
-	private Image background;
-	private Image slidepad_east, slidepad_west, slidepad_north, slidepad_south;
-	private Image startzone_red, startzone_blue, startzone_green, startzone_yellow;
-	private Image winzone_tl, winzone_tr, winzone_bl, winzone_br;
-	private Image stoppad;
-
+	private Image startzone_red;
 	public RocketPadsView() {
 		// Create an instance of RocketPadsController.
 		controller = new RocketPadsController();
