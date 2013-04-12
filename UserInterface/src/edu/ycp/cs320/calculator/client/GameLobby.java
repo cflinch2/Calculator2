@@ -6,7 +6,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.LayoutPanel;
@@ -24,17 +23,6 @@ public class GameLobby extends Composite {
 	private static ListBox gameListBox;
 	private LayoutPanel layoutPanel;
 	private Image background;
-	/*
-	private Image slidepad_east, slidepad_west, slidepad_north, slidepad_south;
-	private Image startzone_red, startzone_blue, startzone_green, startzone_yellow;
-	private Image winzone_tl, winzone_tr, winzone_bl, winzone_br;
-	private Image stoppad;
-	private String slidepad_east_url, slidepad_west_url, slidepad_north_url, slidepad_south_url;
-	private String startzone_red_url, startzone_blue_url, startzone_green_url, startzone_yellow_url;
-	private String winzone_tl_url, winzone_tr_url, winzone_bl_url, winzone_br_url;
-	private String stoppad_url;
-	*/
-	
 	private String background_url = "lobbyscreen2.png";
 
 	public GameLobby() {
@@ -42,34 +30,31 @@ public class GameLobby extends Composite {
 		LayoutPanel basePanel = new LayoutPanel();
 		initWidget(basePanel);
 		basePanel.setSize("1100px", "900px");
-		
-		// Load images.
-		String background_url = GWT.getModuleBaseForStaticFiles() + "lobby_screen2.png";
-		String startzone_red_url = GWT.getModuleBaseForStaticFiles() + "startzone_red.png";
-		// more images...
-		
-		// Create Image objects.
-		background = new Image(background_url);
-		//startzone_red = new Image(startzone_red_url);
-		// more image objects...
+		GWT.log("Base panel created.");
 		
 		// Add background image to base panel.
+		GWT.log("Loading background image...");
+		String url = GWT.getModuleBaseForStaticFiles() + background_url;
+		background = new Image(url);
 		basePanel.add(background);
 		background.setSize("1100px", "900px");
 		basePanel.setWidgetLeftRight(background, 0.0, Unit.PX, 0.0, Unit.PX);
 		basePanel.setWidgetTopBottom(background, 0.0, Unit.PX, 0.0, Unit.PX);
+		GWT.log("Background image loaded and added to base panel.");
 		
 		// Create user interface panel.
 		final LayoutPanel UI = new LayoutPanel();
 		basePanel.add(UI);
 		basePanel.setWidgetLeftRight(UI, 0.0, Unit.PX, 0.0, Unit.PX);
 		basePanel.setWidgetTopBottom(UI, 0.0, Unit.PX, 0.0, Unit.PX);
+		GWT.log("User interface panel created.");
 		
 		// Game list drop-down menu.
 		gameListBox = new ListBox();
 		UI.add(gameListBox);
 		UI.setWidgetLeftWidth(gameListBox, 69.0, Unit.PX, 100.0, Unit.PX);
 		UI.setWidgetTopHeight(gameListBox, 51.0, Unit.PX, 25.0, Unit.PX);
+		GWT.log("Drop down menu created.");
 		
 		// User label.
 		user = new InlineLabel("User:");
@@ -91,28 +76,18 @@ public class GameLobby extends Composite {
 			@Override
 			public void onClick(ClickEvent event) { 	
 				// Create RocketPadsGame instance and add it to the view model.
+				GWT.log("Entered on-click event handler for 'Play!'");
 				RocketPadsGame game = new RocketPadsGame(1);
 				RocketPadsView view = new RocketPadsView();
 				view.setModel(game);
 				
-				// Create image panel.
-				FlowPanel image_panel = new FlowPanel();
-				
-				//image_panel.add(startzone_red);
-				
-				image_panel.setSize("0px", "0px");
-				
-				layoutPanel.add(image_panel);
-				
 				layoutPanel.add(view);
-				
 				layoutPanel.setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 				layoutPanel.setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
-				
-				// Give the view object appropriate references for painting.
-				//view.set_startzone_red(startzone_red);
+				GWT.log("View instance added to layout panel.");
 				
 				view.activate();
+				GWT.log("View activated.");
 			}
 		});
 		// Adjust dimensions.
@@ -135,6 +110,7 @@ public class GameLobby extends Composite {
 		UI.add(layoutPanel);
 		UI.setWidgetLeftWidth(layoutPanel, 200.0, Unit.PX, 900.0, Unit.PX);
 		UI.setWidgetTopHeight(layoutPanel, 0.0, Unit.PX, 900.0, Unit.PX);
+		GWT.log("Game layout panel created.");
 	}
 	
 	public String getChange() {
@@ -156,4 +132,5 @@ public class GameLobby extends Composite {
 			}
 		}
 	}
+	
 }
