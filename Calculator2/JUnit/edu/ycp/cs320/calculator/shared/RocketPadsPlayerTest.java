@@ -50,7 +50,6 @@ public class RocketPadsPlayerTest extends TestCase
 	WEST,	4
 	WALK,	5
 	STOP,	6
-	WIN;	7
 	*/
 	{
 		testPlayer.setDirection(1);
@@ -70,9 +69,5 @@ public class RocketPadsPlayerTest extends TestCase
 		
 		testPlayer.setDirection(6);
 		assertEquals(RocketPadsDirection.STOP, testPlayer.getDirection());
-		
-		testPlayer.setDirection(7);
-		assertEquals(RocketPadsDirection.WIN, testPlayer.getDirection());
-		
 	}
 }

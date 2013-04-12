@@ -51,9 +51,6 @@ import javax.swing.JPanel;
 			g.drawLine(0, 825, 900, 825);
 			g.drawLine(0, 900, 900, 900);
 			
-			
-			
-			
 			int x = 15;
 			int y = 15;
 			for(int a=0; a<3; a++){

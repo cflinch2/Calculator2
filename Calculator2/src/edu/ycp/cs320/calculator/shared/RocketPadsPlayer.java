@@ -23,7 +23,6 @@ public class RocketPadsPlayer
 		current.setY(start.getY());
 	}
 	
-	//should this really be "RocketPadsLocation getLocation()"?
 	public RocketPadsLocation getLocation()
 	{
 		return current;
@@ -56,20 +55,18 @@ public class RocketPadsPlayer
 		else if(direction == 2) {
 			this.dir = RocketPadsDirection.SOUTH;
 		}
-		if(direction == 3) {
+		else if(direction == 3) {
 			this.dir = RocketPadsDirection.EAST;
 		}
-		if(direction == 4) {
+		else if(direction == 4) {
 			this.dir = RocketPadsDirection.WEST;
 		}
-		if(direction == 5) {
+		else if(direction == 5) {
 			this.dir = RocketPadsDirection.WALK;
 		}
-		if(direction == 6) {
+		else if(direction == 6) {
 			this.dir = RocketPadsDirection.STOP;
 		}
-		if(direction == 7) {
-			this.dir = RocketPadsDirection.WIN;
-		}
 	}
+
 }
