@@ -73,8 +73,6 @@ public class RocketPadsGame
 			return RocketPadsDirection.EAST;
 		case 4:
 			return RocketPadsDirection.WEST;
-		case 5: 
-			return RocketPadsDirection.WALK;
  		case 6:
  			return RocketPadsDirection.STOP;
  		case 8:
@@ -94,7 +92,7 @@ public class RocketPadsGame
  		case 15:
  			return RocketPadsDirection.WIN_YELLOW;
  		default:
- 			return RocketPadsDirection.WALK;
+ 			return RocketPadsDirection.STOP;
 		}
 	}
 }

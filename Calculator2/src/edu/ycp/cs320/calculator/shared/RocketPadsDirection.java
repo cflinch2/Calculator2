@@ -6,7 +6,7 @@ public enum RocketPadsDirection
 	SOUTH,	//2
 	EAST,	//3
 	WEST,	//4
-	WALK,	//5
+	WALK_DO_NOT_USE_THIS,	//5
 	STOP,	//6
 	
 	WIN_DO_NOT_USE_THIS, // 7
@@ -31,8 +31,6 @@ public enum RocketPadsDirection
 			return "east";
 		else if(this == WEST)
 			return "west";
-		else if(this == WALK)
-			return "walk";
 		else if(this == STOP)
 			return "stop";
 		return null;

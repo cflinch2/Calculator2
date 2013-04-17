@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.Image;
 import edu.ycp.cs320.calculator.shared.RocketPadsController;
 import edu.ycp.cs320.calculator.shared.RocketPadsDirection;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
+import edu.ycp.cs320.calculator.shared.RocketPadsPlayer;
 
 public class RocketPadsView extends Composite {
 	
@@ -78,12 +79,6 @@ public class RocketPadsView extends Composite {
 				handleKeyDown(event);
 			}
 		});
-		canvas.addKeyUpHandler(new KeyUpHandler() {
-			@Override
-			public void onKeyUp(KeyUpEvent event) {
-				handleKeyUp(event);
-			}
-		});
 		
 		initWidget(panel);
 		
@@ -100,32 +95,25 @@ public class RocketPadsView extends Composite {
 	}
 	
 	protected void handleKeyDown(KeyDownEvent event) {
-		if(event.isLeftArrow()) {
-			// Handle left arrow event
-		}
-		if(event.isRightArrow()) {
-			// Handle right arrow event
-		}
-		if(event.isDownArrow()) {
-			// Handle down arrow event
-		}
-		if(event.isUpArrow()) {
-			// Handle up arrow event
-		}
-	}
-	
-	protected void handleKeyUp(KeyUpEvent event) {
-		if(event.isLeftArrow()) {
-			// Handle left arrow event
-		}
-		if(event.isRightArrow()) {
-			// Handle right arrow event
-		}
-		if(event.isDownArrow()) {
-			// Handle down arrow event
-		}
-		if(event.isUpArrow()) {
-			// Handle up arrow event
+		RocketPadsPlayer player = model.getPlayer(1);
+		
+		if(player.getDirection() == RocketPadsDirection.START_RED ||
+				player.getDirection() == RocketPadsDirection.START_BLUE ||
+				player.getDirection() == RocketPadsDirection.START_YELLOW ||
+				player.getDirection() == RocketPadsDirection.START_GREEN ||
+				player.getDirection() == RocketPadsDirection.STOP) {
+			if(event.isLeftArrow()) {
+				player.setDirection(RocketPadsDirection.WEST);
+			}
+			if(event.isRightArrow()) {
+				player.setDirection(RocketPadsDirection.EAST);
+			}
+			if(event.isDownArrow()) {
+				player.setDirection(RocketPadsDirection.SOUTH);
+			}
+			if(event.isUpArrow()) {
+				player.setDirection(RocketPadsDirection.NORTH);
+			}
 		}
 	}
 	
@@ -162,6 +150,11 @@ public class RocketPadsView extends Composite {
 				buff_context.drawImage((ImageElement)padImage.getElement().cast(), i*75, j*75);
 			}
 		}
+		
+		// Draw avatar.
+		buff_context.setFillStyle("black");
+		buff_context.fillRect(12.5 + model.getPlayer(1).getLocation().getX(), 12.5 + model.getPlayer(1).getLocation().getY(), 50.0,50.0);
+		GWT.log("" + model.getPlayer(1).getLocation().getX() + "," + model.getPlayer(1).getLocation().getY());
 		
 		GWT.log("Finished drawing images.");
 		
