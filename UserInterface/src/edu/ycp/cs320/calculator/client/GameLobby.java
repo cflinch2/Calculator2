@@ -11,7 +11,7 @@ import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
-import edu.ycp.cs320.calculator.shared.GameList;
+import edu.ycp.cs320.calculator.shared.BoardList;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
 
 public class GameLobby extends Composite {
@@ -126,8 +126,8 @@ public class GameLobby extends Composite {
 
 	public static void update() {
 		if (gameListBox.getItemCount() == 0) {
-			GameList[] games = GameList.values();
-			for (GameList g : games) {
+			BoardList[] games = BoardList.values();
+			for (BoardList g : games) {
 				gameListBox.addItem(g.toString());
 			}
 		}
