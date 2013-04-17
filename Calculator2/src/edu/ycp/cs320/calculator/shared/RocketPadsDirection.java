@@ -16,10 +16,10 @@ public enum RocketPadsDirection
 	START_GREEN,   // 10
 	START_YELLOW,  // 11
 	
-	WIN_RED,     // 12
-	WIN_BLUE,    // 13
-	WIN_GREEN,   // 14
-	WIN_YELLOW,  // 15
+	WIN,     // 12
+	//WIN_BLUE,    // 13
+	//WIN_GREEN,   // 14
+	//WIN_YELLOW,  // 15
 	;
 	
 	public String toString() {

@@ -33,10 +33,10 @@ public class RocketPadsView extends Composite {
 		directionPadImageNames.put(RocketPadsDirection.START_BLUE, "startzone_blue.jpg");
 		directionPadImageNames.put(RocketPadsDirection.START_GREEN, "startzone_green.jpg");
 		directionPadImageNames.put(RocketPadsDirection.START_YELLOW, "startzone_yellow.jpg");
-		directionPadImageNames.put(RocketPadsDirection.WIN_RED, "winzone_topleft.jpg");
-		directionPadImageNames.put(RocketPadsDirection.WIN_BLUE, "winzone_topright.jpg");
-		directionPadImageNames.put(RocketPadsDirection.WIN_GREEN, "winzone_botleft.jpg");
-		directionPadImageNames.put(RocketPadsDirection.WIN_YELLOW, "winzone_botright.jpg");
+		directionPadImageNames.put(RocketPadsDirection.WIN, "winzone_topleft.jpg");
+		//directionPadImageNames.put(RocketPadsDirection.WIN_BLUE, "winzone_topright.jpg");
+		//directionPadImageNames.put(RocketPadsDirection.WIN_GREEN, "winzone_botleft.jpg");
+		//directionPadImageNames.put(RocketPadsDirection.WIN_YELLOW, "winzone_botright.jpg");
 		directionPadImageNames.put(RocketPadsDirection.STOP, "stoppad.jpg");
 	}
 	
@@ -89,6 +89,9 @@ public class RocketPadsView extends Composite {
 				if(model != null) {
 					controller.updateGame(model);
 					paint();
+					if(model.checkWin()) {
+						timer.cancel();
+					}
 				}
 			}
 		};
@@ -104,14 +107,11 @@ public class RocketPadsView extends Composite {
 				player.getDirection() == RocketPadsDirection.STOP) {
 			if(event.isLeftArrow()) {
 				player.setDirection(RocketPadsDirection.WEST);
-			}
-			if(event.isRightArrow()) {
+			} if(event.isRightArrow()) {
 				player.setDirection(RocketPadsDirection.EAST);
-			}
-			if(event.isDownArrow()) {
+			} if(event.isDownArrow()) {
 				player.setDirection(RocketPadsDirection.SOUTH);
-			}
-			if(event.isUpArrow()) {
+			} if(event.isUpArrow()) {
 				player.setDirection(RocketPadsDirection.NORTH);
 			}
 		}

@@ -14,8 +14,13 @@ public class RocketPadsController {
 		// Update player positions.
 		for(int i = 0; i < player_list.size(); i++) {
 			RocketPadsPlayer player = player_list.get(i);
+
 			updatePosition(player);
 			setNewDirection(player, game);
+			
+			// Check win condition for each player.
+			if(player.getDirection() == RocketPadsDirection.WIN)
+				game.setWin(true);
 		}
 	}
 

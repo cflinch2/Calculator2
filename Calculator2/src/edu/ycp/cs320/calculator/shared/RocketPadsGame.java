@@ -8,6 +8,11 @@ public class RocketPadsGame
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 900;
 	
+	public static final RocketPadsLocation START_RED = new RocketPadsLocation(0,0);
+	public static final RocketPadsLocation START_BLUE = new RocketPadsLocation(11,0);
+	public static final RocketPadsLocation START_GREEN = new RocketPadsLocation(0,11);
+	public static final RocketPadsLocation START_YELLOW = new RocketPadsLocation(11,11);
+	
 	private boolean win; // When true, game ends.
 	private ArrayList<RocketPadsPlayer> players;
 	
@@ -16,8 +21,8 @@ public class RocketPadsGame
 							  {2,3,2,1,3,2,2,1,2,4,1,2},
 							  {6,1,2,1,4,2,3,1,4,1,1,2},
 							  {2,1,2,3,1,4,2,6,3,1,1,2},
-							  {3,1,6,3,3,12,13,3,3,1,1,4},
-							  {3,3,3,3,2,14,15,4,4,4,4,4},
+							  {3,1,6,3,3,12,12,3,3,1,1,4},
+							  {3,3,3,3,2,12,12,4,4,4,4,4},
 							  {1,3,6,2,2,1,3,3,2,4,4,6},
 							  {1,1,2,2,2,1,1,3,2,3,1,1},
 							  {1,1,2,2,6,1,1,1,2,6,3,1},
@@ -84,15 +89,17 @@ public class RocketPadsGame
  		case 11:
  			return RocketPadsDirection.START_YELLOW;
  		case 12:
- 			return RocketPadsDirection.WIN_RED;
- 		case 13:
- 			return RocketPadsDirection.WIN_BLUE;
- 		case 14:
- 			return RocketPadsDirection.WIN_GREEN;
- 		case 15:
- 			return RocketPadsDirection.WIN_YELLOW;
+ 			return RocketPadsDirection.WIN;
  		default:
  			return RocketPadsDirection.STOP;
 		}
+	}
+	
+	public void setWin(boolean win) {
+		this.win = win;
+	}
+	
+	public boolean checkWin() {
+		return win;
 	}
 }

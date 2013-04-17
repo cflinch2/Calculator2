@@ -9,8 +9,8 @@ public class RocketPadsPlayer
 	// Constructor
 	public RocketPadsPlayer()
 	{
-		start = new RocketPadsLocation(0,0);
-		current = new RocketPadsLocation(0,0);
+		start = RocketPadsGame.START_RED;
+		current = start;
 		dir = RocketPadsDirection.START_RED;
 	}
 	
