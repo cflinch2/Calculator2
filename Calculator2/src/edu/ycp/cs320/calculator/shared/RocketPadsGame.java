@@ -4,60 +4,22 @@ import java.util.ArrayList;
 
 public class RocketPadsGame 
 {
-	// Fields
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 900;
-
 	public static final int BOARD_WIDTH = 12;
 	public static final int BOARD_HEIGHT = 12;
 
-	public static final RocketPadsLocation START_RED = new RocketPadsLocation(0,0);
-	public static final RocketPadsLocation START_BLUE = new RocketPadsLocation(11*75,0);
-	public static final RocketPadsLocation START_GREEN = new RocketPadsLocation(0,11*75);
-	public static final RocketPadsLocation START_YELLOW = new RocketPadsLocation(11*75,11*75);
+	// The start locations for each player.
+	public static RocketPadsLocation START_RED;
+	public static RocketPadsLocation START_BLUE;
+	public static RocketPadsLocation START_GREEN;
+	public static RocketPadsLocation START_YELLOW;
 	
-	private RocketPadsBoardData board;
-	private boolean win; // When true, game ends.
-	private ArrayList<RocketPadsPlayer> players;
+	private RocketPadsBoardData board; // Stores the dynamic board data.
 	
-	private int[][] board1 = {{8,3,3,3,3,2,2,6,4,4,4,9},
-							  {2,6,4,4,6,4,2,3,3,6,4,2},
-							  {2,3,2,1,3,2,3,1,2,4,1,2},
-							  {6,1,2,1,4,2,1,2,4,1,1,2},
-							  {2,1,2,3,1,4,2,6,3,1,1,2},
-							  {3,1,6,3,3,12,12,3,3,1,1,4},
-							  {3,3,3,3,2,12,12,4,4,4,4,4},
-							  {1,3,6,2,2,1,3,3,2,4,4,6},
-							  {1,1,2,2,2,1,1,3,2,3,1,1},
-							  {1,1,2,2,6,1,1,1,2,6,3,1},
-							  {6,1,2,6,3,2,1,1,2,1,4,4},
-							  {10,4,4,4,4,4,1,6,4,4,4,11}};
+	private boolean win;
 	
-	private int[][] board2 = {{8,2,2,6,4,4,6,4,4,4,2,9},
-								{3,3,3,2,6,1,2,3,3,3,6,2},
-								{2,6,3,6,2,1,3,1,2,4,4,2},
-								{2,1,1,4,2,1,2,4,3,6,1,6},
-								{2,1,4,4,4,1,2,1,6,2,1,2},
-								{3,6,3,3,3,12,12,1,1,4,6,4},
-								{3,1,3,3,3,12,12,4,2,2,4,6},
-								{1,3,2,1,3,1,3,1,4,4,1,1},
-								{1,4,2,1,1,4,1,3,3,2,6,4},
-								{3,6,4,1,1,4,6,1,1,4,3,1},
-								{1,1,1,3,6,1,1,1,3,3,1,4},
-								{10,3,3,1,3,1,1,6,4,4,4,11}};
-	
-	private int[][] board3 = {{8,4,2,6,3,3,6,6,4,4,4,9},
-								{2,1,2,3,1,4,4,3,3,2,2,1},
-								{2,1,4,1,2,2,4,4,4,2,3,1},
-								{6,3,3,1,2,2,3,3,1,2,2,4},
-								{2,2,6,4,2,3,2,3,6,4,2,1},
-								{2,3,2,1,3,12,12,1,4,2,4,1},
-								{3,6,3,1,1,12,12,4,2,4,2,6},
-								{2,4,3,3,1,1,4,1,2,3,2,1},
-								{3,3,1,3,2,3,1,1,3,6,2,1},
-								{3,3,3,6,4,6,4,1,4,4,2,1},
-								{1,1,4,4,1,2,1,4,2,4,4,1},
-								{10,3,3,3,3,3,3,1,3,3,3,11}};
+	private ArrayList<RocketPadsPlayer> players; // Tracks each of the players.
 
 	public RocketPadsGame(int num_players)
 	{
@@ -69,8 +31,10 @@ public class RocketPadsGame
 		{
 			players.add(new RocketPadsPlayer());
 		}
-		
-		board = RocketPadsCreateBoardDataFromArray.createFromArray(board1);
+	}
+	
+	public void setBoard(RocketPadsBoardData board) {
+		this.board = board;
 	}
 	
 	public ArrayList<RocketPadsPlayer> getPlayerList() {
@@ -79,14 +43,6 @@ public class RocketPadsGame
 	
 	public RocketPadsPlayer getPlayer(int num) {
 		return players.get(num-1);
-	}
-	
-	public int getBoardWidth() {
-		return 12;
-	}
-	
-	public int getBoardHeight() {
-		return 12;
 	}
 	
 	public RocketPadsDirection getPad(int col, int row) {

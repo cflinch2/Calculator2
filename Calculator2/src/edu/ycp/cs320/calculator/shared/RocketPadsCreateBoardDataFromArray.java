@@ -2,8 +2,10 @@ package edu.ycp.cs320.calculator.shared;
 
 public class RocketPadsCreateBoardDataFromArray {
 
-	public static RocketPadsBoardData createFromArray(int[][] arr) {
+	public static RocketPadsBoardData createFromArray(int[][] arr, BoardList board) {
 		RocketPadsBoardData boardData = new RocketPadsBoardData();
+		
+		boardData.setBoard(board);
 		
 		for (int j = 0; j < RocketPadsGame.BOARD_HEIGHT; j++) {
 			for (int i = 0; i < RocketPadsGame.BOARD_WIDTH; i++) {

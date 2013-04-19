@@ -16,6 +16,16 @@
     <url-pattern>/userinterface/greet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>gameData</servlet-name>
+    <servlet-class>edu.ycp.cs320.calculator.server.GameDataServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>gameData</servlet-name>
+    <url-pattern>/userinterface/gameData</url-pattern>
+  </servlet-mapping>
+
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>UserInterface.html</welcome-file>
