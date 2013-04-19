@@ -11,6 +11,23 @@ public class RocketPadsGame
 	private boolean win; // When true, game ends.
 	private ArrayList<RocketPadsPlayer> players;
 	
+	//1 = up
+	//2 = down
+	//3 = right
+	//4 = left
+	//5 = NOT USED
+	//6 = Stop
+	//7 = NOT USED
+	//8 = red start
+	//9 = blue start
+	//10 = green start
+	//11 = yellow start
+	//12 = WIN
+	//13 = WIN
+	//14 = WIN
+	//15 = WIN
+	
+	
 	private int[][] board1 = {{8,3,3,3,3,2,2,6,4,4,4,9},
 							  {2,6,4,4,6,4,2,3,3,6,4,2},
 							  {2,3,2,1,3,2,2,1,2,4,1,2},
@@ -63,6 +80,7 @@ public class RocketPadsGame
 	
 	public RocketPadsDirection getPad(int col, int row) {
 		int num = board1[row][col];
+		//System.out.printf("col=%d, row=%d => num=%d\n", col, row, num);
 		
 		switch(num) {
 		case 1:

@@ -49,7 +49,10 @@ public class RocketPadsPlayer
 		return dir;
 	}
 	
-	public void setDirection(int direction) {
+	public void setDirection(RocketPadsDirection direction) {
+		
+		dir = direction;
+		/*
 		if(direction == 1) {
 			this.dir = RocketPadsDirection.NORTH;
 		}
@@ -72,6 +75,7 @@ public class RocketPadsPlayer
 		else if(direction == 6) {
 			this.dir = RocketPadsDirection.STOP;
 		}
+		*/
 	}
 	
 

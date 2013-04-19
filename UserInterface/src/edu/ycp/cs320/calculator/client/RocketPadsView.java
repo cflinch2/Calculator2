@@ -46,6 +46,12 @@ public class RocketPadsView extends Composite {
 	private Context2d buff_context;
 	private Context2d context;
 	private Timer timer;
+	double x = 12.5;
+	double y = 12.5;
+	double w = 50;
+	double h = 50;
+	
+	
 
 	public RocketPadsView() {
 		// Create an instance of RocketPadsController.
@@ -78,13 +84,15 @@ public class RocketPadsView extends Composite {
 				handleKeyDown(event);
 			}
 		});
+		
+		/*
 		canvas.addKeyUpHandler(new KeyUpHandler() {
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
 				handleKeyUp(event);
 			}
 		});
-		
+		*/
 		initWidget(panel);
 		
 		// Animation timer.
@@ -99,35 +107,61 @@ public class RocketPadsView extends Composite {
 		};
 	}
 	
+	//Handles manual movement
 	protected void handleKeyDown(KeyDownEvent event) {
-		if(event.isLeftArrow()) {
-			// Handle left arrow event
+		if (model.getPlayer(1).getDirection() == RocketPadsDirection.WALK)
+		{
+			if(event.isLeftArrow()) {
+				// Handle left arrow event
+				/*
+				if (x > 50)
+				{	
+					x -= 75;
+				}
+				*/
+				
+				model.getPlayer(1).setDirection(RocketPadsDirection.WEST);
+				
+ 			}
+		
+			
+			if(event.isRightArrow()) {
+				// Handle right arrow event
+				/*
+				if (x < 837.5)
+				{	
+					x += 75;
+				}
+				*/
+				model.getPlayer(1).setDirection(RocketPadsDirection.EAST);
+			}
+
+			if(event.isDownArrow()) {
+				// Handle down arrow event
+				/*
+				if (y < 837.5)
+				{
+					y += 75;
+				}
+				*/
+				model.getPlayer(1).setDirection(RocketPadsDirection.SOUTH);
+			}
+			
+			if(event.isUpArrow()) {
+				// Handle up arrow event
+				/*
+				if (y > 75)
+				{
+					y -= 75;
+				}
+				*/
+				model.getPlayer(1).setDirection(RocketPadsDirection.NORTH);
+			}
 		}
-		if(event.isRightArrow()) {
-			// Handle right arrow event
-		}
-		if(event.isDownArrow()) {
-			// Handle down arrow event
-		}
-		if(event.isUpArrow()) {
-			// Handle up arrow event
-		}
+		
+		 
 	}
 	
-	protected void handleKeyUp(KeyUpEvent event) {
-		if(event.isLeftArrow()) {
-			// Handle left arrow event
-		}
-		if(event.isRightArrow()) {
-			// Handle right arrow event
-		}
-		if(event.isDownArrow()) {
-			// Handle down arrow event
-		}
-		if(event.isUpArrow()) {
-			// Handle up arrow event
-		}
-	}
 	
 	// Set the game model instance.
 	public void setModel(RocketPadsGame model) {
@@ -160,12 +194,25 @@ public class RocketPadsView extends Composite {
 				
 				// Draw the pad image at the appropriate location.
 				buff_context.drawImage((ImageElement)padImage.getElement().cast(), i*75, j*75);
+			
+				
 			}
 		}
+		
+		//draw player
+		buff_context.setFillStyle("black");
+		
+		GWT.log("" + model.getPlayer(1).getLocation().getX() + ", " +  model.getPlayer(1).getLocation().getY());
+		
+		//buff_context.fillRect(12.5, 12.5, 50, 50);
+		buff_context.fillRect(model.getPlayer(1).getLocation().getX() + 12.5, model.getPlayer(1).getLocation().getY() + 12.5, w, h);
 		
 		GWT.log("Finished drawing images.");
 		
 		// Copy buffer onto main canvas.
 		context.drawImage((CanvasElement) buffer.getElement().cast(),0,0);
+		
+		
+		
 	}
 }
