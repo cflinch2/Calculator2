@@ -34,9 +34,6 @@ public class RocketPadsView extends Composite {
 		directionPadImageNames.put(RocketPadsDirection.START_GREEN, "startzone_green.jpg");
 		directionPadImageNames.put(RocketPadsDirection.START_YELLOW, "startzone_yellow.jpg");
 		directionPadImageNames.put(RocketPadsDirection.WIN, "winzone_topleft.jpg");
-		//directionPadImageNames.put(RocketPadsDirection.WIN_BLUE, "winzone_topright.jpg");
-		//directionPadImageNames.put(RocketPadsDirection.WIN_GREEN, "winzone_botleft.jpg");
-		//directionPadImageNames.put(RocketPadsDirection.WIN_YELLOW, "winzone_botright.jpg");
 		directionPadImageNames.put(RocketPadsDirection.STOP, "stoppad.jpg");
 	}
 	

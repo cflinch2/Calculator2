@@ -17,22 +17,5 @@ public enum RocketPadsDirection
 	START_YELLOW,  // 11
 	
 	WIN,     // 12
-	//WIN_BLUE,    // 13
-	//WIN_GREEN,   // 14
-	//WIN_YELLOW,  // 15
 	;
-	
-	public String toString() {
-		if(this == NORTH)
-			return "north";
-		else if(this == SOUTH)
-			return "south";
-		else if(this == EAST)
-			return "east";
-		else if(this == WEST)
-			return "west";
-		else if(this == STOP)
-			return "stop";
-		return null;
-	}
 }

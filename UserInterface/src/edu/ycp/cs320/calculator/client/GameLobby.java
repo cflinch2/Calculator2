@@ -23,7 +23,7 @@ public class GameLobby extends Composite {
 	private static ListBox gameListBox;
 	private LayoutPanel layoutPanel;
 	private Image background;
-	private String background_url = "lobbyscreen2.png";
+	private String background_url = "lobby_screen2.png";
 
 	public GameLobby() {
 		// Create base panel.
@@ -100,7 +100,7 @@ public class GameLobby extends Composite {
 		UI.setWidgetTopHeight(gamePanel, 20.0, Unit.PX, 25.0, Unit.PX);	
 		
 		// Game label
-		lobby = new InlineLabel("Game:");
+		lobby = new InlineLabel("Board:");
 		UI.add(lobby);
 		UI.setWidgetLeftWidth(lobby, 25.0, Unit.PX, 50.0, Unit.PX);
 		UI.setWidgetTopHeight(lobby, 55.0, Unit.PX, 25.0, Unit.PX);
