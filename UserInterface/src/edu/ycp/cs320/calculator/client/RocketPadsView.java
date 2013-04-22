@@ -10,8 +10,6 @@ import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FocusPanel;
@@ -111,17 +109,12 @@ public class RocketPadsView extends Composite {
 		};
 	}
 	
-	
-		
-		 
-	
-	
+	protected void handleKeyDown(KeyDownEvent event) {
+		// For now, this gets the first player from the game instance.
+		RocketPadsPlayer player = model.getPlayer(1);
 
-	protected void handleKeyDown(KeyDownEvent event){
-	
-	RocketPadsPlayer player = model.getPlayer(1);
 		
-		
+		// If the player's direction is any of the start locations or a stop pad, he has manual control of his avatar.
 		if(player.getDirection() == RocketPadsDirection.START_RED ||
 				player.getDirection() == RocketPadsDirection.START_BLUE ||
 				player.getDirection() == RocketPadsDirection.START_YELLOW ||
@@ -155,11 +148,10 @@ public class RocketPadsView extends Composite {
 		// Draw background.
 		buff_context.setFillStyle("black");
 		buff_context.fillRect(0, 0, 900, 900);
-		GWT.log("Black background filled.");
 		
 		GWT.log("Drawing images onto canvas...");
-		for(int j = 0; j < model.getBoardHeight(); j++) {
-			for(int i = 0; i < model.getBoardWidth(); i++) {
+		for(int j = 0; j < RocketPadsGame.BOARD_HEIGHT; j++) {
+			for(int i = 0; i < RocketPadsGame.BOARD_WIDTH; i++) {
 				// Find the pad at coordinates (i,j).
 				RocketPadsDirection direction = model.getPad(i,j);
 				
@@ -184,7 +176,7 @@ public class RocketPadsView extends Composite {
 		//buff_context.fillRect(12.5, 12.5, 50, 50);
 		buff_context.fillRect(model.getPlayer(1).getLocation().getX() + 12.5, model.getPlayer(1).getLocation().getY() + 12.5, w, h);
 		
-		// Draw avatar.
+		// Draw the avatar. Right now this only works for Player 1.
 		buff_context.setFillStyle("black");
 		buff_context.fillRect(12.5 + model.getPlayer(1).getLocation().getX(), 12.5 + model.getPlayer(1).getLocation().getY(), 50.0,50.0);
 		GWT.log("" + model.getPlayer(1).getLocation().getX() + "," + model.getPlayer(1).getLocation().getY());

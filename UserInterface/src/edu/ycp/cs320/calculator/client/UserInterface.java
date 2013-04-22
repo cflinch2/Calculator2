@@ -37,7 +37,7 @@ public class UserInterface implements EntryPoint {
 		GameLobby lobby = new GameLobby();
 		GWT.log("Lobby created.");
 		
-		GameLobby.update();
+		lobby.update();
 	
 		RootLayoutPanel.get().add(lobby);
 		RootLayoutPanel.get().setWidgetLeftRight(lobby, 0.0, Unit.PX, 0.0, Unit.PX);
