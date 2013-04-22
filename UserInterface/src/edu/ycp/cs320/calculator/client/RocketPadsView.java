@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.Image;
 import edu.ycp.cs320.calculator.shared.RocketPadsController;
 import edu.ycp.cs320.calculator.shared.RocketPadsDirection;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
+import edu.ycp.cs320.calculator.shared.RocketPadsPlayer;
 
 public class RocketPadsView extends Composite {
 	
@@ -32,10 +33,7 @@ public class RocketPadsView extends Composite {
 		directionPadImageNames.put(RocketPadsDirection.START_BLUE, "startzone_blue.jpg");
 		directionPadImageNames.put(RocketPadsDirection.START_GREEN, "startzone_green.jpg");
 		directionPadImageNames.put(RocketPadsDirection.START_YELLOW, "startzone_yellow.jpg");
-		directionPadImageNames.put(RocketPadsDirection.WIN_RED, "winzone_topleft.jpg");
-		directionPadImageNames.put(RocketPadsDirection.WIN_BLUE, "winzone_topright.jpg");
-		directionPadImageNames.put(RocketPadsDirection.WIN_GREEN, "winzone_botleft.jpg");
-		directionPadImageNames.put(RocketPadsDirection.WIN_YELLOW, "winzone_botright.jpg");
+		directionPadImageNames.put(RocketPadsDirection.WIN, "winzone_topleft.jpg");
 		directionPadImageNames.put(RocketPadsDirection.STOP, "stoppad.jpg");
 	}
 	
@@ -85,6 +83,7 @@ public class RocketPadsView extends Composite {
 			}
 		});
 		
+
 		/*
 		canvas.addKeyUpHandler(new KeyUpHandler() {
 			@Override
@@ -93,6 +92,8 @@ public class RocketPadsView extends Composite {
 			}
 		});
 		*/
+
+
 		initWidget(panel);
 		
 		// Animation timer.
@@ -102,66 +103,42 @@ public class RocketPadsView extends Composite {
 				if(model != null) {
 					controller.updateGame(model);
 					paint();
+					if(model.checkWin()) {
+						timer.cancel();
+					}
 				}
 			}
 		};
 	}
 	
-	//Handles manual movement
-	protected void handleKeyDown(KeyDownEvent event) {
-		if (model.getPlayer(1).getDirection() == RocketPadsDirection.WALK)
-		{
-			if(event.isLeftArrow()) {
-				// Handle left arrow event
-				/*
-				if (x > 50)
-				{	
-					x -= 75;
-				}
-				*/
-				
-				model.getPlayer(1).setDirection(RocketPadsDirection.WEST);
-				
- 			}
-		
-			
-			if(event.isRightArrow()) {
-				// Handle right arrow event
-				/*
-				if (x < 837.5)
-				{	
-					x += 75;
-				}
-				*/
-				model.getPlayer(1).setDirection(RocketPadsDirection.EAST);
-			}
-
-			if(event.isDownArrow()) {
-				// Handle down arrow event
-				/*
-				if (y < 837.5)
-				{
-					y += 75;
-				}
-				*/
-				model.getPlayer(1).setDirection(RocketPadsDirection.SOUTH);
-			}
-			
-			if(event.isUpArrow()) {
-				// Handle up arrow event
-				/*
-				if (y > 75)
-				{
-					y -= 75;
-				}
-				*/
-				model.getPlayer(1).setDirection(RocketPadsDirection.NORTH);
-			}
-		}
+	
 		
 		 
-	}
 	
+	
+
+	protected void handleKeyDown(KeyDownEvent event){
+	
+	RocketPadsPlayer player = model.getPlayer(1);
+		
+		
+		if(player.getDirection() == RocketPadsDirection.START_RED ||
+				player.getDirection() == RocketPadsDirection.START_BLUE ||
+				player.getDirection() == RocketPadsDirection.START_YELLOW ||
+				player.getDirection() == RocketPadsDirection.START_GREEN ||
+				player.getDirection() == RocketPadsDirection.STOP) {
+			if(event.isLeftArrow()) {
+				player.setDirection(RocketPadsDirection.WEST);
+			} if(event.isRightArrow()) {
+				player.setDirection(RocketPadsDirection.EAST);
+			} if(event.isDownArrow()) {
+				player.setDirection(RocketPadsDirection.SOUTH);
+			} if(event.isUpArrow()) {
+				player.setDirection(RocketPadsDirection.NORTH);
+			}
+		}
+	}
+
 	
 	// Set the game model instance.
 	public void setModel(RocketPadsGame model) {
@@ -207,6 +184,11 @@ public class RocketPadsView extends Composite {
 		//buff_context.fillRect(12.5, 12.5, 50, 50);
 		buff_context.fillRect(model.getPlayer(1).getLocation().getX() + 12.5, model.getPlayer(1).getLocation().getY() + 12.5, w, h);
 		
+		// Draw avatar.
+		buff_context.setFillStyle("black");
+		buff_context.fillRect(12.5 + model.getPlayer(1).getLocation().getX(), 12.5 + model.getPlayer(1).getLocation().getY(), 50.0,50.0);
+		GWT.log("" + model.getPlayer(1).getLocation().getX() + "," + model.getPlayer(1).getLocation().getY());
+		
 		GWT.log("Finished drawing images.");
 		
 		// Copy buffer onto main canvas.
@@ -215,4 +197,9 @@ public class RocketPadsView extends Composite {
 		
 		
 	}
+	
+
 }
+
+
+

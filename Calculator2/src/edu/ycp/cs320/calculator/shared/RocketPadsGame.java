@@ -8,6 +8,11 @@ public class RocketPadsGame
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 900;
 	
+	public static final RocketPadsLocation START_RED = new RocketPadsLocation(0,0);
+	public static final RocketPadsLocation START_BLUE = new RocketPadsLocation(11*75,0);
+	public static final RocketPadsLocation START_GREEN = new RocketPadsLocation(0,11*75);
+	public static final RocketPadsLocation START_YELLOW = new RocketPadsLocation(11*75,11*75);
+	
 	private boolean win; // When true, game ends.
 	private ArrayList<RocketPadsPlayer> players;
 	
@@ -33,14 +38,43 @@ public class RocketPadsGame
 							  {2,3,2,1,3,2,2,1,2,4,1,2},
 							  {6,1,2,1,4,2,3,1,4,1,1,2},
 							  {2,1,2,3,1,4,2,6,3,1,1,2},
-							  {3,1,6,3,3,12,13,3,3,1,1,4},
-							  {3,3,3,3,2,14,15,4,4,4,4,4},
+							  {3,1,6,3,3,12,12,3,3,1,1,4},
+							  {3,3,3,3,2,12,12,4,4,4,4,4},
 							  {1,3,6,2,2,1,3,3,2,4,4,6},
 							  {1,1,2,2,2,1,1,3,2,3,1,1},
 							  {1,1,2,2,6,1,1,1,2,6,3,1},
 							  {6,1,2,6,3,2,1,1,2,1,4,4},
 							  {10,4,4,4,4,4,1,6,4,4,4,11}};
 	
+
+
+	private int[][] board2 = {{8,2,2,6,4,4,6,4,4,4,2,9},
+								{3,3,3,2,6,1,2,3,3,3,6,2},
+								{2,6,3,6,2,1,3,1,2,4,4,2},
+								{2,1,1,4,2,1,2,4,3,6,1,6},
+								{2,1,4,4,4,1,2,1,6,2,1,2},
+								{3,6,3,3,3,12,12,1,1,4,6,4},
+								{3,1,3,3,3,12,12,4,2,2,4,6},
+								{1,3,2,1,3,1,3,1,4,4,1,1},
+								{1,4,2,1,1,4,1,3,3,2,6,4},
+								{3,6,4,1,1,4,6,1,1,4,3,1},
+								{1,1,1,3,6,1,1,1,3,3,1,4},
+								{10,3,3,1,3,1,1,6,4,4,4,11}};
+	
+	private int[][] board3 = {{8,4,2,6,3,3,6,6,4,4,4,9},
+								{2,1,2,3,1,4,4,3,3,2,2,1},
+								{2,1,4,1,2,2,4,4,4,2,3,1},
+								{6,3,3,1,2,2,3,3,1,2,2,4},
+								{2,2,6,4,2,3,2,3,6,4,2,1},
+								{2,3,2,1,3,12,12,1,4,2,4,1},
+								{3,6,3,1,1,12,12,4,2,4,2,6},
+								{2,4,3,3,1,1,4,1,2,3,2,1},
+								{3,3,1,3,2,3,1,1,3,6,2,1},
+								{3,3,3,6,4,6,4,1,4,4,2,1},
+								{1,1,4,4,1,2,1,4,2,4,4,1},
+								{10,3,3,3,3,3,3,1,3,3,3,11}};
+	
+
 	private RocketPadsDirection[][] board = new RocketPadsDirection[12][12];
 
 	public RocketPadsGame(int num_players)
@@ -79,8 +113,12 @@ public class RocketPadsGame
 	}
 	
 	public RocketPadsDirection getPad(int col, int row) {
-		int num = board1[row][col];
+
+		
 		//System.out.printf("col=%d, row=%d => num=%d\n", col, row, num);
+
+		int num = board1[row][col];
+
 		
 		switch(num) {
 		case 1:
@@ -91,8 +129,6 @@ public class RocketPadsGame
 			return RocketPadsDirection.EAST;
 		case 4:
 			return RocketPadsDirection.WEST;
-		case 5: 
-			return RocketPadsDirection.WALK;
  		case 6:
  			return RocketPadsDirection.STOP;
  		case 8:
@@ -104,15 +140,21 @@ public class RocketPadsGame
  		case 11:
  			return RocketPadsDirection.START_YELLOW;
  		case 12:
- 			return RocketPadsDirection.WIN_RED;
- 		case 13:
- 			return RocketPadsDirection.WIN_BLUE;
- 		case 14:
- 			return RocketPadsDirection.WIN_GREEN;
- 		case 15:
- 			return RocketPadsDirection.WIN_YELLOW;
+ 			return RocketPadsDirection.WIN;
  		default:
- 			return RocketPadsDirection.WALK;
+ 			return RocketPadsDirection.STOP;
 		}
 	}
+
+
+
+	
+	public void setWin(boolean win) {
+		this.win = win;
+	}
+	
+	public boolean checkWin() {
+		return win;
+	}
 }
+
