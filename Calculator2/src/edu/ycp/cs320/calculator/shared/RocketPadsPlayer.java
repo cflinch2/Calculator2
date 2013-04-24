@@ -7,11 +7,11 @@ public class RocketPadsPlayer
 	private RocketPadsDirection dir;
 	
 	// Constructor
-	public RocketPadsPlayer()
+	public RocketPadsPlayer(RocketPadsLocation start_loc, RocketPadsDirection start_dir)
 	{
-		start = RocketPadsGame.START_BLUE;
+		start = start_loc;
 		current = start;
-		dir = RocketPadsDirection.START_BLUE;
+		dir = start_dir;
 	}
 	
 	// Resets the player's location to his starting location.

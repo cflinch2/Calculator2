@@ -22,10 +22,7 @@ public class UserInterface implements EntryPoint {
 		"startzone_red.jpg",
 		"startzone_yellow.jpg",
 		"stoppad.jpg",
-		"winzone_botleft.jpg",
-		"winzone_botright.jpg",
 		"winzone_topleft.jpg",
-		"winzone_topright.jpg",
 		"lobby_screen2.png"
 	};
 	
@@ -35,7 +32,7 @@ public class UserInterface implements EntryPoint {
 	public void onModuleLoad() {
 
 		GameLobby lobby = new GameLobby();
-		GWT.log("Lobby created.");
+		GWT.log("Lobby created successfully!");
 		
 		lobby.update();
 	
@@ -60,7 +57,7 @@ public class UserInterface implements EntryPoint {
 			hiddenPanel.add(img);
 			IMAGE_MAP.put(spriteFile, img);
 		}
-		GWT.log("Finished loading sprites.");
+		GWT.log("Loaded sprites successfully!");
 	}
 	
 	public static Image getImage(String spriteFile) {

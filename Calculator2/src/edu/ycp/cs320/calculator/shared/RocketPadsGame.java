@@ -8,33 +8,79 @@ public class RocketPadsGame
 	public static final int HEIGHT = 900;
 	public static final int BOARD_WIDTH = 12;
 	public static final int BOARD_HEIGHT = 12;
-
-	// The start locations for each player.
-	public static RocketPadsLocation START_RED;
-	public static RocketPadsLocation START_BLUE;
-	public static RocketPadsLocation START_GREEN;
-	public static RocketPadsLocation START_YELLOW;
 	
 	private RocketPadsBoardData board; // Stores the dynamic board data.
 	
 	private boolean win;
 	
-	private ArrayList<RocketPadsPlayer> players; // Tracks each of the players.
+	private ArrayList<RocketPadsPlayer> players;
+	
+	// Player start locations.
+	private RocketPadsLocation red_player_start;
+	private RocketPadsLocation blue_player_start;
+	private RocketPadsLocation green_player_start;
+	private RocketPadsLocation yellow_player_start;
 
-	public RocketPadsGame(int num_players)
+	public RocketPadsGame(int num_players, RocketPadsBoardData board)
 	{
 		win = false;
 		
+		this.board = board;
+		
+		for (int j = 0; j < BOARD_HEIGHT; j++) {
+			for (int i = 0; i < BOARD_WIDTH; i++) {
+				switch(board.getPad(i,j)) {
+				case START_RED:
+					red_player_start = new RocketPadsLocation(i*75, j*75);
+					break;
+				case START_BLUE:
+					blue_player_start = new RocketPadsLocation(i*75, j*75);
+					break;
+				case START_GREEN:
+					green_player_start = new RocketPadsLocation(i*75, j*75);
+					break;
+				case START_YELLOW:
+					yellow_player_start = new RocketPadsLocation(i*75, j*75);
+					break;
+				default:
+					break;
+				}
+			}
+		}
+		
 		players = new ArrayList<RocketPadsPlayer>();
 		
-		for(int i = 0; i < num_players; i ++)
+		// Constructs the list of players for the current game and initializes their starting locations and directions.
+		for(int i = 0; i < num_players; i++)
 		{
-			players.add(new RocketPadsPlayer());
+			if(i == 0) {
+				players.add(new RocketPadsPlayer(red_player_start, RocketPadsDirection.START_RED));
+			} else if(i == 1) {
+				players.add(new RocketPadsPlayer(blue_player_start, RocketPadsDirection.START_BLUE));
+			}
+			else if(i == 2) {
+				players.add(new RocketPadsPlayer(green_player_start, RocketPadsDirection.START_GREEN));
+			}
+			else if(i == 3) {
+				players.add(new RocketPadsPlayer(yellow_player_start, RocketPadsDirection.START_YELLOW));
+			}
 		}
 	}
 	
-	public void setBoard(RocketPadsBoardData board) {
-		this.board = board;
+	public RocketPadsLocation getRedStartLocation() {
+		return red_player_start;
+	}
+	
+	public RocketPadsLocation getBluePlayerLocation() {
+		return blue_player_start;
+	}
+	
+	public RocketPadsLocation getGreenPlayerLocation() {
+		return green_player_start;
+	}
+	
+	public RocketPadsLocation getYellowPlayerLocation() {
+		return yellow_player_start;
 	}
 	
 	public ArrayList<RocketPadsPlayer> getPlayerList() {
