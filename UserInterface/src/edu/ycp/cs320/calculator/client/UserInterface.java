@@ -26,7 +26,7 @@ public class UserInterface implements EntryPoint {
 		"winzone_botright.jpg",
 		"winzone_topleft.jpg",
 		"winzone_topright.jpg",
-		"lobby_screen2.png"
+		"lobby_screen2.jpg"
 	};
 	
 	private static Map<String, Image> IMAGE_MAP = new HashMap<String, Image>();
