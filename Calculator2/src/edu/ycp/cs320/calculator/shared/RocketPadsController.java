@@ -11,28 +11,34 @@ public class RocketPadsController {
 		
 		ArrayList<RocketPadsPlayer> player_list = game.getPlayerList();
 		
-		// Update player positions.
 		for(int i = 0; i < player_list.size(); i++) {
-			updatePosition(player_list.get(i));
+			RocketPadsPlayer player = player_list.get(i);
+
+			// Update position of current player.
+			updatePosition(player);
+			
+			// Get new direction for current player.
+			setNewDirection(player, game);
+			
+			// Check win condition.
+			if(player.getDirection() == RocketPadsDirection.WIN)
+				game.setWin(true);
 		}
 	}
 
 	private void updatePosition(RocketPadsPlayer player) {
-		if (player.getSlide() == true) {
-			if (player.getDirection() == RocketPadsDirection.NORTH) {
-				player.setLocation(player.getLocation().getX(),player.getLocation().getY()-1);
-			}
-			else if(player.getDirection() == RocketPadsDirection.SOUTH) {
-				//y increases
-				player.setLocation(player.getLocation().getX(),player.getLocation().getY()+1);
-			}
-			else if(player.getDirection() == RocketPadsDirection.EAST) {
-				//x increases
-				player.setLocation(player.getLocation().getX()+1,player.getLocation().getY());
-			}
-			else if(player.getDirection() == RocketPadsDirection.WEST) {
-				player.setLocation(player.getLocation().getX()-1,player.getLocation().getY()-1);
-			}
+		if (player.getDirection() == RocketPadsDirection.NORTH) {
+			player.setLocation(player.getLocation().getX(),player.getLocation().getY()-75);
+		} else if(player.getDirection() == RocketPadsDirection.SOUTH) {
+			player.setLocation(player.getLocation().getX(),player.getLocation().getY()+75);
+		} else if(player.getDirection() == RocketPadsDirection.EAST) {
+			player.setLocation(player.getLocation().getX()+75,player.getLocation().getY());
+		} else if(player.getDirection() == RocketPadsDirection.WEST) {
+			player.setLocation(player.getLocation().getX()-75,player.getLocation().getY());
 		}
+	}
+	
+	private void setNewDirection(RocketPadsPlayer player, RocketPadsGame game) {
+		player.setDirection(game.getPad(player.getLocation().getX()/75,player.getLocation().getY()/75));
 	}
 }

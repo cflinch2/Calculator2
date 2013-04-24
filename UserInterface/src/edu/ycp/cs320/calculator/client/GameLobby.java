@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
@@ -11,7 +12,8 @@ import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
-import edu.ycp.cs320.calculator.shared.GameList;
+import edu.ycp.cs320.calculator.shared.BoardList;
+import edu.ycp.cs320.calculator.shared.RocketPadsBoardData;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
 
 public class GameLobby extends Composite {
@@ -20,10 +22,10 @@ public class GameLobby extends Composite {
 	private InlineLabel user;
 	private TextBox uName;
 	private InlineLabel gamePanel;
-	private static ListBox gameListBox;
+	private ListBox gameListBox;
 	private LayoutPanel layoutPanel;
 	private Image background;
-	private String background_url = "lobbyscreen2.png";
+	private String background_url = "lobby_screen2.png";
 
 	public GameLobby() {
 		// Create base panel.
@@ -77,6 +79,9 @@ public class GameLobby extends Composite {
 			public void onClick(ClickEvent event) { 	
 				// Create RocketPadsGame instance and add it to the view model.
 				GWT.log("Entered on-click event handler for 'Play!'");
+				
+				
+				/*
 				RocketPadsGame game = new RocketPadsGame(1);
 				RocketPadsView view = new RocketPadsView();
 				view.setModel(game);
@@ -88,6 +93,37 @@ public class GameLobby extends Composite {
 				
 				view.activate();
 				GWT.log("View activated.");
+				*/
+				
+				int selectedIndex = gameListBox.getSelectedIndex();
+				if (selectedIndex >= 0) {
+					String chosen = gameListBox.getItemText(selectedIndex);
+					BoardList board = BoardList.valueOf(chosen);
+					
+					RPC.gameService.getBoardData(board, new AsyncCallback<RocketPadsBoardData>() {
+						@Override
+						public void onSuccess(RocketPadsBoardData result) {
+							GWT.log("Successfully loaded board data!");
+							RocketPadsGame game = new RocketPadsGame(1);
+							game.setBoard(result);
+							RocketPadsView view = new RocketPadsView();
+							view.setModel(game);
+							
+							layoutPanel.add(view);
+							layoutPanel.setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
+							layoutPanel.setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
+
+							view.activate();
+						}
+						
+						@Override
+						public void onFailure(Throwable caught) {
+							GWT.log("RPC call to get board data failed", caught);
+							// TODO: update UI (e.g., set text of an error label)
+						}
+					});
+				}
+				
 			}
 		});
 		// Adjust dimensions.
@@ -100,7 +136,7 @@ public class GameLobby extends Composite {
 		UI.setWidgetTopHeight(gamePanel, 20.0, Unit.PX, 25.0, Unit.PX);	
 		
 		// Game label
-		lobby = new InlineLabel("Game:");
+		lobby = new InlineLabel("Board:");
 		UI.add(lobby);
 		UI.setWidgetLeftWidth(lobby, 25.0, Unit.PX, 50.0, Unit.PX);
 		UI.setWidgetTopHeight(lobby, 55.0, Unit.PX, 25.0, Unit.PX);
@@ -124,10 +160,10 @@ public class GameLobby extends Composite {
 		return name;
 	}
 
-	public static void update() {
+	public void update() {
 		if (gameListBox.getItemCount() == 0) {
-			GameList[] games = GameList.values();
-			for (GameList g : games) {
+			BoardList[] games = BoardList.values();
+			for (BoardList g : games) {
 				gameListBox.addItem(g.toString());
 			}
 		}
