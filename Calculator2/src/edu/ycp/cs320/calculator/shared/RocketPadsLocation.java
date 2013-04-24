@@ -2,23 +2,22 @@ package edu.ycp.cs320.calculator.shared;
 
 public class RocketPadsLocation 
 {
-	// Fields
 	private int x, y;
 	
-	public RocketPadsLocation(int X, int Y)
+	public RocketPadsLocation(int x, int y)
 	{
-		x = X;
-		y = Y;
+		this.x = x;
+		this.y = y;
 	}
 	
-	public void setX(int X)
+	public void setX(int x)
 	{
-		x = X;
+		this.x = x;
 	}
 	
-	public void setY(int Y)
+	public void setY(int y)
 	{
-		y = Y;
+		this.y = y;
 	}
 	
 	public int getX()

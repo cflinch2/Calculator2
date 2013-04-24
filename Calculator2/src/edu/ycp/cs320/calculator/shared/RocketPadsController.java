@@ -14,12 +14,15 @@ public class RocketPadsController {
 		for(int i = 0; i < player_list.size(); i++) {
 			RocketPadsPlayer player = player_list.get(i);
 
+			System.out.println("Updating position of Player " + i+1 + "...");
 			// Update position of current player.
 			updatePosition(player);
 			
+			System.out.println("Updating direction for Player " + i+1 + "...");
 			// Get new direction for current player.
-			setNewDirection(player, game);
+			updateDirection(player, game);
 			
+			System.out.println("Checking win condition...");
 			// Check win condition.
 			if(player.getDirection() == RocketPadsDirection.WIN)
 				game.setWin(true);
@@ -38,7 +41,11 @@ public class RocketPadsController {
 		}
 	}
 	
-	private void setNewDirection(RocketPadsPlayer player, RocketPadsGame game) {
-		player.setDirection(game.getPad(player.getLocation().getX()/75,player.getLocation().getY()/75));
+	private void updateDirection(RocketPadsPlayer player, RocketPadsGame game) {
+		RocketPadsLocation location = player.getLocation();
+		int col = location.getX()/75;
+		int row = location.getY()/75;
+		RocketPadsDirection pad = game.getPad(col,row);
+		player.setDirection(pad);
 	}
 }

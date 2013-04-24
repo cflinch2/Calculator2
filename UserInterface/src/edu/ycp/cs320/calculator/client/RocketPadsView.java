@@ -52,7 +52,7 @@ public class RocketPadsView extends Composite {
 	public RocketPadsView() {
 		// Create an instance of RocketPadsController.
 		controller = new RocketPadsController();
-		GWT.log("Controller object created.");
+		GWT.log("    Controller object created.");
 		
 		// Create Focus Panel.
 		FocusPanel panel = new FocusPanel();
@@ -63,7 +63,7 @@ public class RocketPadsView extends Composite {
 		buffer.setCoordinateSpaceWidth(RocketPadsGame.WIDTH);
 		buffer.setCoordinateSpaceHeight(RocketPadsGame.HEIGHT);
 		this.buff_context = buffer.getContext2d();
-		GWT.log("Canvas buffer created.");
+		GWT.log("    Canvas buffer created.");
 		
 		this.canvas = Canvas.createIfSupported();
 		canvas.setSize("900px", "900px");
@@ -71,7 +71,7 @@ public class RocketPadsView extends Composite {
 		canvas.setCoordinateSpaceHeight(RocketPadsGame.HEIGHT);
 		this.context = canvas.getContext2d();
 		panel.add(canvas);
-		GWT.log("Main canvas created.");
+		GWT.log("    Main canvas created.");
 		
 		// Key handlers.
 		canvas.addKeyDownHandler(new KeyDownHandler() {
@@ -99,8 +99,11 @@ public class RocketPadsView extends Composite {
 			@Override
 			public void run() {
 				if(model != null) {
+					GWT.log("    Updating game state...");
 					controller.updateGame(model);
+					GWT.log("    Painting canvas...");
 					paint();
+					GWT.log("    Checking win condition...");
 					if(model.checkWin()) {
 						timer.cancel();
 					}
@@ -181,7 +184,7 @@ public class RocketPadsView extends Composite {
 		buff_context.fillRect(12.5 + model.getPlayer(1).getLocation().getX(), 12.5 + model.getPlayer(1).getLocation().getY(), 50.0,50.0);
 		GWT.log("" + model.getPlayer(1).getLocation().getX() + "," + model.getPlayer(1).getLocation().getY());
 		
-		GWT.log("Finished drawing images.");
+		GWT.log("    Finished drawing images.");
 		
 		// Copy buffer onto main canvas.
 		context.drawImage((CanvasElement) buffer.getElement().cast(),0,0);
