@@ -14,7 +14,6 @@ public class RocketPadsPlayer
 		dir = start_dir;
 	}
 	
-	// Resets the player's location to his starting location.
 	public void reset_location()
 	{
 		current.setX(start.getX());
