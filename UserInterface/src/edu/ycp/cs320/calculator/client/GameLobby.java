@@ -88,7 +88,7 @@ public class GameLobby extends Composite {
 						@Override
 						public void onSuccess(RocketPadsBoardData result) {
 							GWT.log("   Successfully loaded board data!");
-							RocketPadsGame game = new RocketPadsGame(1, result);
+							RocketPadsGame game = new RocketPadsGame(4, result);
 							GWT.log("   Game instance created.");
 							RocketPadsView view = new RocketPadsView();
 							view.setModel(game);
@@ -104,7 +104,7 @@ public class GameLobby extends Composite {
 						
 						@Override
 						public void onFailure(Throwable caught) {
-							GWT.log("   RPC call to get board data failed", caught);
+							GWT.log("   RPC call to get board data failed!", caught);
 							// TODO: update UI (e.g., set text of an error label)
 						}
 					});

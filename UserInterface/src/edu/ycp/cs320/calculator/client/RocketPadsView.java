@@ -96,7 +96,7 @@ public class RocketPadsView extends Composite {
 	}
 	
 	protected void handleKeyDown(KeyDownEvent event) {
-		// For now, this gets the first player from the game instance.
+		// For now, this only gets the first player from the game instance.
 		RocketPadsPlayer player = model.getPlayer(1);
 		
 		// If the player's direction is any of the start locations or a stop pad, he has manual control of his avatar.
@@ -131,7 +131,7 @@ public class RocketPadsView extends Composite {
 	protected void paint() {
 		// Draw background.
 		buff_context.setFillStyle("black");
-		buff_context.fillRect(0, 0, 900, 900);
+		buff_context.fillRect(0, 0, RocketPadsGame.HEIGHT, RocketPadsGame.WIDTH);
 		
 		GWT.log("Drawing images onto canvas...");
 		for(int j = 0; j < RocketPadsGame.BOARD_HEIGHT; j++) {
@@ -150,10 +150,12 @@ public class RocketPadsView extends Composite {
 			}
 		}
 		
-		// Draw the avatar. Right now this only works for Player 1.
+		// Draw the player avatars.
 		buff_context.setFillStyle("black");
-		buff_context.fillRect(12.5 + model.getPlayer(1).getLocation().getX(), 12.5 + model.getPlayer(1).getLocation().getY(), 50.0,50.0);
-		GWT.log("" + model.getPlayer(1).getLocation().getX() + "," + model.getPlayer(1).getLocation().getY());
+		for(int i = 0; i < model.get_num_players(); i++) {
+			buff_context.fillRect(12.5 + model.getPlayer(i+1).getLocation().getX(), 12.5 + model.getPlayer(i+1).getLocation().getY(), 50.0,50.0);
+			GWT.log("" + model.getPlayer(i+1).getLocation().getX() + "," + model.getPlayer(i+1).getLocation().getY());
+		}
 		
 		GWT.log("    Finished drawing images.");
 		

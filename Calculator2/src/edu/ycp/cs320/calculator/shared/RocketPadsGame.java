@@ -12,6 +12,7 @@ public class RocketPadsGame
 	private RocketPadsBoardData board; // Stores the dynamic board data.
 	
 	private boolean win;
+	private int num_players;
 	
 	private ArrayList<RocketPadsPlayer> players;
 	
@@ -23,10 +24,15 @@ public class RocketPadsGame
 
 	public RocketPadsGame(int num_players, RocketPadsBoardData board)
 	{
+		// Set win condition to false.
 		win = false;
 		
+		this.num_players = num_players;
+		
+		// Assign board data.
 		this.board = board;
 		
+		// Acquires the values for each starting location.
 		for (int j = 0; j < BOARD_HEIGHT; j++) {
 			for (int i = 0; i < BOARD_WIDTH; i++) {
 				switch(board.getPad(i,j)) {
@@ -48,11 +54,9 @@ public class RocketPadsGame
 			}
 		}
 		
-		players = new ArrayList<RocketPadsPlayer>();
-		
 		// Constructs the list of players for the current game and initializes their starting locations and directions.
-		for(int i = 0; i < num_players; i++)
-		{
+		players = new ArrayList<RocketPadsPlayer>();
+		for(int i = 0; i < num_players; i++) {
 			if(i == 0) {
 				players.add(new RocketPadsPlayer(red_player_start, RocketPadsDirection.START_RED));
 			} else if(i == 1) {
@@ -66,21 +70,9 @@ public class RocketPadsGame
 			}
 		}
 	}
-	
-	public RocketPadsLocation getRedStartLocation() {
-		return red_player_start;
-	}
-	
-	public RocketPadsLocation getBluePlayerLocation() {
-		return blue_player_start;
-	}
-	
-	public RocketPadsLocation getGreenPlayerLocation() {
-		return green_player_start;
-	}
-	
-	public RocketPadsLocation getYellowPlayerLocation() {
-		return yellow_player_start;
+
+	public int get_num_players() {
+		return num_players;
 	}
 	
 	public ArrayList<RocketPadsPlayer> getPlayerList() {

@@ -30,7 +30,7 @@ public class UserInterface implements EntryPoint {
 	
 	// Entry point method.
 	public void onModuleLoad() {
-
+		// Create the lobby.
 		GameLobby lobby = new GameLobby();
 		GWT.log("Lobby created successfully!");
 		
@@ -49,7 +49,7 @@ public class UserInterface implements EntryPoint {
 		RootLayoutPanel.get().setWidgetBottomHeight(hiddenPanel, 0.0, Unit.PX, 0.0, Unit.PX);
 		GWT.log("Hidden image panel created.");
 		
-		// Load sprites
+		// Load sprites.
 		GWT.log("Loading sprites...");
 		for (String spriteFile : IMAGE_FILES) {
 			String url = GWT.getModuleBaseForStaticFiles() + spriteFile;
