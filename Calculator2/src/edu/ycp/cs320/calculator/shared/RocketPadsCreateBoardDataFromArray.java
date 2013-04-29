@@ -26,17 +26,11 @@ public class RocketPadsCreateBoardDataFromArray {
 			return RocketPadsDirection.EAST;
 		case 4:
 			return RocketPadsDirection.WEST;
- 		case 6:
+ 		case 5:
  			return RocketPadsDirection.STOP;
- 		case 8:
- 			return RocketPadsDirection.START_RED;
- 		case 9:
- 			return RocketPadsDirection.START_BLUE;
- 		case 10:
- 			return RocketPadsDirection.START_GREEN;
- 		case 11:
- 			return RocketPadsDirection.START_YELLOW;
- 		case 12:
+ 		case 6:
+ 			return RocketPadsDirection.START;
+ 		case 7:
  			return RocketPadsDirection.WIN;
  		default:
  			return RocketPadsDirection.STOP;

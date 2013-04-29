@@ -88,7 +88,7 @@ public class GameLobby extends Composite {
 						@Override
 						public void onSuccess(RocketPadsBoardData result) {
 							GWT.log("   Successfully loaded board data!");
-							RocketPadsGame game = new RocketPadsGame(4, result);
+							RocketPadsGame game = new RocketPadsGame(result);
 							GWT.log("   Game instance created.");
 							RocketPadsView view = new RocketPadsView();
 							view.setModel(game);

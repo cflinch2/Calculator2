@@ -6,16 +6,9 @@ public enum RocketPadsDirection
 	SOUTH,	//2
 	EAST,	//3
 	WEST,	//4
-	WALK_DO_NOT_USE_THIS,	//5
-	STOP,	//6
-	
-	WIN_DO_NOT_USE_THIS, // 7
-	
-	START_RED,     // 8
-	START_BLUE,    // 9
-	START_GREEN,   // 10
-	START_YELLOW,  // 11
-	
-	WIN,     // 12
+	STOP,   //5
+	START,  //6
+	WIN,    //7
+	RESET   //8
 	;
 }
