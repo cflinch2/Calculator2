@@ -19,7 +19,6 @@ import edu.ycp.cs320.calculator.shared.RocketPadsController;
 import edu.ycp.cs320.calculator.shared.RocketPadsDirection;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
 import edu.ycp.cs320.calculator.shared.RocketPadsPlayer;
-import edu.ycp.cs320.calculator.shared.RocketPadsPlayerTest;
 
 public class RocketPadsView extends Composite {
 	
@@ -29,12 +28,10 @@ public class RocketPadsView extends Composite {
 		directionPadImageNames.put(RocketPadsDirection.WEST, "slidepad_yellow.jpg");
 		directionPadImageNames.put(RocketPadsDirection.NORTH, "slidepad_green.jpg");
 		directionPadImageNames.put(RocketPadsDirection.SOUTH, "slidepad_blue.jpg");
-		directionPadImageNames.put(RocketPadsDirection.START_RED, "startzone_red.jpg");
-		directionPadImageNames.put(RocketPadsDirection.START_BLUE, "startzone_blue.jpg");
-		directionPadImageNames.put(RocketPadsDirection.START_GREEN, "startzone_green.jpg");
-		directionPadImageNames.put(RocketPadsDirection.START_YELLOW, "startzone_yellow.jpg");
-		directionPadImageNames.put(RocketPadsDirection.WIN, "winzone_topleft.jpg");
+		directionPadImageNames.put(RocketPadsDirection.START, "startzone_red.jpg");
 		directionPadImageNames.put(RocketPadsDirection.STOP, "stoppad.jpg");
+		directionPadImageNames.put(RocketPadsDirection.WIN, "winzone_topleft.jpg");
+		directionPadImageNames.put(RocketPadsDirection.RESET, "startzone_blue.jpg");
 	}
 	
 	private RocketPadsGame model;
@@ -112,15 +109,14 @@ public class RocketPadsView extends Composite {
 		
 		//Original working code for one player:
 		// For now, this only gets the first player from the game instance.
-		RocketPadsPlayer player = model.getPlayer(1);
+
+
+
+		RocketPadsPlayer player = model.getPlayer();
 
 		
 		// If the player's direction is any of the start locations or a stop pad, he has manual control of his avatar.
-		if(player.getDirection() == RocketPadsDirection.START_RED ||
-				player.getDirection() == RocketPadsDirection.START_BLUE ||
-				player.getDirection() == RocketPadsDirection.START_YELLOW ||
-				player.getDirection() == RocketPadsDirection.START_GREEN ||
-				player.getDirection() == RocketPadsDirection.STOP) {
+		if(player.getDirection() == RocketPadsDirection.START || player.getDirection() == RocketPadsDirection.STOP) {
 			if(event.isLeftArrow()) {
 				player.setDirection(RocketPadsDirection.WEST);
 			} if(event.isRightArrow()) {
@@ -172,16 +168,16 @@ public class RocketPadsView extends Composite {
 		//draw player
 		buff_context.setFillStyle("black");
 		
-		GWT.log("" + model.getPlayer(1).getLocation().getX() + ", " +  model.getPlayer(1).getLocation().getY());
+		GWT.log("" + model.getPlayer().getLocation().getX() + ", " +  model.getPlayer().getLocation().getY());
 		
 		//buff_context.fillRect(12.5, 12.5, 50, 50);
-		buff_context.fillRect(model.getPlayer(1).getLocation().getX() + 12.5, model.getPlayer(1).getLocation().getY() + 12.5, w, h);
+		buff_context.fillRect(model.getPlayer().getLocation().getX() + 12.5, model.getPlayer().getLocation().getY() + 12.5, w, h);
 		
 		// Draw the player avatars.
 		buff_context.setFillStyle("black");
 		for(int i = 0; i < model.get_num_players(); i++) {
-			buff_context.fillRect(12.5 + model.getPlayer(i+1).getLocation().getX(), 12.5 + model.getPlayer(i+1).getLocation().getY(), 50.0,50.0);
-			GWT.log("" + model.getPlayer(i+1).getLocation().getX() + "," + model.getPlayer(i+1).getLocation().getY());
+			buff_context.fillRect(12.5 + model.getPlayer().getLocation().getX(), 12.5 + model.getPlayer().getLocation().getY(), 50.0,50.0);
+			GWT.log("" + model.getPlayer().getLocation().getX() + "," + model.getPlayer().getLocation().getY());
 		}
 		
 		GWT.log("    Finished drawing images.");
