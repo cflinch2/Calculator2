@@ -14,15 +14,15 @@ public class RocketPadsController {
 		for(int i = 0; i < player_list.size(); i++) {
 			RocketPadsPlayer player = player_list.get(i);
 
-			System.out.println("Updating position of Player " + i+1 + "...");
+			
 			// Update position of current player.
 			updatePosition(player);
 			
-			System.out.println("Updating direction for Player " + i+1 + "...");
+			
 			// Get new direction for current player.
 			updateDirection(player, game);
 			
-			System.out.println("Checking win condition...");
+			
 			// Check win condition.
 			if(player.getDirection() == RocketPadsDirection.WIN)
 				game.setWin(true);

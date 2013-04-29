@@ -1,5 +1,6 @@
 package edu.ycp.cs320.calculator.client;
 
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import edu.ycp.cs320.calculator.shared.RocketPadsController;
 import edu.ycp.cs320.calculator.shared.RocketPadsDirection;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
 import edu.ycp.cs320.calculator.shared.RocketPadsPlayer;
+import edu.ycp.cs320.calculator.shared.RocketPadsPlayerTest;
 
 public class RocketPadsView extends Composite {
 	
@@ -82,14 +84,6 @@ public class RocketPadsView extends Composite {
 		});
 		
 
-		/*
-		canvas.addKeyUpHandler(new KeyUpHandler() {
-			@Override
-			public void onKeyUp(KeyUpEvent event) {
-				handleKeyUp(event);
-			}
-		});
-		*/
 
 
 		initWidget(panel);
@@ -113,6 +107,10 @@ public class RocketPadsView extends Composite {
 	}
 	
 	protected void handleKeyDown(KeyDownEvent event) {
+		
+		
+		
+		//Original working code for one player:
 		// For now, this only gets the first player from the game instance.
 		RocketPadsPlayer player = model.getPlayer(1);
 
@@ -134,8 +132,8 @@ public class RocketPadsView extends Composite {
 			}
 		}
 	}
+		
 
-	
 	// Set the game model instance.
 	public void setModel(RocketPadsGame model) {
 		this.model = model;

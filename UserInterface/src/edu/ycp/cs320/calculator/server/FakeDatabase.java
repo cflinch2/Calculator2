@@ -2,15 +2,20 @@ package edu.ycp.cs320.calculator.server;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+
 
 import edu.ycp.cs320.calculator.shared.BoardList;
 import edu.ycp.cs320.calculator.shared.IDatabase;
 import edu.ycp.cs320.calculator.shared.RocketPadsBoardData;
 import edu.ycp.cs320.calculator.shared.RocketPadsCreateBoardDataFromArray;
 
+
 public class FakeDatabase implements IDatabase {
 	private List<RocketPadsBoardData> boardDataList;
-
+	private long seed = 1234567890;
+	private Random rand = new Random(seed);
 	private int[][] board1 = {{8,3,3,3,3,2,2,6,4,4,4,9},
 			{2,6,4,4,6,4,2,3,3,6,4,2},
 			{2,3,2,1,3,2,3,1,2,4,1,2},
@@ -60,6 +65,10 @@ public class FakeDatabase implements IDatabase {
 		boardDataList.add(data1);
 		boardDataList.add(data2);
 		boardDataList.add(data3);
+		
+		//RocketPadsBoardData random = boardDataList.get(rand.nextInt(boardDataList.size()));
+//				random.setBoard(BoardList.Random);
+		//boardDataList.add(random);
 	}
 	
 	@Override
