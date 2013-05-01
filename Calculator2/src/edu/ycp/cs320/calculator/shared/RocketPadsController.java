@@ -16,8 +16,9 @@ public class RocketPadsController {
 		updateDirection(player, game);
 		
 		// Check win condition.
-		if(player.getDirection() == RocketPadsDirection.WIN)
+		if(player.getDirection() == RocketPadsDirection.WIN){
 			game.setWin(true);
+		}
 
 	}
 

@@ -1,5 +1,7 @@
 package edu.ycp.cs320.calculator.shared;
 
+import org.junit.Test;
+
 import junit.framework.TestCase;
 
 public class RocketPadsPlayerTest extends TestCase
@@ -12,12 +14,24 @@ public class RocketPadsPlayerTest extends TestCase
 		testPlayer = new RocketPadsPlayer(new RocketPadsLocation(0,0), RocketPadsDirection.START);
 	}
 
+	@Test
+	public void testResetLocation() throws Exception
+	{
+		testPlayer.setLocation(10, 12);
+		testPlayer.reset_location();
+		assertEquals(0, testPlayer.getLocation().getX());
+		assertEquals(0, testPlayer.getLocation().getY());
+		
+		
+	}
+	@Test
 	public void testGetLocation() throws Exception
 	{
 		RocketPadsLocation test_loc = new RocketPadsLocation(0,0);
 		assertEquals(1, test_loc.compareLocTo(testPlayer.getLocation()));
 	}
 
+	@Test
 	public void testSetLocation() throws Exception
 	{
 		RocketPadsLocation test_loc = new RocketPadsLocation(10,10);
@@ -25,12 +39,8 @@ public class RocketPadsPlayerTest extends TestCase
 		assertEquals(1, test_loc.compareLocTo(testPlayer.getLocation()));
 	}
 
-	public void testResetLocation() throws Exception
-	{
-		assertEquals(0, testPlayer.getLocation().getX());
-		assertEquals(0, testPlayer.getLocation().getY());
-	}
 
+	@Test
 	public void testSetDirection() throws Exception		
 
 	/*
@@ -55,11 +65,7 @@ public class RocketPadsPlayerTest extends TestCase
 		
 		testPlayer.setDirection(RocketPadsDirection.WEST);
 		assertEquals(RocketPadsDirection.WEST, testPlayer.getDirection());
-		
-
 	
-		
-
 		testPlayer.setDirection(RocketPadsDirection.STOP);
 		assertEquals(RocketPadsDirection.STOP, testPlayer.getDirection());
 		
