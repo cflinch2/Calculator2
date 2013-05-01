@@ -1,7 +1,5 @@
 package edu.ycp.cs320.calculator.shared;
 
-import java.util.ArrayList;
-
 public class RocketPadsController {
 	public RocketPadsController() {
 		
@@ -9,25 +7,21 @@ public class RocketPadsController {
 	
 	public void updateGame(RocketPadsGame game) {
 		
-		ArrayList<RocketPadsPlayer> player_list = game.getPlayerList();
-		
-		for(int i = 0; i < player_list.size(); i++) {
-			RocketPadsPlayer player = player_list.get(i);
+		RocketPadsPlayer player = game.getPlayer();
 
-			// Update position of current player.
-			updatePosition(player);
-			
-			// Get new direction for current player.
-			setNewDirection(player, game);
-			
-			// Check win condition.
-			if(player.getDirection() == RocketPadsDirection.WIN)
-				game.setWin(true);
-		}
+		// Update position of the player.
+		updatePosition(player);
+		
+		// Get new direction for the player.
+		updateDirection(player, game);
+		
+		// Check win condition.
+		if(player.getDirection() == RocketPadsDirection.WIN)
+			game.setWin(true);
 	}
 
 	private void updatePosition(RocketPadsPlayer player) {
-		if (player.getDirection() == RocketPadsDirection.NORTH) {
+		if(player.getDirection() == RocketPadsDirection.NORTH) {
 			player.setLocation(player.getLocation().getX(),player.getLocation().getY()-75);
 		} else if(player.getDirection() == RocketPadsDirection.SOUTH) {
 			player.setLocation(player.getLocation().getX(),player.getLocation().getY()+75);
@@ -38,7 +32,11 @@ public class RocketPadsController {
 		}
 	}
 	
-	private void setNewDirection(RocketPadsPlayer player, RocketPadsGame game) {
-		player.setDirection(game.getPad(player.getLocation().getX()/75,player.getLocation().getY()/75));
+	private void updateDirection(RocketPadsPlayer player, RocketPadsGame game) {
+		RocketPadsLocation location = player.getLocation();
+		int col = location.getX()/75;
+		int row = location.getY()/75;
+		RocketPadsDirection pad = game.getPad(col,row);
+		player.setDirection(pad);
 	}
 }

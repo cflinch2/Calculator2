@@ -32,7 +32,7 @@ public class GameLobby extends Composite {
 		LayoutPanel basePanel = new LayoutPanel();
 		initWidget(basePanel);
 		basePanel.setSize("1100px", "900px");
-		GWT.log("Base panel created.");
+		GWT.log("  Base panel created.");
 		
 		// Add background image to base panel.
 		GWT.log("Loading background image...");
@@ -42,21 +42,20 @@ public class GameLobby extends Composite {
 		background.setSize("1100px", "900px");
 		basePanel.setWidgetLeftRight(background, 0.0, Unit.PX, 0.0, Unit.PX);
 		basePanel.setWidgetTopBottom(background, 0.0, Unit.PX, 0.0, Unit.PX);
-		GWT.log("Background image loaded and added to base panel.");
+		GWT.log("  Background image loaded and added to base panel.");
 		
 		// Create user interface panel.
 		final LayoutPanel UI = new LayoutPanel();
 		basePanel.add(UI);
 		basePanel.setWidgetLeftRight(UI, 0.0, Unit.PX, 0.0, Unit.PX);
 		basePanel.setWidgetTopBottom(UI, 0.0, Unit.PX, 0.0, Unit.PX);
-		GWT.log("User interface panel created.");
+		GWT.log("  Interface panel created.");
 		
 		// Game list drop-down menu.
 		gameListBox = new ListBox();
 		UI.add(gameListBox);
 		UI.setWidgetLeftWidth(gameListBox, 69.0, Unit.PX, 100.0, Unit.PX);
 		UI.setWidgetTopHeight(gameListBox, 51.0, Unit.PX, 25.0, Unit.PX);
-		GWT.log("Drop down menu created.");
 		
 		// User label.
 		user = new InlineLabel("User:");
@@ -78,22 +77,7 @@ public class GameLobby extends Composite {
 			@Override
 			public void onClick(ClickEvent event) { 	
 				// Create RocketPadsGame instance and add it to the view model.
-				GWT.log("Entered on-click event handler for 'Play!'");
-				
-				
-				/*
-				RocketPadsGame game = new RocketPadsGame(1);
-				RocketPadsView view = new RocketPadsView();
-				view.setModel(game);
-				
-				layoutPanel.add(view);
-				layoutPanel.setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
-				layoutPanel.setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
-				GWT.log("View instance added to layout panel.");
-				
-				view.activate();
-				GWT.log("View activated.");
-				*/
+				GWT.log("  Entered on-click event handler for 'Play!'");
 				
 				int selectedIndex = gameListBox.getSelectedIndex();
 				if (selectedIndex >= 0) {
@@ -103,22 +87,24 @@ public class GameLobby extends Composite {
 					RPC.gameService.getBoardData(board, new AsyncCallback<RocketPadsBoardData>() {
 						@Override
 						public void onSuccess(RocketPadsBoardData result) {
-							GWT.log("Successfully loaded board data!");
-							RocketPadsGame game = new RocketPadsGame(1);
-							game.setBoard(result);
+							GWT.log("   Successfully loaded board data!");
+							RocketPadsGame game = new RocketPadsGame(result);
+							GWT.log("   Game instance created.");
 							RocketPadsView view = new RocketPadsView();
 							view.setModel(game);
+							GWT.log("   View created and set to game model.");
 							
 							layoutPanel.add(view);
 							layoutPanel.setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 							layoutPanel.setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
 
 							view.activate();
+							GWT.log("   View activated.");
 						}
 						
 						@Override
 						public void onFailure(Throwable caught) {
-							GWT.log("RPC call to get board data failed", caught);
+							GWT.log("   RPC call to get board data failed!", caught);
 							// TODO: update UI (e.g., set text of an error label)
 						}
 					});
@@ -146,7 +132,7 @@ public class GameLobby extends Composite {
 		UI.add(layoutPanel);
 		UI.setWidgetLeftWidth(layoutPanel, 200.0, Unit.PX, 900.0, Unit.PX);
 		UI.setWidgetTopHeight(layoutPanel, 0.0, Unit.PX, 900.0, Unit.PX);
-		GWT.log("Game layout panel created.");
+		GWT.log("- Game layout panel created.");
 	}
 	
 	public String getChange() {

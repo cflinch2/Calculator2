@@ -1,48 +1,55 @@
 package edu.ycp.cs320.calculator.shared;
 
-import java.util.ArrayList;
-
 public class RocketPadsGame 
 {
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 900;
 	public static final int BOARD_WIDTH = 12;
 	public static final int BOARD_HEIGHT = 12;
-
-	// The start locations for each player.
-	public static RocketPadsLocation START_RED;
-	public static RocketPadsLocation START_BLUE;
-	public static RocketPadsLocation START_GREEN;
-	public static RocketPadsLocation START_YELLOW;
 	
 	private RocketPadsBoardData board; // Stores the dynamic board data.
 	
 	private boolean win;
+	private int num_players;
+	private RocketPadsPlayer player;
 	
-	private ArrayList<RocketPadsPlayer> players; // Tracks each of the players.
+	// Player start locations.
+	private RocketPadsLocation player_start;
 
-	public RocketPadsGame(int num_players)
+	public RocketPadsGame(RocketPadsBoardData board_data)
 	{
+		// Initialize win condition to false.
 		win = false;
 		
-		players = new ArrayList<RocketPadsPlayer>();
+		num_players = 1;
 		
-		for(int i = 0; i < num_players; i ++)
-		{
-			players.add(new RocketPadsPlayer());
+		// Assign board data.
+		board = board_data;
+		
+		// Acquires the values for each starting location.
+		for (int j = 0; j < BOARD_HEIGHT; j++) {
+			for (int i = 0; i < BOARD_WIDTH; i++) {
+				switch(board.getPad(i,j)) {
+				case START:
+					player_start = new RocketPadsLocation(i*75, j*75);
+					break;
+				default:
+					player_start = new RocketPadsLocation(0,0);
+					break;
+				}
+			}
 		}
+		
+		// Create player.
+		player = new RocketPadsPlayer(player_start, RocketPadsDirection.START);
+	}
+
+	public int get_num_players() {
+		return num_players;
 	}
 	
-	public void setBoard(RocketPadsBoardData board) {
-		this.board = board;
-	}
-	
-	public ArrayList<RocketPadsPlayer> getPlayerList() {
-		return players;
-	}
-	
-	public RocketPadsPlayer getPlayer(int num) {
-		return players.get(num-1);
+	public RocketPadsPlayer getPlayer() {
+		return player;
 	}
 	
 	public RocketPadsDirection getPad(int col, int row) {

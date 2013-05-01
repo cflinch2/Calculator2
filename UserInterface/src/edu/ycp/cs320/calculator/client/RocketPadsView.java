@@ -27,12 +27,10 @@ public class RocketPadsView extends Composite {
 		directionPadImageNames.put(RocketPadsDirection.WEST, "slidepad_yellow.jpg");
 		directionPadImageNames.put(RocketPadsDirection.NORTH, "slidepad_green.jpg");
 		directionPadImageNames.put(RocketPadsDirection.SOUTH, "slidepad_blue.jpg");
-		directionPadImageNames.put(RocketPadsDirection.START_RED, "startzone_red.jpg");
-		directionPadImageNames.put(RocketPadsDirection.START_BLUE, "startzone_blue.jpg");
-		directionPadImageNames.put(RocketPadsDirection.START_GREEN, "startzone_green.jpg");
-		directionPadImageNames.put(RocketPadsDirection.START_YELLOW, "startzone_yellow.jpg");
-		directionPadImageNames.put(RocketPadsDirection.WIN, "winzone_topleft.jpg");
+		directionPadImageNames.put(RocketPadsDirection.START, "startzone_red.jpg");
 		directionPadImageNames.put(RocketPadsDirection.STOP, "stoppad.jpg");
+		directionPadImageNames.put(RocketPadsDirection.WIN, "winzone_topleft.jpg");
+		directionPadImageNames.put(RocketPadsDirection.RESET, "startzone_blue.jpg");
 	}
 	
 	private RocketPadsGame model;
@@ -46,7 +44,7 @@ public class RocketPadsView extends Composite {
 	public RocketPadsView() {
 		// Create an instance of RocketPadsController.
 		controller = new RocketPadsController();
-		GWT.log("Controller object created.");
+		GWT.log("    Controller object created.");
 		
 		// Create Focus Panel.
 		FocusPanel panel = new FocusPanel();
@@ -57,7 +55,7 @@ public class RocketPadsView extends Composite {
 		buffer.setCoordinateSpaceWidth(RocketPadsGame.WIDTH);
 		buffer.setCoordinateSpaceHeight(RocketPadsGame.HEIGHT);
 		this.buff_context = buffer.getContext2d();
-		GWT.log("Canvas buffer created.");
+		GWT.log("    Canvas buffer created.");
 		
 		this.canvas = Canvas.createIfSupported();
 		canvas.setSize("900px", "900px");
@@ -65,7 +63,7 @@ public class RocketPadsView extends Composite {
 		canvas.setCoordinateSpaceHeight(RocketPadsGame.HEIGHT);
 		this.context = canvas.getContext2d();
 		panel.add(canvas);
-		GWT.log("Main canvas created.");
+		GWT.log("    Main canvas created.");
 		
 		// Key handlers.
 		canvas.addKeyDownHandler(new KeyDownHandler() {
@@ -82,8 +80,11 @@ public class RocketPadsView extends Composite {
 			@Override
 			public void run() {
 				if(model != null) {
+					GWT.log("    Updating game state...");
 					controller.updateGame(model);
+					GWT.log("    Painting canvas...");
 					paint();
+					GWT.log("    Checking win condition...");
 					if(model.checkWin()) {
 						timer.cancel();
 					}
@@ -93,15 +94,11 @@ public class RocketPadsView extends Composite {
 	}
 	
 	protected void handleKeyDown(KeyDownEvent event) {
-		// For now, this gets the first player from the game instance.
-		RocketPadsPlayer player = model.getPlayer(1);
+		// For now, this only gets the first player from the game instance.
+		RocketPadsPlayer player = model.getPlayer();
 		
 		// If the player's direction is any of the start locations or a stop pad, he has manual control of his avatar.
-		if(player.getDirection() == RocketPadsDirection.START_RED ||
-				player.getDirection() == RocketPadsDirection.START_BLUE ||
-				player.getDirection() == RocketPadsDirection.START_YELLOW ||
-				player.getDirection() == RocketPadsDirection.START_GREEN ||
-				player.getDirection() == RocketPadsDirection.STOP) {
+		if(player.getDirection() == RocketPadsDirection.START || player.getDirection() == RocketPadsDirection.STOP) {
 			if(event.isLeftArrow()) {
 				player.setDirection(RocketPadsDirection.WEST);
 			} if(event.isRightArrow()) {
@@ -128,7 +125,7 @@ public class RocketPadsView extends Composite {
 	protected void paint() {
 		// Draw background.
 		buff_context.setFillStyle("black");
-		buff_context.fillRect(0, 0, 900, 900);
+		buff_context.fillRect(0, 0, RocketPadsGame.HEIGHT, RocketPadsGame.WIDTH);
 		
 		GWT.log("Drawing images onto canvas...");
 		for(int j = 0; j < RocketPadsGame.BOARD_HEIGHT; j++) {
@@ -147,12 +144,14 @@ public class RocketPadsView extends Composite {
 			}
 		}
 		
-		// Draw the avatar. Right now this only works for Player 1.
+		// Draw the player avatars.
 		buff_context.setFillStyle("black");
-		buff_context.fillRect(12.5 + model.getPlayer(1).getLocation().getX(), 12.5 + model.getPlayer(1).getLocation().getY(), 50.0,50.0);
-		GWT.log("" + model.getPlayer(1).getLocation().getX() + "," + model.getPlayer(1).getLocation().getY());
+		for(int i = 0; i < model.get_num_players(); i++) {
+			buff_context.fillRect(12.5 + model.getPlayer().getLocation().getX(), 12.5 + model.getPlayer().getLocation().getY(), 50.0,50.0);
+			GWT.log("" + model.getPlayer().getLocation().getX() + "," + model.getPlayer().getLocation().getY());
+		}
 		
-		GWT.log("Finished drawing images.");
+		GWT.log("    Finished drawing images.");
 		
 		// Copy buffer onto main canvas.
 		context.drawImage((CanvasElement) buffer.getElement().cast(),0,0);

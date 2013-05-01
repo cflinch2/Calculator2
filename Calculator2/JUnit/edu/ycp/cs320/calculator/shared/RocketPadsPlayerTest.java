@@ -9,7 +9,7 @@ public class RocketPadsPlayerTest extends TestCase
 	@Override
 	protected void setUp() throws Exception 
 	{
-		testPlayer = new RocketPadsPlayer();
+		testPlayer = new RocketPadsPlayer(new RocketPadsLocation(0,0), RocketPadsDirection.START);
 	}
 
 	public void testGetLocation() throws Exception

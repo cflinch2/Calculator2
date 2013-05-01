@@ -22,20 +22,18 @@ public class UserInterface implements EntryPoint {
 		"startzone_red.jpg",
 		"startzone_yellow.jpg",
 		"stoppad.jpg",
-		"winzone_botleft.jpg",
-		"winzone_botright.jpg",
 		"winzone_topleft.jpg",
-		"winzone_topright.jpg",
-		"lobby_screen2.jpg"
+		"lobby_screen2.png"
+
 	};
 	
 	private static Map<String, Image> IMAGE_MAP = new HashMap<String, Image>();
 	
 	// Entry point method.
 	public void onModuleLoad() {
-
+		// Create the lobby.
 		GameLobby lobby = new GameLobby();
-		GWT.log("Lobby created.");
+		GWT.log("Lobby created successfully!");
 		
 		lobby.update();
 	
@@ -52,7 +50,7 @@ public class UserInterface implements EntryPoint {
 		RootLayoutPanel.get().setWidgetBottomHeight(hiddenPanel, 0.0, Unit.PX, 0.0, Unit.PX);
 		GWT.log("Hidden image panel created.");
 		
-		// Load sprites
+		// Load sprites.
 		GWT.log("Loading sprites...");
 		for (String spriteFile : IMAGE_FILES) {
 			String url = GWT.getModuleBaseForStaticFiles() + spriteFile;
@@ -60,7 +58,7 @@ public class UserInterface implements EntryPoint {
 			hiddenPanel.add(img);
 			IMAGE_MAP.put(spriteFile, img);
 		}
-		GWT.log("Finished loading sprites.");
+		GWT.log("Loaded sprites successfully!");
 	}
 	
 	public static Image getImage(String spriteFile) {
