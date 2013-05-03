@@ -13,7 +13,7 @@ public class RocketPadsGame
 	private int num_players;
 	private RocketPadsPlayer player;
 	
-	// Player start locations.
+	// Player start location.
 	private RocketPadsLocation player_start;
 
 	public RocketPadsGame(RocketPadsBoardData board_data)
@@ -40,7 +40,7 @@ public class RocketPadsGame
 			}
 		}
 		
-		// Create player.
+		// Create player object.
 		player = new RocketPadsPlayer(player_start, RocketPadsDirection.START);
 	}
 

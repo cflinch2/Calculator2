@@ -6,12 +6,12 @@ import edu.ycp.cs320.calculator.shared.BoardList;
 import edu.ycp.cs320.calculator.shared.IDatabase;
 import edu.ycp.cs320.calculator.shared.RocketPadsBoardData;
 import edu.ycp.cs320.calculator.shared.RocketPadsCreateBoardDataFromArray;
-
+import edu.ycp.cs320.calculator.shared.User;
 
 public class FakeDatabase implements IDatabase {
 	private List<RocketPadsBoardData> boardDataList;
 
-	private int[][] tutorial = {
+	private static int[][] tutorial = {
 			{6,3,3,3,3,3,3,3,3,3,3,2},
 			{2,5,5,5,5,5,5,5,5,5,5,2},
 			{2,5,5,5,5,5,5,5,5,5,5,2},
@@ -25,7 +25,7 @@ public class FakeDatabase implements IDatabase {
 			{2,5,5,5,5,5,5,5,5,5,5,2},
 			{3,3,3,3,3,3,3,3,3,3,3,7}};
 	
-	private int[][] Level_2 = {
+	private static int[][] Level_2 = {
 			{6,3,3,3,3,2,2,4,4,4,4,4},
 			{2,2,4,4,1,2,2,1,5,3,2,1},
 		    {2,2,2,4,1,2,2,1,1,3,2,1},
@@ -39,7 +39,7 @@ public class FakeDatabase implements IDatabase {
 			{2,1,2,4,1,2,1,3,3,3,3,2},
 			{3,1,3,3,1,3,1,3,3,3,3,7}};
 	
-	private int[][] Level_3 = {
+	private static int[][] Level_3 = {
 			{6,3,2,3,3,3,3,5,3,3,3,2},
 			{3,1,5,1,4,4,4,4,2,4,4,2},
 		    {3,2,2,1,2,5,3,1,2,2,1,2},
@@ -65,8 +65,6 @@ public class FakeDatabase implements IDatabase {
 		boardDataList.add(data1);
 		boardDataList.add(data2);
 		boardDataList.add(data3);
-		
-
 	}
 	
 	@Override
@@ -79,4 +77,9 @@ public class FakeDatabase implements IDatabase {
 		return null;
 	}
 
+	@Override
+	public User createUser(int id, String username, String password,
+			AvatarList avatar) {
+		return null;
+	}
 }

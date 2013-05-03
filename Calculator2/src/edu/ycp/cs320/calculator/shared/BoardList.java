@@ -4,6 +4,6 @@ public enum BoardList
 {
 	Tutorial, 
 	Level_2,
-	Level_3;
-	
+	Level_3
+	;
 }
