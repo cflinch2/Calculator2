@@ -3,15 +3,19 @@ package edu.ycp.cs320.calculator.server;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.ycp.cs320.calculator.shared.AvatarList;
 import edu.ycp.cs320.calculator.shared.BoardList;
 import edu.ycp.cs320.calculator.shared.IDatabase;
 import edu.ycp.cs320.calculator.shared.RocketPadsBoardData;
 import edu.ycp.cs320.calculator.shared.RocketPadsCreateBoardDataFromArray;
+import edu.ycp.cs320.calculator.shared.User;
 
 public class FakeDatabase implements IDatabase {
 	private List<RocketPadsBoardData> boardDataList;
+	private AvatarList avatar;
+	private String username, password;
 
-	private int[][] tutorial = {{6,3,3,3,3,3,3,3,3,3,3,2},
+	public static int[][] tutorial = {{6,3,3,3,3,3,3,3,3,3,3,2},
 			{2,5,5,5,5,5,5,5,5,5,5,2},
 			{2,5,5,5,5,5,5,5,5,5,5,2},
 			{2,5,5,5,5,5,5,5,5,5,5,2},
@@ -42,4 +46,9 @@ public class FakeDatabase implements IDatabase {
 		return null;
 	}
 
+	@Override
+	public User createUser(int id, String username, String password,
+			AvatarList avatar) {
+		return null;
+	}
 }

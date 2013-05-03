@@ -9,10 +9,8 @@ public class RocketPadsController {
 		
 		RocketPadsPlayer player = game.getPlayer();
 
-		// Update position of the player.
 		updatePosition(player);
 		
-		// Get new direction for the player.
 		updateDirection(player, game);
 		
 		// Check win condition.
@@ -20,6 +18,7 @@ public class RocketPadsController {
 			game.setWin(true);
 	}
 
+	// Update the player's position based on the current direction.
 	private void updatePosition(RocketPadsPlayer player) {
 		if(player.getDirection() == RocketPadsDirection.NORTH) {
 			player.setLocation(player.getLocation().getX(),player.getLocation().getY()-75);
@@ -29,9 +28,12 @@ public class RocketPadsController {
 			player.setLocation(player.getLocation().getX()+75,player.getLocation().getY());
 		} else if(player.getDirection() == RocketPadsDirection.WEST) {
 			player.setLocation(player.getLocation().getX()-75,player.getLocation().getY());
+		} else if(player.getDirection() == RocketPadsDirection.RESET){
+			player.reset_location();
 		}
 	}
 	
+	// Get new direction for the player based on current pad.
 	private void updateDirection(RocketPadsPlayer player, RocketPadsGame game) {
 		RocketPadsLocation location = player.getLocation();
 		int col = location.getX()/75;
