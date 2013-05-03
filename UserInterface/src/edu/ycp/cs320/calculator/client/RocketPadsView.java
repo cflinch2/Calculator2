@@ -1,5 +1,6 @@
 package edu.ycp.cs320.calculator.client;
 
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +31,6 @@ public class RocketPadsView extends Composite {
 		directionPadImageNames.put(RocketPadsDirection.START, "startzone_red.jpg");
 		directionPadImageNames.put(RocketPadsDirection.STOP, "stoppad.jpg");
 		directionPadImageNames.put(RocketPadsDirection.WIN, "winzone_topleft.jpg");
-		directionPadImageNames.put(RocketPadsDirection.RESET, "startzone_blue.jpg");
 	}
 	
 	private RocketPadsGame model;
@@ -40,6 +40,12 @@ public class RocketPadsView extends Composite {
 	private Context2d buff_context;
 	private Context2d context;
 	private Timer timer;
+	double x = 12.5;
+	double y = 12.5;
+	double w = 50;
+	double h = 50;
+	
+	
 
 	public RocketPadsView() {
 		// Create an instance of RocketPadsController.
@@ -73,6 +79,9 @@ public class RocketPadsView extends Composite {
 			}
 		});
 		
+
+
+
 		initWidget(panel);
 		
 		// Animation timer.
@@ -94,8 +103,16 @@ public class RocketPadsView extends Composite {
 	}
 	
 	protected void handleKeyDown(KeyDownEvent event) {
+		
+		
+		
+		//Original working code for one player:
 		// For now, this only gets the first player from the game instance.
+
+
+
 		RocketPadsPlayer player = model.getPlayer();
+
 		
 		// If the player's direction is any of the start locations or a stop pad, he has manual control of his avatar.
 		if(player.getDirection() == RocketPadsDirection.START || player.getDirection() == RocketPadsDirection.STOP) {
@@ -110,7 +127,8 @@ public class RocketPadsView extends Composite {
 			}
 		}
 	}
-	
+		
+
 	// Set the game model instance.
 	public void setModel(RocketPadsGame model) {
 		this.model = model;
@@ -141,8 +159,18 @@ public class RocketPadsView extends Composite {
 				
 				// Draw the pad image at the appropriate location.
 				buff_context.drawImage((ImageElement)padImage.getElement().cast(), i*75, j*75);
+			
+				
 			}
 		}
+		
+		//draw player
+		buff_context.setFillStyle("black");
+		
+		GWT.log("" + model.getPlayer().getLocation().getX() + ", " +  model.getPlayer().getLocation().getY());
+		
+		//buff_context.fillRect(12.5, 12.5, 50, 50);
+		buff_context.fillRect(model.getPlayer().getLocation().getX() + 12.5, model.getPlayer().getLocation().getY() + 12.5, w, h);
 		
 		// Draw the player avatars.
 		buff_context.setFillStyle("black");
@@ -155,5 +183,13 @@ public class RocketPadsView extends Composite {
 		
 		// Copy buffer onto main canvas.
 		context.drawImage((CanvasElement) buffer.getElement().cast(),0,0);
+		
+		
+		
 	}
+	
+
 }
+
+
+
