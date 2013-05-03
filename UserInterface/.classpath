@@ -4,10 +4,14 @@
 	<classpathentry kind="src" output="test-classes" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Calculator2"/>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT (1)"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/derby.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/derbyclient.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/derbynet.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/derbytools.jar"/>
+=======
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT (2)"/>
+>>>>>>> refs/remotes/cfinch2/master
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
