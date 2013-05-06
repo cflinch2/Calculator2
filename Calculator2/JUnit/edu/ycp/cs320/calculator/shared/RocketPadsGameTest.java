@@ -34,4 +34,10 @@ public class RocketPadsGameTest extends TestCase{
 	public void testGetPlayers(){
 		assertEquals(1, testGame.get_num_players());
 	}
+	
+	public void testGetPad(){
+		assertEquals(RocketPadsDirection.STOP, testGame.getPad(1,1));		
+	}
+	
+
 }
