@@ -79,8 +79,8 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public User createUser(int id, String username, String password,
-			AvatarList avatar) {
+	public User createUser(String username, String password, AvatarList avatar) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -15,7 +15,7 @@ public class GameDataServiceImpl extends RemoteServiceServlet implements GameDat
 		return DB.instance().getBoardData(board);
 	}
 	
-	public User createUser(int id, String username, String password, AvatarList avatar) {
-		return new User(id, username, password, avatar);
+	public User createUser(String username, String password, AvatarList avatar) {
+		return DB.instance().createUser(username, password, avatar);
 	}
 }

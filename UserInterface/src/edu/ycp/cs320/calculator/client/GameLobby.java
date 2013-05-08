@@ -17,6 +17,7 @@ import edu.ycp.cs320.calculator.shared.AvatarList;
 import edu.ycp.cs320.calculator.shared.BoardList;
 import edu.ycp.cs320.calculator.shared.RocketPadsBoardData;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
+import edu.ycp.cs320.calculator.shared.User;
 
 public class GameLobby extends Composite {
 	private Button selector;
@@ -117,7 +118,7 @@ public class GameLobby extends Composite {
 				String chosen_avatar = avatar.getItemText(avatar.getSelectedIndex());
 				AvatarList a = AvatarList.valueOf(chosen_avatar);
 				
-				/*RPC.gameService.createUser(0, getUName(), getPWord(), a, new AsyncCallback<User>() {
+				RPC.gameService.createUser(getUName(), getPWord(), a, new AsyncCallback<User>() {
 					@Override
 					public void onSuccess(User user) {
 						GWT.log("   Successfully created user!");
@@ -127,7 +128,7 @@ public class GameLobby extends Composite {
 					public void onFailure(Throwable caught) {
 						GWT.log("   RPC call to create user failed!", caught);
 					}
-				});*/
+				});
 				
 				RPC.gameService.getBoardData(board, new AsyncCallback<RocketPadsBoardData>() {
 					@Override
