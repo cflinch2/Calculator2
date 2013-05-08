@@ -223,10 +223,7 @@ public class DerbyDatabase implements IDatabase {
 	@Override
 	public User createUser(int id, String username, String password,
 			AvatarList avatar) {
-		try {
-			
-		} catch(SQLException e) {
-			throw new RuntimeException("SQLException storing user information", e);
-		}
+		
+		return null;
 	}
 }
