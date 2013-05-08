@@ -1,6 +1,5 @@
 package edu.ycp.cs320.calculator.client;
 
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +14,7 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Image;
+
 import edu.ycp.cs320.calculator.shared.RocketPadsController;
 import edu.ycp.cs320.calculator.shared.RocketPadsDirection;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
@@ -40,13 +40,9 @@ public class RocketPadsView extends Composite {
 	private Context2d buff_context;
 	private Context2d context;
 	private Timer timer;
-	double x = 12.5;
-	double y = 12.5;
-	double w = 50;
-	double h = 50;
+	private double w = 50;
+	private double h = 50;
 	
-	
-
 	public RocketPadsView() {
 		// Create an instance of RocketPadsController.
 		controller = new RocketPadsController();
@@ -79,9 +75,6 @@ public class RocketPadsView extends Composite {
 			}
 		});
 		
-
-
-
 		initWidget(panel);
 		
 		// Animation timer.
@@ -103,17 +96,8 @@ public class RocketPadsView extends Composite {
 	}
 	
 	protected void handleKeyDown(KeyDownEvent event) {
-		
-		
-		
-		//Original working code for one player:
-		// For now, this only gets the first player from the game instance.
-
-
-
 		RocketPadsPlayer player = model.getPlayer();
 
-		
 		// If the player's direction is any of the start locations or a stop pad, he has manual control of his avatar.
 		if(player.getDirection() == RocketPadsDirection.START || player.getDirection() == RocketPadsDirection.STOP) {
 			if(event.isLeftArrow()) {
@@ -127,7 +111,6 @@ public class RocketPadsView extends Composite {
 			}
 		}
 	}
-		
 
 	// Set the game model instance.
 	public void setModel(RocketPadsGame model) {
@@ -159,8 +142,6 @@ public class RocketPadsView extends Composite {
 				
 				// Draw the pad image at the appropriate location.
 				buff_context.drawImage((ImageElement)padImage.getElement().cast(), i*75, j*75);
-			
-				
 			}
 		}
 		
@@ -183,13 +164,5 @@ public class RocketPadsView extends Composite {
 		
 		// Copy buffer onto main canvas.
 		context.drawImage((CanvasElement) buffer.getElement().cast(),0,0);
-		
-		
-		
 	}
-	
-
 }
-
-
-

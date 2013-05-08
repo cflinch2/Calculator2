@@ -153,12 +153,11 @@ public class GameLobby extends Composite {
 						GWT.log("   RPC call to get board data failed!", caught);
 					}
 				});
-				
 			}
 		});
 		
 		// Adjust dimensions.
-		UI.setWidgetLeftWidth(selector, 65.0, Unit.PX, 80.0, Unit.PX);
+		UI.setWidgetLeftWidth(selector, 35.0, Unit.PX, 140.0, Unit.PX);
 		UI.setWidgetTopHeight(selector, 815.0, Unit.PX, 30.0, Unit.PX);
 		
 		gamePanel = new InlineLabel();
@@ -206,9 +205,5 @@ public class GameLobby extends Composite {
 			}
 		}
 	}
-	
 
 }
-
-
-

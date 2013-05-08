@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 
 public class RocketPadsGameTest extends TestCase {
 	RocketPadsGame testGame;
+	
 	private int[][] tutorial = {
 		{6,3,3,3,3,3,3,3,3,3,3,2},
 		{2,5,5,5,5,5,5,5,5,5,5,2},

@@ -21,7 +21,6 @@ package edu.ycp.cs320.calculator.shared;
  * </p>
  */
 public class FieldVerifier {
-
 	/**
 	 * Verifies that the specified name is valid for our service.
 	 * 

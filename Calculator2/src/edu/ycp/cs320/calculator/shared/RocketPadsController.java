@@ -2,7 +2,7 @@ package edu.ycp.cs320.calculator.shared;
 
 public class RocketPadsController {
 	public RocketPadsController() {
-		
+		//
 	}
 	
 	public void updateGame(RocketPadsGame game) {
