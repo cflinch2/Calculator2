@@ -2,6 +2,8 @@ package edu.ycp.cs320.calculator.server;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.ycp.cs320.calculator.shared.AvatarList;
 import edu.ycp.cs320.calculator.shared.BoardList;
 import edu.ycp.cs320.calculator.shared.IDatabase;
 import edu.ycp.cs320.calculator.shared.RocketPadsBoardData;
@@ -11,7 +13,7 @@ import edu.ycp.cs320.calculator.shared.User;
 public class FakeDatabase implements IDatabase {
 	private List<RocketPadsBoardData> boardDataList;
 
-	private static int[][] tutorial = {
+	public static int[][] tutorial = {
 			{6,3,3,3,3,3,3,3,3,3,3,2},
 			{2,5,5,5,5,5,5,5,5,5,5,2},
 			{2,5,5,5,5,5,5,5,5,5,5,2},
@@ -25,7 +27,7 @@ public class FakeDatabase implements IDatabase {
 			{2,5,5,5,5,5,5,5,5,5,5,2},
 			{3,3,3,3,3,3,3,3,3,3,3,7}};
 	
-	private static int[][] Level_2 = {
+	public static int[][] level_2 = {
 			{6,3,3,3,3,2,2,4,4,4,4,4},
 			{2,2,4,4,1,2,2,1,5,3,2,1},
 		    {2,2,2,4,1,2,2,1,1,3,2,1},
@@ -39,7 +41,7 @@ public class FakeDatabase implements IDatabase {
 			{2,1,2,4,1,2,1,3,3,3,3,2},
 			{3,1,3,3,1,3,1,3,3,3,3,7}};
 	
-	private static int[][] Level_3 = {
+	public static int[][] level_3 = {
 			{6,3,2,3,3,3,3,5,3,3,3,2},
 			{3,1,5,1,4,4,4,4,2,4,4,2},
 		    {3,2,2,1,2,5,3,1,2,2,1,2},
@@ -54,13 +56,12 @@ public class FakeDatabase implements IDatabase {
 			{3,3,3,3,5,1,3,1,3,1,1,4}};
 	
 
-
 	public FakeDatabase() {
 		boardDataList = new ArrayList<RocketPadsBoardData>();
 
 		RocketPadsBoardData data1 = RocketPadsCreateBoardDataFromArray.createFromArray(tutorial, BoardList.Tutorial);
-		RocketPadsBoardData data2 = RocketPadsCreateBoardDataFromArray.createFromArray(Level_2, BoardList.Level_2);
-		RocketPadsBoardData data3 = RocketPadsCreateBoardDataFromArray.createFromArray(Level_3, BoardList.Level_3);
+		RocketPadsBoardData data2 = RocketPadsCreateBoardDataFromArray.createFromArray(level_2, BoardList.Level_2);
+		RocketPadsBoardData data3 = RocketPadsCreateBoardDataFromArray.createFromArray(level_3, BoardList.Level_3);
 		
 		boardDataList.add(data1);
 		boardDataList.add(data2);

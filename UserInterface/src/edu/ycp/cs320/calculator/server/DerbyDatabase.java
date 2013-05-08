@@ -5,15 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import edu.ycp.cs320.calculator.shared.AvatarList;
 import edu.ycp.cs320.calculator.shared.BoardList;
 import edu.ycp.cs320.calculator.shared.IDatabase;
 import edu.ycp.cs320.calculator.shared.RocketPadsBoardData;
 import edu.ycp.cs320.calculator.shared.RocketPadsCreateBoardDataFromArray;
-import edu.ycp.cs320.calculator.shared.RocketPadsDirection;
 import edu.ycp.cs320.calculator.shared.User;
 
 public class DerbyDatabase implements IDatabase {
@@ -113,7 +110,6 @@ public class DerbyDatabase implements IDatabase {
 				ResultSet keys = null;
 				
 				try {
-				
 					stmt = conn.prepareStatement("insert into board_data(name, data) values(?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 					
 					String tutorialData = encodeBoardData(FakeDatabase.tutorial);
@@ -122,6 +118,14 @@ public class DerbyDatabase implements IDatabase {
 					stmt.addBatch();
 					
 					// TODO: other boards
+					String level2Data = encodeBoardData(FakeDatabase.level_2);
+					stmt.setString(1, BoardList.Level_2.toString());
+					stmt.setString(2, level2Data);
+					stmt.addBatch();
+					
+					String level3Data = encodeBoardData(FakeDatabase.level_3);
+					stmt.setString(1, BoardList.Level_3.toString());
+					stmt.setString(2, level3Data);
 					
 					stmt.executeBatch();
 				
@@ -219,7 +223,10 @@ public class DerbyDatabase implements IDatabase {
 	@Override
 	public User createUser(int id, String username, String password,
 			AvatarList avatar) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			
+		} catch(SQLException e) {
+			throw new RuntimeException("SQLException storing user information", e);
+		}
 	}
 }
