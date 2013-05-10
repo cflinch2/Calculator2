@@ -55,6 +55,20 @@ public class FakeDatabase implements IDatabase {
 			{2,3,3,3,1,3,2,3,5,4,3,2},
 			{3,3,3,3,5,1,3,1,3,1,1,4}};
 	
+	public static int[][] level_4 = {
+			{6,2,6,6,2,6,5,6,2,6,6,2},
+			{2,6,6,5,2,1,2,2,2,1,5,2},
+			{5,6,2,6,6,1,2,2,5,6,2,2},
+			{2,1,2,2,6,6,2,6,6,1,2,2},
+			{2,1,6,2,5,4,5,4,4,4,4,4},
+			{2,1,1,6,6,6,2,6,6,6,6,5},
+			{5,2,1,1,6,6,2,1,4,2,2,2},
+			{2,2,1,1,1,4,5,6,1,4,4,2},
+			{2,6,1,1,8,2,4,2,1,4,2,2},
+			{2,1,4,4,1,2,2,4,6,5,2,2},
+			{6,6,6,1,1,2,2,1,1,2,6,2},
+			{5,4,4,4,5,6,6,5,1,4,6,7}};
+	
 
 	public FakeDatabase() {
 		boardDataList = new ArrayList<RocketPadsBoardData>();
@@ -62,10 +76,12 @@ public class FakeDatabase implements IDatabase {
 		RocketPadsBoardData data1 = RocketPadsCreateBoardDataFromArray.createFromArray(tutorial, BoardList.Tutorial);
 		RocketPadsBoardData data2 = RocketPadsCreateBoardDataFromArray.createFromArray(level_2, BoardList.Level_2);
 		RocketPadsBoardData data3 = RocketPadsCreateBoardDataFromArray.createFromArray(level_3, BoardList.Level_3);
+		RocketPadsBoardData data4 = RocketPadsCreateBoardDataFromArray.createFromArray(level_4, BoardList.Level_4);
 		
 		boardDataList.add(data1);
 		boardDataList.add(data2);
 		boardDataList.add(data3);
+		boardDataList.add(data4);
 	}
 	
 	@Override

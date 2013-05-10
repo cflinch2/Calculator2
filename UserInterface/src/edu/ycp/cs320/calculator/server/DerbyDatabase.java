@@ -129,7 +129,6 @@ public class DerbyDatabase implements IDatabase {
 					stmt.setString(2, tutorialData);
 					stmt.addBatch();
 					
-					// TODO: other boards
 					String level2Data = encodeBoardData(FakeDatabase.level_2);
 					stmt.setString(1, BoardList.Level_2.toString());
 					stmt.setString(2, level2Data);
@@ -138,6 +137,10 @@ public class DerbyDatabase implements IDatabase {
 					String level3Data = encodeBoardData(FakeDatabase.level_3);
 					stmt.setString(1, BoardList.Level_3.toString());
 					stmt.setString(2, level3Data);
+					
+					String level4Data = encodeBoardData(FakeDatabase.level_4);
+					stmt.setString(1, BoardList.Level_4.toString());
+					stmt.setString(2, level4Data);
 					
 					stmt.executeBatch();
 				
