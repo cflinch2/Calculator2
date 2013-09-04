@@ -37,7 +37,6 @@ public class RocketPadsPlayerTest extends TestCase
 		assertEquals(1, test_loc.compareLocTo(testPlayer.getLocation()));
 	}
 
-
 	@Test
 	public void testSetDirection() throws Exception		
 	{

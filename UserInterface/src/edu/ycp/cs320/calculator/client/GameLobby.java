@@ -1,7 +1,5 @@
 package edu.ycp.cs320.calculator.client;
 
-import org.apache.catalina.User;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -19,6 +17,7 @@ import edu.ycp.cs320.calculator.shared.AvatarList;
 import edu.ycp.cs320.calculator.shared.BoardList;
 import edu.ycp.cs320.calculator.shared.RocketPadsBoardData;
 import edu.ycp.cs320.calculator.shared.RocketPadsGame;
+import edu.ycp.cs320.calculator.shared.User;
 
 public class GameLobby extends Composite {
 	private Button selector;
@@ -119,7 +118,7 @@ public class GameLobby extends Composite {
 				String chosen_avatar = avatar.getItemText(avatar.getSelectedIndex());
 				AvatarList a = AvatarList.valueOf(chosen_avatar);
 				
-				/*RPC.gameService.createUser(0, getUName(), getPWord(), a, new AsyncCallback<User>() {
+				RPC.gameService.createUser(getUName(), getPWord(), a, new AsyncCallback<User>() {
 					@Override
 					public void onSuccess(User user) {
 						GWT.log("   Successfully created user!");
@@ -129,7 +128,7 @@ public class GameLobby extends Composite {
 					public void onFailure(Throwable caught) {
 						GWT.log("   RPC call to create user failed!", caught);
 					}
-				});*/
+				});
 				
 				RPC.gameService.getBoardData(board, new AsyncCallback<RocketPadsBoardData>() {
 					@Override
@@ -154,12 +153,11 @@ public class GameLobby extends Composite {
 						GWT.log("   RPC call to get board data failed!", caught);
 					}
 				});
-				
 			}
 		});
 		
 		// Adjust dimensions.
-		UI.setWidgetLeftWidth(selector, 65.0, Unit.PX, 80.0, Unit.PX);
+		UI.setWidgetLeftWidth(selector, 35.0, Unit.PX, 140.0, Unit.PX);
 		UI.setWidgetTopHeight(selector, 815.0, Unit.PX, 30.0, Unit.PX);
 		
 		gamePanel = new InlineLabel();
@@ -207,9 +205,5 @@ public class GameLobby extends Composite {
 			}
 		}
 	}
-	
 
 }
-
-
-

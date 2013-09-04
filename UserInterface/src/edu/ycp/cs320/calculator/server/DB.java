@@ -9,5 +9,4 @@ public class DB {
 	public static IDatabase instance() {
 		return theInstance;
 	}
-
 }

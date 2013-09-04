@@ -12,5 +12,5 @@ public interface GameDataServiceAsync {
 	void getBoardData(BoardList board,
 			AsyncCallback<RocketPadsBoardData> callback);
 	
-	void createUser(int id, String username, String password, AvatarList avatar, AsyncCallback<User> callback);
+	void createUser(String username, String password, AvatarList avatar, AsyncCallback<User> callback);
 }

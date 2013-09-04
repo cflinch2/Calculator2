@@ -5,15 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import edu.ycp.cs320.calculator.shared.AvatarList;
 import edu.ycp.cs320.calculator.shared.BoardList;
 import edu.ycp.cs320.calculator.shared.IDatabase;
 import edu.ycp.cs320.calculator.shared.RocketPadsBoardData;
 import edu.ycp.cs320.calculator.shared.RocketPadsCreateBoardDataFromArray;
-import edu.ycp.cs320.calculator.shared.RocketPadsDirection;
 import edu.ycp.cs320.calculator.shared.User;
 
 public class DerbyDatabase implements IDatabase {
@@ -84,6 +81,7 @@ public class DerbyDatabase implements IDatabase {
 			public Boolean run(Connection conn) throws SQLException {
 				
 				PreparedStatement stmt = null;
+				PreparedStatement stmt2 = null;
 				
 				try {
 					stmt = conn.prepareStatement(
@@ -96,8 +94,19 @@ public class DerbyDatabase implements IDatabase {
 					
 					stmt.executeUpdate();
 					
+					stmt2 = conn.prepareStatement(
+							"create table users (" +
+							" id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+							" username VARCHAR(100) NOT NULL UNIQUE, " +
+							" password VARCHAR(100) NOT NULL, " +
+							" avatar VARCHAR(100) NOT NULL " +
+							")"
+					);
+					stmt2.executeUpdate();
+					
 				} finally {
 					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(stmt2);
 				}
 				
 				return true;
@@ -113,7 +122,6 @@ public class DerbyDatabase implements IDatabase {
 				ResultSet keys = null;
 				
 				try {
-				
 					stmt = conn.prepareStatement("insert into board_data(name, data) values(?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 					
 					String tutorialData = encodeBoardData(FakeDatabase.tutorial);
@@ -121,7 +129,18 @@ public class DerbyDatabase implements IDatabase {
 					stmt.setString(2, tutorialData);
 					stmt.addBatch();
 					
-					// TODO: other boards
+					String level2Data = encodeBoardData(FakeDatabase.level_2);
+					stmt.setString(1, BoardList.Level_2.toString());
+					stmt.setString(2, level2Data);
+					stmt.addBatch();
+					
+					String level3Data = encodeBoardData(FakeDatabase.level_3);
+					stmt.setString(1, BoardList.Level_3.toString());
+					stmt.setString(2, level3Data);
+					
+					String level4Data = encodeBoardData(FakeDatabase.level_4);
+					stmt.setString(1, BoardList.Level_4.toString());
+					stmt.setString(2, level4Data);
 					
 					stmt.executeBatch();
 				
@@ -217,9 +236,47 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public User createUser(int id, String username, String password,
-			AvatarList avatar) {
-		// TODO Auto-generated method stub
-		return null;
+	public User createUser(final String username, final String password, final AvatarList avatar) {
+		try {
+			return databaseRun(new ITransaction<User>() {
+				@Override
+				public User run(Connection conn) throws SQLException {
+					User user = new User();
+					user.setUsername(username);
+					user.setPassword(password);
+					user.setAvatar(avatar);
+					
+					PreparedStatement stmt = null;
+					ResultSet keys = null;
+					
+					try {
+						stmt = conn.prepareStatement(
+								"insert into users (username, password, avatar) values (?, ?, ?)",
+								PreparedStatement.RETURN_GENERATED_KEYS
+						);
+						stmt.setString(1, user.getUsername());
+						stmt.setString(2, user.getPassword());
+						stmt.setString(3, user.getAvatar().toString());
+						
+						stmt.executeUpdate();
+						
+						keys = stmt.getGeneratedKeys();
+						
+						if (!keys.next()) {
+							throw new SQLException("No generated key for inserted user?");
+						}
+						
+						user.setId(keys.getInt(1));
+						
+						return user;
+					} finally {
+						DBUtil.closeQuietly(stmt);
+						DBUtil.closeQuietly(keys);
+					}
+				}
+			});
+		} catch (SQLException e) {
+			throw new RuntimeException("SQLException inserting new user", e);
+		}
 	}
 }

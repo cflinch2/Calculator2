@@ -29,18 +29,18 @@ private int[][] tutorial = {
 		testLocationB = new RocketPadsLocation(0,0);
 		testLocationC = new RocketPadsLocation(5,5);
 		testLocationD = new RocketPadsLocation(5,5);
+		
 		RocketPadsDirection start_dir = RocketPadsDirection.NORTH;
+		
 		testPlayer = new RocketPadsPlayer(testLocationA, start_dir);
+		
 		RocketPadsBoardData data1 = RocketPadsCreateBoardDataFromArray.createFromArray(tutorial, BoardList.Tutorial);
 		RocketPadsGame testModel = new RocketPadsGame(data1);
+		
 		testController = new RocketPadsController();
+		
 		testPlayer = testModel.getPlayer();
-		
-		
 	}
-	
-	
-	
 	
 	@Before
 	public void setUp() throws Exception
@@ -53,9 +53,5 @@ private int[][] tutorial = {
 	public void testUpdatedPositionNORTH() throws Exception
 	{
 		
-		//assertEquals(0, testPlayer.getY());
 	}
-	
-	//if(player.getDirection() == RocketPadsDirection.NORTH) {
-//		player.setLocation(player.getLocation().getX(),player.getLocation().getY()-75);
 }
